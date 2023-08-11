@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import axios from 'axios';
+import {useNavigate} from "react-router-dom"
 
 const Login = () => {
 
+    const navigate = useNavigate();
     const baseURL="http://localhost:8080/checkLogin"
 
     const emptyState = {
@@ -24,7 +26,7 @@ const Login = () => {
     }
 
     const handleSubmit = (e) => {
-        console.log("Hello");
+       
         e.preventDefault();
         console.log(state);
         axios({
@@ -33,7 +35,16 @@ const Login = () => {
             data: state
           })
         .then(
-            setState((prevProps) => emptyState)
+            response=>{
+            console.log(response.data)
+            if(response.data === 'Login Success')
+            {
+                    navigate('/')
+            }
+            else{
+                alert("Incorrect Credentials! Please try again!!");
+            }
+            }
         )
         .catch(e => {
             console.log(e);
