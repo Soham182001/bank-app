@@ -3,14 +3,15 @@ import axios from 'axios';
 
 const Register = () => {
 
+    const baseURL="http://localhost:8080/saveCustomer"
+
     const [state, setState] = useState({
-        customerID: "",
-        fname: "",
-        phoneNo: "",
+        custId: "",
+        name: "",
+        phone: "",
         email: "",
-        DOB: "",
-        address: "",
-        password: ""
+        dob: "",
+        address: ""
     }) 
 
     const handleInputChange = (e) =>{
@@ -22,8 +23,14 @@ const Register = () => {
     }
 
     const handleSubmit = (e) => {
+        console.log("Hello");
         e.preventDefault();
         console.log(state);
+        axios({
+            method: 'post',
+            url: baseURL,
+            data: state
+          });
     }
 
     return (
@@ -31,22 +38,22 @@ const Register = () => {
             <form onSubmit={handleSubmit}>
                 <label>CustomerID: </label>
                 <input type='text' 
-                        name='customerID'
-                        value={state.customerID}
+                        name='custId'
+                        value={state.custId}
                         onChange={handleInputChange}
                 ></input>
                 <br></br>
                 <label>Name: </label>
                 <input type="text" 
-                        name="fname"
-                        value={state.fname}
+                        name="name"
+                        value={state.name}
                         onChange={handleInputChange}
                 ></input>
                 <br></br>
                 <label>Phone No: </label>
                 <input type='number' 
-                        name='phoneNo'
-                        value={state.phoneNo}
+                        name='phone'
+                        value={state.phone}
                         onChange={handleInputChange}
                 ></input>
                 <br></br>
@@ -59,8 +66,8 @@ const Register = () => {
                 <br></br>
                 <label>Date Of Birth: </label>
                 <input type='date' 
-                        name='DOB'
-                        value={state.DOB}
+                        name='dob'
+                        value={state.dob}
                         onChange={handleInputChange}
                 ></input>
                 <br></br>
@@ -71,12 +78,12 @@ const Register = () => {
                         onChange={handleInputChange}
                 ></input>
                 <br></br>
-                <label>Password: </label>
+                {/* <label>Password: </label>
                 <input type='password' 
                         name='password'
                         value={state.password}
                         onChange={handleInputChange}
-                ></input>
+                ></input> */}
                 <br></br>
                 <input type='submit'></input>
             </form>
