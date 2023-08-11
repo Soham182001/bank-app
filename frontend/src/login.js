@@ -35,7 +35,8 @@ const Login = () => {
             console.log(response.data)
             if(response.data === 'Login Success')
             {
-                    navigate('/');
+
+                    navigate('/welcome',{state:{state}});
             }
             else{
                 alert("Incorrect Credentials! Please try again!!");            }
