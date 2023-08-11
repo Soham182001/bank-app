@@ -10,7 +10,8 @@ const Register = () => {
         phone: "",
         email: "",
         dob: "",
-        address: ""
+        address: "",
+        password: ""
     }
 
     const baseURL="http://localhost:8080/saveCustomer"

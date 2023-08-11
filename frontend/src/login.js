@@ -7,10 +7,6 @@ const Login = () => {
     const navigate = useNavigate();
     const baseURL="http://localhost:8080/checkLogin"
 
-    const emptyState = {
-        custId: "",
-        password: ""
-    }
 
     const [state, setState] =  useState({
         custId: "",
@@ -39,11 +35,10 @@ const Login = () => {
             console.log(response.data)
             if(response.data === 'Login Success')
             {
-                    navigate('/')
+                    navigate('/');
             }
             else{
-                alert("Incorrect Credentials! Please try again!!");
-            }
+                alert("Incorrect Credentials! Please try again!!");            }
             }
         )
         .catch(e => {
