@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import './Register.css';
 
+import {useNavigate} from "react-router-dom"
 const Register = () => {
 
+    const navigate = useNavigate();
     const emptyState = {
         custId: "",
         name: "",
@@ -43,9 +45,12 @@ const Register = () => {
             data: state
           })
         .then(
-            setState((prevProps) => emptyState)
+            response=>{
+                navigate('/login')
+            }
         )
         .catch(e => {
+            alert(e.message);
             console.log(e);
         })
     }
