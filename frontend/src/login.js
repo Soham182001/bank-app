@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const Login = () => {
 
-    const baseURL="http://localhost:8080/"
+    const baseURL="http://localhost:8080/checkLogin"
 
     const emptyState = {
         custId: "",
