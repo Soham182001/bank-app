@@ -1,19 +1,21 @@
 import './App.css';
-// import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import React from 'react';
-import Register from './Register';
+import Register from './register';
+import HomePage from './homePage';
+import Login from './login';
 
 function App() {
   return (
     <div className="App">
-      <h1>Banking Application</h1>
-      <Register></Register>
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Register/>} />
-          <Route index element={<Register/>} />
+          <Route path='/login' element={<Login/>} />
+          <Route path='/register' element={<Register/>} />
+          <Route path='/' element={<HomePage/>} />
+          <Route index element={<HomePage/>} />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }
