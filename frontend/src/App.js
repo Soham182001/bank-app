@@ -4,6 +4,7 @@ import React from 'react';
 import Register from './Register';
 import HomePage from './homePage';
 import Login from './login';
+import WelcomePage from './welcome';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
           <Route path='/login' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
           <Route path='/' element={<HomePage/>} />
+          <Route path='/welcome' element={<WelcomePage/>} />
+
           <Route index element={<HomePage/>} />
         </Routes>
       </BrowserRouter>
