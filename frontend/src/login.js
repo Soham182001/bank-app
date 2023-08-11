@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from 'axios';
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
+import sessionStorage from "sessionstorage";
 
 const Login = () => {
 
@@ -21,6 +22,10 @@ const Login = () => {
         }));
     }
 
+    const saveData = (res) => {
+        sessionStorage.setItem("info", res);
+    }
+
     const handleSubmit = (e) => {
        
         e.preventDefault();
@@ -35,8 +40,8 @@ const Login = () => {
             console.log(response.data)
             if(response.data === 'Login Success')
             {
-
-                    navigate('/welcome',{state:{state}});
+                    saveData(JSON.stringify(state));
+                    navigate('/welcome');
             }
             else{
                 alert("Incorrect Credentials! Please try again!!");            }
