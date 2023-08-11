@@ -3,6 +3,15 @@ import axios from 'axios';
 
 const Register = () => {
 
+    const emptyState = {
+        custId: "",
+        name: "",
+        phone: "",
+        email: "",
+        dob: "",
+        address: ""
+    }
+
     const baseURL="http://localhost:8080/saveCustomer"
 
     const [state, setState] = useState({
@@ -11,7 +20,8 @@ const Register = () => {
         phone: "",
         email: "",
         dob: "",
-        address: ""
+        address: "",
+        password: ""
     }) 
 
     const handleInputChange = (e) =>{
@@ -30,11 +40,18 @@ const Register = () => {
             method: 'post',
             url: baseURL,
             data: state
-          });
+          })
+        .then(
+            setState((prevProps) => emptyState)
+        )
+        .catch(e => {
+            console.log(e);
+        })
     }
 
     return (
         <div>
+            <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <label>CustomerID: </label>
                 <input type='text' 
@@ -78,15 +95,16 @@ const Register = () => {
                         onChange={handleInputChange}
                 ></input>
                 <br></br>
-                {/* <label>Password: </label>
+                <label>Password: </label>
                 <input type='password' 
                         name='password'
                         value={state.password}
                         onChange={handleInputChange}
-                ></input> */}
+                ></input>
                 <br></br>
                 <input type='submit'></input>
             </form>
+            <a href='./login'>Already Signed Up</a>
         </div>
     )
 }
