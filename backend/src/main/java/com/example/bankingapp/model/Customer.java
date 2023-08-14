@@ -18,8 +18,8 @@ public class Customer {
 	private String email;
 	private String DOB;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	private Account account;
+	@OneToMany(mappedBy="customer",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	private List<Account> account;
 	
 	public String getCustId() {
 		return custId;
