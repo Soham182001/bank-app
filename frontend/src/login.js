@@ -41,7 +41,7 @@ const Login = () => {
             if(response.data === 'Login Success')
             {
                     saveData(JSON.stringify(state));
-                    navigate('/welcome');
+                    navigate('/createaccount');
             }
             else{
                 alert("Incorrect Credentials! Please try again!!");            }

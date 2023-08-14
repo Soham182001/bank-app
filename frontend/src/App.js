@@ -1,10 +1,11 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import React from 'react';
-import Register from './Register';
-import HomePage from './homePage';
+import Register from './components/register/Register';
+import HomePage from './components/homepage/homePage';
 import Login from './login';
 import WelcomePage from './welcome';
+import CreateAccountPage from './components/createaccount/createaccount';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path='/login' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
           <Route path='/' element={<HomePage/>} />
+          <Route path='/createaccount' element={<CreateAccountPage/>} />
           <Route path='/welcome' element={<WelcomePage/>} />
           <Route index element={<HomePage/>} />
         </Routes>
