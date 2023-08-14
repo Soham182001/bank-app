@@ -13,11 +13,23 @@ import com.example.bankingapp.model.LoginModel;
 public class CustService {
 	@Autowired
 	CustomerRepository custRepo;
-	public Customer saveCustomer(Customer cust)
+	public String saveCustomer(Customer cust)
 	{
-		Customer obj=custRepo.save(cust);
-		return obj;
+		Optional<Customer>obj=custRepo.findById(cust.getCustId());
+		
+		String result = "";
+		if(obj.isPresent()) {
+			result = "exists";
+		}
+		else {
+			result = "inserted success";
+		Customer o=custRepo.save(cust);
+		
+		}
+	
+		return result;
 	}
+	
 	
 	public String validateUser(LoginModel u) {
 		

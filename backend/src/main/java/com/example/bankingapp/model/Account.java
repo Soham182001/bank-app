@@ -6,8 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -64,7 +64,7 @@ public class Account {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public User getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
 	public void setCustomer(Customer customer) {

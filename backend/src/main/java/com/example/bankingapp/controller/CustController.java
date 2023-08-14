@@ -16,8 +16,8 @@ public class CustController {
 	@Autowired
 	CustService custService;
 	@PostMapping("/saveCustomer")
-	public Customer saveCustomer(@RequestBody Customer cust) {
-		Customer c=custService.saveCustomer(cust);
+	public String saveCustomer(@RequestBody Customer cust) {
+		String c=custService.saveCustomer(cust);
 		return c;
 	}
 	
