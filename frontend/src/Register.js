@@ -6,14 +6,6 @@ import {useNavigate} from "react-router-dom"
 const Register = () => {
 
     const navigate = useNavigate();
-    const emptyState = {
-        custId: "",
-        name: "",
-        phone: "",
-        email: "",
-        dob: "",
-        address: ""
-    }
 
     const baseURL="http://localhost:8080/saveCustomer"
 

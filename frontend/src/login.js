@@ -1,16 +1,13 @@
 import React, {useState} from "react";
 import axios from 'axios';
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
+import sessionStorage from "sessionstorage";
 
 const Login = () => {
 
     const navigate = useNavigate();
     const baseURL="http://localhost:8080/checkLogin"
 
-    const emptyState = {
-        custId: "",
-        password: ""
-    }
 
     const [state, setState] =  useState({
         custId: "",
@@ -23,6 +20,10 @@ const Login = () => {
             ...prevProps, 
             [name]: value
         }));
+    }
+
+    const saveData = (res) => {
+        sessionStorage.setItem("info", res);
     }
 
     const handleSubmit = (e) => {
@@ -39,12 +40,11 @@ const Login = () => {
             console.log(response.data)
             if(response.data === 'Login Success')
             {
-
-                    navigate('/welcome',{state:{state}});
+                    saveData(JSON.stringify(state));
+                    navigate('/welcome');
             }
             else{
-                alert("Incorrect Credentials! Please try again!!");
-            }
+                alert("Incorrect Credentials! Please try again!!");            }
             }
         )
         .catch(e => {
