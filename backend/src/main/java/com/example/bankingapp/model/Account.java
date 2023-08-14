@@ -20,7 +20,7 @@ public class Account {
 	private String dateOpened;
 	private String dateClosed;
 	private String type;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="custId")
 	private Customer customer;
 	
@@ -63,6 +63,12 @@ public class Account {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public User getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer=customer;
 	}
 
 }

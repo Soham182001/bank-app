@@ -49,8 +49,8 @@ public class Customer {
 	@NotBlank(message="Customer DOB can't be blank")
 	private String DOB;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	private Account account;
+	@OneToMany(mappedBy="customer",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	private List<Account> account;
 	
 	public String getCustId() {
 		return custId;
