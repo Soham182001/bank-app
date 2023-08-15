@@ -1,5 +1,7 @@
 package com.example.bankingapp.model;
 
+import java.math.BigInteger;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +30,7 @@ public class Occupation {
     private String sourceOfIncome;
 
     @Column(nullable = false)
-    private Integer grossAnnualSalary;
+    private BigInteger grossAnnualSalary;
 
     // Getters and setters
 
@@ -40,11 +42,11 @@ public class Occupation {
         this.customer = customer;
     }
 
-    public Integer getGrossAnnualSalary() {
+    public BigInteger getGrossAnnualSalary() {
         return grossAnnualSalary;
     }
 
-    public void setGrossAnnualSalary(Integer grossAnnualSalary) {
+    public void setGrossAnnualSalary(BigInteger grossAnnualSalary) {
         this.grossAnnualSalary = grossAnnualSalary;
     }
 

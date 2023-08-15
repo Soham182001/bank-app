@@ -6,6 +6,7 @@ import HomePage from './components/homepage/homePage';
 import Login from './components/login/login';
 import WelcomePage from './components/homepage/welcome';
 import CreateAccountPage from './components/createaccount/createaccount';
+import AddOccupation from './components/createaccount/addOccupation';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/' element={<HomePage/>} />
           <Route path='/createaccount' element={<CreateAccountPage/>} />
           <Route path='/welcome' element={<WelcomePage/>} />
+          <Route path='/addOccupation' element={<AddOccupation/>} />
           <Route index element={<HomePage/>} />
         </Routes>
       </BrowserRouter>

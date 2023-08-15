@@ -30,7 +30,7 @@ const CreateAccountPage = () =>{
             dateOpened: new Date()
         }
         sessionStorage.setItem("account",account);
-        navigate('/')
+        navigate('/addOccupation')
     };
 
     return(
@@ -41,10 +41,13 @@ const CreateAccountPage = () =>{
                 <label>Account Type (savings/current): </label>
                 <input type="text" 
                         name="accountType"
-                        value={state.type}
                         {...register("accountType")}
                 ></input>
+                <br/>
+                <input type="submit" 
+                >Next</input>
 
+                
             </form>
         </div>
     )
