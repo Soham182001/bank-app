@@ -3,8 +3,8 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import React from 'react';
 import Register from './components/register/Register';
 import HomePage from './components/homepage/homePage';
-import Login from './login';
-import WelcomePage from './welcome';
+import Login from './components/login/login';
+import WelcomePage from './components/homepage/welcome';
 import CreateAccountPage from './components/createaccount/createaccount';
 
 function App() {

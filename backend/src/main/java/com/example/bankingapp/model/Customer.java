@@ -1,5 +1,6 @@
 package com.example.bankingapp.model;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class Customer {
 	private String email;
 
 	@Column(nullable = false)
-	private Integer adhaarNumber;
+	private BigInteger adhaarNumber;
 
 	@Column(nullable = false)
 	@NotBlank(message = "Customer password can't be blank")
@@ -133,11 +134,11 @@ public class Customer {
 		this.email = email;
 	}
 
-	public Integer getAdhaarNumber() {
+	public BigInteger getAdhaarNumber() {
 		return adhaarNumber;
 	}
 
-	public void setAdhaarNumber(Integer adhaarNumber) {
+	public void setAdhaarNumber(BigInteger adhaarNumber) {
 		this.adhaarNumber = adhaarNumber;
 	}
 

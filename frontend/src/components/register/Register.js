@@ -1,40 +1,27 @@
 import React, {useState} from 'react';
+import {useForm} from "react-hook-form";
 import axios from 'axios';
 import './Register.css';
 
 import {useNavigate} from "react-router-dom"
 const Register = () => {
 
+    const {
+    register,
+    handleSubmit
+    } = useForm();
     const navigate = useNavigate();
 
     const baseURL="http://localhost:8080/saveCustomer"
 
-    const [state, setState] = useState({
-        custId: "",
-        name: "",
-        phone: "",
-        email: "",
-        dob: "",
-        address: "",
-        password: ""
-    }) 
-
-    const handleInputChange = (e) =>{
-        const {name, value} = e.target;
-        setState((prevProps) => ({
-            ...prevProps, 
-            [name]: value
-        }));
-    }
-
-    const handleSubmit = (e) => {
-        console.log("Hello");
-        e.preventDefault();
-        console.log(state);
+    const onSubmit = (data) => {
+        
+        data.adhaarNumber = parseInt(data.adhaarNumber)
+        console.log(data);
         axios({
             method: 'post',
             url: baseURL,
-            data: state
+            data: data
           })
         .then(
             response=>{
@@ -50,54 +37,75 @@ const Register = () => {
     return (
         <div>
             <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <label>CustomerID: </label>
                 <input type='text' 
                         name='custId'
-                        value={state.custId}
-                        onChange={handleInputChange}
+                        {...register("custId")}
+                        required
                 ></input>
                 <br></br>
-                <label>Name: </label>
+                <label>First Name </label>
                 <input type="text" 
-                        name="name"
-                        value={state.name}
-                        onChange={handleInputChange}
+                        name="firstName"
+                        {...register("firstName")}
+                        required
                 ></input>
                 <br></br>
-                <label>Phone No: </label>
-                <input type='number' 
+                <label>Middle Name </label>
+                <input type="text" 
+                        name="middleName"
+                        {...register("middleName")}
+                        
+                ></input>
+                <br></br>
+                <label>Last Name </label>
+                <input type="text" 
+                        name="lastName"
+                        {...register("lastName")}
+                        required
+                ></input>
+                <br></br>
+                <label>Father Name </label>
+                <input type="text" 
+                        name="fatherName"
+                        {...register("fatherName")}
+                        required
+                ></input>
+                <br></br>
+                <label>Phone No </label>
+                <input type='text' 
                         name='phone'
-                        value={state.phone}
-                        onChange={handleInputChange}
+                        {...register("phone")}
+                        required
                 ></input>
                 <br></br>
-                <label>Email: </label>
+                <label>Email </label>
                 <input type='email' 
                         name='email'
-                        value={state.email}
-                        onChange={handleInputChange}
+                        {...register("email")}
+                        required
                 ></input>
                 <br></br>
-                <label>Date Of Birth: </label>
+                <label>Date Of Birth </label>
                 <input type='date' 
-                        name='dob'
-                        value={state.dob}
-                        onChange={handleInputChange}
+                        name='DOB'
+                        {...register("DOB")}
+                        required
                 ></input>
                 <br></br>
-                <label>Address: </label>
-                <input type="text"
-                        name="address"
-                        value={state.address}
-                        onChange={handleInputChange}
+                <label>Adhaar Number </label>
+                <input type="number"
+                        name="adhaarNumber"
+                        {...register("adhaarNumber")}
+                        required
                 ></input>
                 <br></br>
-                <label>Password: </label>
+                <label>Password </label>
                 <input type='password' 
                         name='password'
-                        value={state.password}
-                        onChange={handleInputChange}
+                        {...register("password")}
+                        required
                 ></input>
                 <br></br>
                 <input type='submit'></input>
