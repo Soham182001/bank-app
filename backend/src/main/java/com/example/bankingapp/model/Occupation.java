@@ -30,6 +30,16 @@ public class Occupation {
     @Column(nullable = false)
     private Integer grossAnnualSalary;
 
+    // Getters and setters
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public Integer getGrossAnnualSalary() {
         return grossAnnualSalary;
     }

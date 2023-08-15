@@ -13,65 +13,42 @@ import com.example.bankingapp.model.LoginModel;
 public class CustService {
 	@Autowired
 	CustomerRepository custRepo;
-	public String saveCustomer(Customer cust)
-	{
-		Optional<Customer>obj=custRepo.findById(cust.getCustId());
-		
+
+	public String saveCustomer(Customer cust) {
+		Optional<Customer> obj = custRepo.findById(cust.getCustId());
+
 		String result = "";
-		if(obj.isPresent()) {
+		if (obj.isPresent()) {
 			result = "exists";
-		}
-		else {
+		} else {
 			result = "inserted success";
-		Customer o=custRepo.save(cust);
-		
+			custRepo.save(cust);
+
 		}
-	
+
 		return result;
 	}
-	
-	
+
 	public String validateUser(LoginModel u) {
-		
-		String result="";
-		Customer cust=null;
-		Optional<Customer>obj=custRepo.findById(u.getCustId());
-		
-		if(obj.isPresent()) {
-			cust=obj.get();
+
+		String result = "";
+		Customer cust = null;
+		Optional<Customer> obj = custRepo.findById(u.getCustId());
+
+		if (obj.isPresent()) {
+			cust = obj.get();
 		}
-		if(cust==null) {
-			result="Invalid User";
+		if (cust == null) {
+			result = "Invalid User";
 		}
-		
+
 		else {
-			if(u.getPassword().equals(cust.getPassword())) {
-				result="Login Success";
-			}
-			else {
-				result="Login Failed";
+			if (u.getPassword().equals(cust.getPassword())) {
+				result = "Login Success";
+			} else {
+				result = "Login Failed";
 			}
 		}
 		return result;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

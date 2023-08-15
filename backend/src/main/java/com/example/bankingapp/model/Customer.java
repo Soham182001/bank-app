@@ -63,7 +63,7 @@ public class Customer {
 	private String password;
 
 	@Column(nullable = false)
-	@JsonFormat(pattern = "yyyy-mm-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate DOB;
 
 	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

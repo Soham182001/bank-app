@@ -20,14 +20,13 @@ public class Address {
     @ManyToOne
     @JoinColumn(name = "custId")
     private Customer customer;
-
     @Column(nullable = false)
     private String addressLine1;
 
     @Column(nullable = true)
     private String addressLine2;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String landmark;
 
     @Column(nullable = false)
@@ -41,6 +40,14 @@ public class Address {
 
     @Column(nullable = false)
     private String addressType;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     public String getAddressLine1() {
         return addressLine1;
