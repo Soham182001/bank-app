@@ -24,7 +24,6 @@ const CreateAccountPage = () =>{
 
         const account = {
             type : data.accountType,
-            custId: cust_id,
             accountNo: acc_num,
             balance: 0,
             dateOpened: new Date()

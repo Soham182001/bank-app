@@ -16,14 +16,12 @@ const AddOccupation = () =>{
     const accType = JSON.parse(sessionStorage.getItem("account")).accountType;
     const onSubmit = (data)=>{
 
-        const account = {
-            type : data.accountType,
-            custId: cust_id,
-            accountNo: acc_num,
-            balance: 0,
-            dateOpened: new Date()
+        const occupation = {
+            occupationType : data.occupationType,
+            sourceOfIncome: data.sourceOfIncome,
+            grossAnnualSalary: data.grossAnnualSalary
         }
-        sessionStorage.setItem("account",account);
+        sessionStorage.setItem("occupation",occupation);
         navigate('/addPermanentAddress')
     };
 
@@ -32,7 +30,7 @@ const AddOccupation = () =>{
         <div>
             <h1>Creating a {accType} Account</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label>Occupation Type (savings/current) </label>
+                <label>Occupation Type </label>
                 <input type="text" 
                         name="occupationType"
                         {...register("occupationType")}

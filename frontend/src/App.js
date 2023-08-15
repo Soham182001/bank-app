@@ -5,8 +5,9 @@ import Register from './components/register/Register';
 import HomePage from './components/homepage/homePage';
 import Login from './components/login/login';
 import WelcomePage from './components/homepage/welcome';
-import CreateAccountPage from './components/createaccount/createaccount';
+import CreateAccountPage from './components/createaccount/createAccount';
 import AddOccupation from './components/createaccount/addOccupation';
+import Address from './components/createaccount/addAddress';
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
           <Route path='/createaccount' element={<CreateAccountPage/>} />
           <Route path='/welcome' element={<WelcomePage/>} />
           <Route path='/addOccupation' element={<AddOccupation/>} />
+          <Route path='/addPermanentAddress' element={<Address type="Permanent"/>}/>
+          <Route path='/addTemporaryAddress' element={<Address type="Temporary"/>}/>
+
           <Route index element={<HomePage/>} />
         </Routes>
       </BrowserRouter>
