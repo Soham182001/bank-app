@@ -68,6 +68,9 @@ public class Customer {
 	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Account> account;
 
+	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Address> address;
+
 	// Getters and setters
 
 	public String getCustId() {
