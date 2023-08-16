@@ -26,9 +26,9 @@ const CreateAccountPage = () =>{
             type : data.accountType,
             accountNo: acc_num,
             balance: 0,
-            dateOpened: new Date()
+            dateOpened: new Date().toISOString().split('T')[0]
         }
-        sessionStorage.setItem("account",account);
+        sessionStorage.setItem("account",JSON.stringify(account));
         navigate('/addOccupation')
     };
 
@@ -43,8 +43,8 @@ const CreateAccountPage = () =>{
                         {...register("accountType")}
                 ></input>
                 <br/>
-                <input type="submit" 
-                >Next</input>
+                <input type="submit" value="Next"
+                ></input>
 
                 
             </form>

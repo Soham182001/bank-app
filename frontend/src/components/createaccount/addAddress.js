@@ -13,6 +13,8 @@ const Address = (props) =>{
         handleSubmit
         } = useForm();
     
+    const accType = JSON.parse(JSON.stringify(sessionStorage.getItem("account"))).accountType;
+    console.log(accType)
     const addressType = props.type;
     const onSubmit = (data)=>{
 
@@ -29,7 +31,8 @@ const Address = (props) =>{
          if(addressType === "Permanent")
             addresses = []
          else{
-            addresses = JSON.parse(sessionStorage.getItem("address"))
+            addresses = JSON.parse(JSON.parse(JSON.stringify(sessionStorage.getItem("address"))))
+            console.log(addresses,typeof(addresses))
          }
          addresses.push(address);
 
@@ -40,8 +43,36 @@ const Address = (props) =>{
 
 
 
-        else
-        console.log(JSON.stringify(sessionStorage));
+        else{
+        // console.log(JSON.stringify(sessionStorage));
+        const  sessionData = JSON.parse(JSON.stringify(sessionStorage))
+        // console.log(sessionData)
+        const custId = JSON.parse(sessionData.info).custId;
+        const data = {occupation : JSON.parse(sessionData.occupation),
+                    account:JSON.parse(sessionData.account),
+                    address:JSON.parse(sessionData.address)}
+        const URL = `http://localhost:8080/createAccount/${custId}`;
+        console.log(data.account,data.address,data.occupation)
+        console.log(Object.keys(data),Object.keys(data.occupation),Object.keys(data.account),Object.keys(data.address[0]))
+
+        axios({
+            method: 'post',
+            url: URL,
+            data: data
+          })
+        .then(
+            response=>{
+                console.log(response.data);
+                navigate('/welcome')
+            }
+        )
+        .catch(e => {
+            alert(e.message);
+            console.log(e);
+        })
+   
+   
+    }
         // navigate('/reviewPage')
     };
 
@@ -49,7 +80,7 @@ const Address = (props) =>{
 
         <div>
             <h1>Creating a {accType} Account</h1>
-            <h3>{addressType} Details</h3>
+            <h3>{addressType} Address Details</h3>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>Address Line 1 </label>
                 <input type="text" 
@@ -101,8 +132,8 @@ const Address = (props) =>{
 
                 <br></br>
 
-                <input type="submit" 
-                >Next</input>
+                <input type="submit" value="Next"
+                ></input>
                 
             </form>
         </div>

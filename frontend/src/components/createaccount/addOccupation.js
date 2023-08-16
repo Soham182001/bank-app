@@ -13,7 +13,7 @@ const AddOccupation = () =>{
         handleSubmit
         } = useForm();
     
-    const accType = JSON.parse(sessionStorage.getItem("account")).accountType;
+    const accType = JSON.parse(JSON.stringify(sessionStorage.getItem("account"))).accountType;
     const onSubmit = (data)=>{
 
         const occupation = {
@@ -21,7 +21,7 @@ const AddOccupation = () =>{
             sourceOfIncome: data.sourceOfIncome,
             grossAnnualSalary: data.grossAnnualSalary
         }
-        sessionStorage.setItem("occupation",occupation);
+        sessionStorage.setItem("occupation",JSON.stringify(occupation));
         navigate('/addPermanentAddress')
     };
 
@@ -54,8 +54,8 @@ const AddOccupation = () =>{
 
                 <br></br>
 
-                <input type="submit" 
-                >Next</input>
+                <input type="submit" value ="Next"
+                ></input>
                 
             </form>
         </div>
