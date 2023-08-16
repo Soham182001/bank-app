@@ -1,13 +1,19 @@
 import React from 'react';
 import sessionStorage from "sessionstorage";
+import {useNavigate} from "react-router-dom";
 
 const WelcomePage = () =>{    
 
+    const navigate = useNavigate();
     let data = sessionStorage.getItem("info");
     data = JSON.parse(data);
 
     const handleLogout = () =>{
         
+    }
+
+    const createAccount = () =>{
+        navigate('/createaccount')
     }
 
     return(
@@ -21,7 +27,7 @@ const WelcomePage = () =>{
             
             
             <div>
-                <h2>Have a good day!</h2>
+                <button onClick={createAccount}>Create Account</button>
             </div>
             
         </div>
