@@ -105,7 +105,7 @@ public class TransactionService {
 			List<Transaction> subTranx = transRepo.findByAccountNo(str);
 			for(int j=0; j<subTranx.size(); j++) {
 				Transaction x = subTranx.get(j);
-				System.out.println(x.getTransactionId());
+				txnList.add(x);
 			}
 		}
 			
