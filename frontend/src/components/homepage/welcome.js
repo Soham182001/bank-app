@@ -16,6 +16,10 @@ const WelcomePage = () =>{
         
     }
 
+    const createAccount = () =>{
+        navigate('/createaccount');
+    }
+
     const saveData = (res) => {
         sessionStorage.setItem("account", res);
         console.log(JSON.stringify(sessionStorage))
@@ -29,14 +33,14 @@ const WelcomePage = () =>{
             url: URL,
           })
         .then(
-            response=>{
+            (response)=>{
                 console.log(response.data);
-                
                 saveData(JSON.stringify(response.data));
-
-                navigate('/transact')
             }
         )
+        .then(()=>{
+            navigate('/transact');
+        })
         .catch(e => {
             alert(e.message);
             console.log(e);
@@ -57,6 +61,8 @@ const WelcomePage = () =>{
             </h1>
             
             <button onClick={fetchAndMove}>Transact Money</button>
+
+            <button onClick={createAccount}>Create Account</button>
             
             <div>
                 <h2>Have a good day!</h2>
