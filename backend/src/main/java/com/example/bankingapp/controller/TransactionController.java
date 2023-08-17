@@ -3,6 +3,7 @@ package com.example.bankingapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +18,7 @@ public class TransactionController {
 	TransactionService transSer;
 	@PostMapping("/transaction")
 	public String transaction(@RequestBody TransactionModel trans) {
+		System.out.println("Hello");
 		String t=transSer.transaction(trans);
 		return t;
 	}

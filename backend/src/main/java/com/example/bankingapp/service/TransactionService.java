@@ -34,8 +34,24 @@ public class TransactionService {
 		trans.setSenderAccount(senderAccount);
 		trans.setRecieverAccount(recieverAccount);
 		
+		String res="";
+
+		if(senderNum.equals(recieverNum)) {
+			int balance=senderAccount.getBalance();
+			if(balance-accountModel.getBalance()<-100) {
+				res="Insufficient Balance";
+			}
+			else {
+				int rows=accRepo.updateBalance(accountModel.getBalance(),senderNum);
+				if(rows>0) {
+					res="Transaction Successful";
+				}
+			}
+		}
+		
+		
 		
 		transRepo.save(trans);
-		return "Transaction Completed";
+		return res;
 	}
 }
