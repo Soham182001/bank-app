@@ -1,27 +1,46 @@
 import React, {useState} from 'react';
-import {useForm} from "react-hook-form";
 import axios from 'axios';
-import './Register.css';
+import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
+
+
 
 import {useNavigate} from "react-router-dom"
 const Register = () => {
 
-    const {
-    register,
-    handleSubmit
-    } = useForm();
-    const navigate = useNavigate();
+        const navigate = useNavigate();
+
+        const [state, setState] = useState({
+                custId: "",
+                firstName: "",
+                phone: "",
+                email: "",
+                DOB: "",
+                address: "",
+                password: "",
+                adhaarNumber: "",
+                middleName: "",
+                lastName: "",
+                fatherName: ""
+        }) 
+
+        const handleInputChange = (e) =>{
+        const {name, value} = e.target;
+        setState((prevProps) => ({
+                ...prevProps, 
+                [name]: value
+        }));
+        }
 
     const baseURL="http://localhost:8080/saveCustomer"
 
-    const onSubmit = (data) => {
-        
-        data.adhaarNumber = parseInt(data.adhaarNumber)
-        console.log(data);
+    const handleSubmit = (e) => {
+        console.log("Hello");
+        e.preventDefault();
+        console.log(state);
         axios({
             method: 'post',
             url: baseURL,
-            data: data
+            data: state
           })
         .then(
             response=>{
@@ -36,81 +55,83 @@ const Register = () => {
 
     return (
         <div>
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <label>CustomerID: </label>
-                <input type='text' 
-                        name='custId'
-                        {...register("custId")}
-                        required
-                ></input>
-                <br></br>
-                <label>First Name </label>
-                <input type="text" 
-                        name="firstName"
-                        {...register("firstName")}
-                        required
-                ></input>
-                <br></br>
-                <label>Middle Name </label>
-                <input type="text" 
-                        name="middleName"
-                        {...register("middleName")}
-                        
-                ></input>
-                <br></br>
-                <label>Last Name </label>
-                <input type="text" 
-                        name="lastName"
-                        {...register("lastName")}
-                        required
-                ></input>
-                <br></br>
-                <label>Father Name </label>
-                <input type="text" 
-                        name="fatherName"
-                        {...register("fatherName")}
-                        required
-                ></input>
-                <br></br>
-                <label>Phone No </label>
-                <input type='text' 
-                        name='phone'
-                        {...register("phone")}
-                        required
-                ></input>
-                <br></br>
-                <label>Email </label>
-                <input type='email' 
-                        name='email'
-                        {...register("email")}
-                        required
-                ></input>
-                <br></br>
-                <label>Date Of Birth </label>
-                <input type='date' 
-                        name='DOB'
-                        {...register("DOB")}
-                        required
-                ></input>
-                <br></br>
-                <label>Adhaar Number </label>
-                <input type="number"
-                        name="adhaarNumber"
-                        {...register("adhaarNumber")}
-                        required
-                ></input>
-                <br></br>
-                <label>Password </label>
-                <input type='password' 
-                        name='password'
-                        {...register("password")}
-                        required
-                ></input>
-                <br></br>
-                <input type='submit'></input>
-            </form>
-            <a href='./login'>Already Signed Up</a>
+                <CDBContainer style={{marginTop: "5em", marginLeft: "25em"}}>
+                <CDBCard style={{ width: '30rem' }}>
+                        <CDBCardBody className="mx-4">
+                        <form onSubmit={handleSubmit}>
+                        <div className="text-center mt-4 mb-2">
+                        <p className="h4"> Sign up </p>
+                        </div>
+                        <div className="form-flex-row mb-n4">
+                        <div className="col">
+                                <CDBInput material hint="Customer ID" type='text' placeholder='Customer ID' 
+                                name='custId'
+                                onChange={handleInputChange}
+                                required/>
+                        </div>
+                        <div className="col">
+                                <CDBInput material hint="First name" type="text" placeholder='First Name'
+                                name="firstName"
+                                onChange={handleInputChange}
+                                required/>
+                        </div>
+                        <div className="col">
+                                <CDBInput material hint="Middle name" type="text" placeholder='Middle Name'
+                                name="middleName"
+                                onChange={handleInputChange}
+                                required/>
+                        </div>
+                        <div className="col">
+                                <CDBInput material hint="Last name" type="text" placeholder='Last Name'
+                                name="lastName"
+                                onChange={handleInputChange}
+                                required />
+                        </div>
+                        <div className="col">
+                                <CDBInput material hint="Father name" type="text" placeholder='Father Name'
+                                name="fatherName"
+                                onChange={handleInputChange}
+                                required/>
+                        </div>
+                        <div className='col'>
+                                <label htmlFor="dob" className="text-muted m-0">
+                                DOB
+                                </label>
+                                <CDBInput id='dob' type='date' material
+                                name='DOB'
+                                onChange={handleInputChange}
+                                required/>
+                        </div>
+                        </div>
+                        <CDBInput material hint="Email" type="email" placeholder='Email'
+                                name="email"
+                                onChange={handleInputChange}
+                                required/>
+                        <CDBInput material hint="Phone" type="text" placeholder='Phone Number'
+                                name="phone"
+                                onChange={handleInputChange}
+                                required/>
+                        <CDBInput material hint="Adhaar" type="number" placeholder='Adhaar Number'
+                                name="adhaarNumber"
+                                onChange={handleInputChange}
+                                required/>
+                        <CDBInput material hint="Password" type="password" placeholder='Password'
+                                name="password"
+                                onChange={handleInputChange}
+                                required/>
+                        <CDBBtn color="dark" className="btn-block my-3 mx-0" type='submit'>
+                        Sign up
+                        </CDBBtn>
+                        </form>
+                        <p className="text-center m-0">
+                        Already have an account?{' '}
+                        <CDBLink className="d-inline p-0" to="/login">
+                        Sign In
+                        </CDBLink>
+                        </p>
+                        </CDBCardBody>
+                </CDBCard>
+                </CDBContainer>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
-import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { CDBInput, CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import sessionStorage from "sessionstorage";
 
 const Login = () => {
@@ -56,28 +56,36 @@ const Login = () => {
 
     return (
         <div>
-              
-              
-
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label>CustomerID: </label>
-                <input type='text' 
-                        name='custId'
-                        value={state.custId}
-                        onChange={handleInputChange}
-                ></input>
-                <br></br>
-                <label>Password: </label>
-                <input type='password' 
-                        name='password'
-                        value={state.password}
-                        onChange={handleInputChange}
-                ></input>
-                <br></br>
-                <input type='submit'></input>
-            </form>
-            <a href="./register">Haven't Signed Up Yet?</a>
+            
+                <CDBContainer style={{marginTop: "5em", marginLeft: "25em"}}>
+                <CDBCard style={{ width: '30rem' }}>
+                    <CDBCardBody className="mx-4">
+                    <div className="text-center mt-4 mb-2">
+                        <p className="h4"> Sign in </p>
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                    <CDBInput material hint="E-mail" type='text' placeholder="Customer ID"
+                                    name='custId'
+                                    value={state.custId}
+                                    onChange={handleInputChange} />
+                    <CDBInput material hint="Password" type="password" placeholder="Password" 
+                                    name='password'
+                                    value={state.password}
+                                    onChange={handleInputChange}/>
+                        
+                    <CDBBtn color="dark" className="btn-block my-3 mx-0 " type="submit">
+                        Sign in
+                    </CDBBtn>
+                    </form>
+                    <p className="text-center">
+                        Not a customer?{' '}
+                        <CDBLink className="d-inline p-0" to="/register">
+                        Register
+                        </CDBLink>
+                    </p>
+                    </CDBCardBody>
+                </CDBCard>
+                </CDBContainer>
         </div>
     )
 
