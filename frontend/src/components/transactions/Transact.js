@@ -22,8 +22,16 @@ const Transact= () =>{
     // const {field : {value: transactionType, onChange: transactionTypeChange, ...restTransactionType}} = useController({name: 'transactionType',control});
 
     // const accountIds = JSON.parse(sessionStorage.getItem("account"));
-    const accountIds = [{label:989897878,value:1},{label:78766545544,value:2},{label:89878767654543,value:3}];
-    
+    // const accountIds = [{label:989897878,value:1},{label:78766545544,value:2},{label:89878767654543,value:3}];
+        
+let accNums = JSON.parse((sessionStorage.getItem("account")));
+
+let accountIds=[];
+accNums.map((val,index)=>accountIds.push({label:val,value:index}))
+console.log(accountIds)
+console.log(accNums,typeof(accNums))
+
+
     const transactTypes=[{label:"withdrawal",value:1},{label:"deposit",value:2},{label:"fund transfer",value:3}];
 
       const min = 100000000000; // Minimum 12-digit number
@@ -34,34 +42,41 @@ const Transact= () =>{
     const onSubmit = (data)=>{
 
         const payload = {
-            type : type,
+            accountUpdateModel:{
+                
             senderAccount: senderAccount,
-            receiverAccount: data.receiverAccount,
+            recieverAccount: data.receiverAccount,
+            amount: parseInt(data.amount)
+            },
+          transaction:{  
+            type : type,
             timeStamp: new Date().toISOString().split('T')[0],
-            amount:data.amount,
-            transactionId:transactionId
+            amount:parseInt(data.amount),
+            transactionId:transactionId,
+            status:"in progress"
+          }
         }
         console.log(payload);
 
-        // const URL = `http://localhost:8080/transaction/`
-        // axios({
-        //     method: 'post',
-        //     url: URL,
-        //     data:payload
-        //   })
-        // .then(
-        //     response=>{
-        //         console.log(response.data);
+        const URL = `http://localhost:8080/transaction`
+        axios({
+            method: 'post',
+            url: URL,
+            data:payload
+          })
+        .then(
+            response=>{
+                console.log(response.data);
                 
-        //         alert("Transaction done success");
-        //         navigate("/welcome")
+                alert("Transaction done success");
+                navigate("/welcome")
 
-        //     }
-        // )
-        // .catch(e => {
-        //     alert(e.message);
-        //     console.log(e);
-        // })
+            }
+        )
+        .catch(e => {
+            alert(e.message);
+            console.log(e);
+        })
         // // sessionStorage.setItem("account",JSON.stringify(account));
         // navigate('/addOccupation')
     };

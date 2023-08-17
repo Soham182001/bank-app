@@ -12,15 +12,28 @@ public class Transaction {
 	
 	@Id
 	private String transactionId;
-	private String status;
+	private String type;
 	private int amount;
 	private String timeStamp;
+	private String status;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="senderAccount")
 	private Account senderAccount;
 	
+	public Account getSenderAccount() {
+		return senderAccount;
+	}
+	public void setSenderAccount(Account senderAccount) {
+		this.senderAccount = senderAccount;
+	}
+	public Account getRecieverAccount() {
+		return recieverAccount;
+	}
+	public void setRecieverAccount(Account recieverAccount) {
+		this.recieverAccount = recieverAccount;
+	}
 	@ManyToOne
 	@JoinColumn(name="recieverAccount")
 	private Account recieverAccount;
@@ -32,11 +45,11 @@ public class Transaction {
 	public void setTransactionId(String transactionId) {
 		this.transactionId = transactionId;
 	}
-	public String getStatus() {
-		return status;
+	public String getType() {
+		return type;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setType(String type) {
+		this.type = type;
 	}
 	public int getAmount() {
 		return amount;
@@ -50,6 +63,12 @@ public class Transaction {
 	}
 	public void setTimeStamp(String timeStamp) {
 		this.timeStamp = timeStamp;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
