@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
 import axios from 'axios';
-import './Register.css';
+// import './Register.css';
 
 import {useNavigate} from "react-router-dom"
 const Register = () => {
