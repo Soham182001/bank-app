@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bankingapp.model.Transaction;
+import com.example.bankingapp.model.TransactionModel;
 import com.example.bankingapp.service.TransactionService;
 
 @RestController
@@ -15,7 +16,7 @@ public class TransactionController {
 	@Autowired
 	TransactionService transSer;
 	@PostMapping("/transaction")
-	public String transaction(@RequestBody Transaction trans) {
+	public String transaction(@RequestBody TransactionModel trans) {
 		String t=transSer.transaction(trans);
 		return t;
 	}

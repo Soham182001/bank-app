@@ -25,6 +25,7 @@ const WelcomePage = () =>{
 =======
     const saveData = (res) => {
         sessionStorage.setItem("account", res);
+        console.log(JSON.stringify(sessionStorage))
     }
 
     const fetchAndMove = ()=>{

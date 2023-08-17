@@ -25,7 +25,7 @@ function App() {
           <Route path='/addTemporaryAddress' element={<Address type="Temporary"/>}/>
           <Route path='/transact' element={<Transact/>}/>
 
-          <Route index element={<Transact/>} />
+          <Route index element={<HomePage/>} />
         </Routes>
       </BrowserRouter>
     </div>
