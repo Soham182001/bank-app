@@ -73,8 +73,8 @@ public class Customer {
 	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Address> address;
 
-	@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Occupation occupation;
+	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Occupation> occupation;
 
 	// Getters and setters
 
