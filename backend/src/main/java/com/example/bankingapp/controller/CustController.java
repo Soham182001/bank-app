@@ -1,7 +1,11 @@
 package com.example.bankingapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,5 +28,12 @@ public class CustController {
 	@PostMapping("/checkLogin")
 	public String validateUser(@RequestBody LoginModel u) {
 		return custService.validateUser(u); 
+	}
+	
+	@GetMapping("/fetchAccounts/{custId}")
+	public List<String>fetchAccounts(@PathVariable("custId") String uname){
+		System.out.println(uname);
+		List<String>accountList=custService.fetchAccounts(uname);
+		return accountList;
 	}
 }
