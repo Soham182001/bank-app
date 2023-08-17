@@ -4,7 +4,7 @@ public class AccountUpdateModel {
 
 	private String senderAccount;
 	private String recieverAccount;
-	private int balance;
+	private int amount;
 	public String getSenderAccount() {
 		return senderAccount;
 	}
@@ -17,11 +17,11 @@ public class AccountUpdateModel {
 	public void setRecieverAccount(String recieverAccount) {
 		this.recieverAccount = recieverAccount;
 	}
-	public int getBalance() {
-		return balance;
+	public int getAmount() {
+		return amount;
 	}
-	public void setBalance(int balance) {
-		this.balance = balance;
+	public void setAmount(int balance) {
+		this.amount = balance;
 	}
 	
 }
