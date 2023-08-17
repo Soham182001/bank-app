@@ -1,6 +1,5 @@
 import React from 'react';
 import sessionStorage from "sessionstorage";
-import {useNavigate} from "react-router-dom";
 
 import {useNavigate} from "react-router-dom"
 import axios from 'axios';
@@ -17,12 +16,10 @@ const WelcomePage = () =>{
         
     }
 
-<<<<<<< HEAD
     const createAccount = () =>{
-        navigate('/createaccount')
+        navigate('/createaccount');
     }
 
-=======
     const saveData = (res) => {
         sessionStorage.setItem("account", res);
         console.log(JSON.stringify(sessionStorage))
@@ -36,14 +33,14 @@ const WelcomePage = () =>{
             url: URL,
           })
         .then(
-            response=>{
+            (response)=>{
                 console.log(response.data);
-                
                 saveData(JSON.stringify(response.data));
-
-                navigate('/transact')
             }
         )
+        .then(()=>{
+            navigate('/transact');
+        })
         .catch(e => {
             alert(e.message);
             console.log(e);
@@ -54,7 +51,6 @@ const WelcomePage = () =>{
     }
 
 
->>>>>>> 98119337b45f6d9487b4f00845fa17a59303f62b
     return(
         <div>
             <button onClick={handleLogout}>
@@ -65,9 +61,11 @@ const WelcomePage = () =>{
             </h1>
             
             <button onClick={fetchAndMove}>Transact Money</button>
+
+            <button onClick={createAccount}>Create Account</button>
             
             <div>
-                <button onClick={createAccount}>Create Account</button>
+                <h2>Have a good day!</h2>
             </div>
             
         </div>

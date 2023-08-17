@@ -25,7 +25,7 @@ const Transact= () =>{
     // const accountIds = [{label:989897878,value:1},{label:78766545544,value:2},{label:89878767654543,value:3}];
         
 let accNums = JSON.parse((sessionStorage.getItem("account")));
-
+console.log(accNums)
 let accountIds=[];
 accNums.map((val,index)=>accountIds.push({label:val,value:index}))
 console.log(accountIds)
