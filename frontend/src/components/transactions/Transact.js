@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {useForm, useController, Controller} from "react-hook-form";
 import {useNavigate} from "react-router-dom"
@@ -7,6 +7,29 @@ import Select from 'react-select';
 
 const Transact= () =>{
 
+    const saveData = (res) => {
+        sessionStorage.setItem("account", res);
+        console.log(JSON.stringify(sessionStorage))
+    }
+    
+    useEffect(()=>{
+        let data = sessionStorage.getItem("info");
+        data = JSON.parse(data);
+    
+        const custId = data.custId;
+        
+        const URL = `http://localhost:8080/fetchAccounts/${custId}`
+        axios({
+            method: 'get',
+            url: URL,
+          })
+        .then(
+            (response)=>{
+                console.log(response.data);
+                saveData(JSON.stringify(response.data));
+            }
+        )
+    },[])
     const [senderAccount,setSenderAccount] = useState('');
     const [type,setType]  = useState('');
 
