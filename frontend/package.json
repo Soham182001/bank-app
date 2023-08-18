@@ -12,6 +12,8 @@
     "cdbreact": "^1.5.18",
     "mdb-react-ui-kit": "^6.2.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
+    "react-bootstrap-sidebar-menu": "^2.0.3",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
     "react-modal": "^3.16.1",
