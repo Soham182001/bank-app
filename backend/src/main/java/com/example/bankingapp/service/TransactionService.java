@@ -33,22 +33,59 @@ public class TransactionService {
 		
 		trans.setSenderAccount(senderAccount);
 		trans.setRecieverAccount(recieverAccount);
+		trans.setAmount(accountModel.getAmount());
 		
 		String res="";
 
 		if(senderNum.equals(recieverNum)) {
-			int balance=senderAccount.getBalance();
-			if(balance-accountModel.getBalance()<-100) {
-				res="Insufficient Balance";
+			if(trans.getType().equals("withdrawal")) {
+				int balance=senderAccount.getBalance();
+				if((balance-accountModel.getAmount())<0) {
+					res="Insufficient Balance";
+					trans.setStatus("Failed");
+				}
+				else {
+					int rows=accRepo.updateBalance(accountModel.getAmount(),senderNum);
+					if(rows>0) {
+						res="Withdrawal Successful";
+						trans.setStatus("Success");
+					}
+				}
 			}
 			else {
-				int rows=accRepo.updateBalance(accountModel.getBalance(),senderNum);
+				int balance=senderAccount.getBalance();
+				int rows=accRepo.updateBalance1(accountModel.getAmount(),senderNum);
 				if(rows>0) {
-					res="Transaction Successful";
+					res="Deposit Successful";
+					trans.setStatus("Success");
+				}
+				else {
+					res="Error";
+					trans.setStatus("Failed");
+				}
+			}
+			
+		}
+		else {
+			int b1=senderAccount.getBalance();
+			int b2=recieverAccount.getBalance();
+			if((b1-accountModel.getAmount())<0) {
+				res="Insufficient Balance";
+				trans.setStatus("Failed");
+			}
+			else {
+				int rows1=accRepo.updateBalance(accountModel.getAmount(),senderNum);
+				int rows2=accRepo.updateBalance1(accountModel.getAmount(),recieverNum);
+				if(rows1>0 && rows2>0) {
+					res="Fund transferred successfully.";
+					trans.setStatus("Success");
+				}
+				else {
+					res="Transfer failed.";
+					trans.setStatus("Failed");
 				}
 			}
 		}
-		
 		
 		
 		transRepo.save(trans);
