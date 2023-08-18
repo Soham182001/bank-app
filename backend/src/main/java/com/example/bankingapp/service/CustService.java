@@ -1,5 +1,6 @@
 package com.example.bankingapp.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.bankingapp.dao.AccountRepository;
 import com.example.bankingapp.dao.CustomerRepository;
+import com.example.bankingapp.model.AccountBalance;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.model.LoginModel;
 
@@ -60,4 +62,24 @@ public class CustService {
 	public List<String>fetchAccounts(String uname){
 		return accRepo.findByUsername(uname);
 	}
+	
+	public List<AccountBalance> checkBalance(String uname) {
+		List<String> acc=accRepo.findByUsername(uname);
+		List<AccountBalance> res=new ArrayList<AccountBalance>();
+		for(int i=0;i<acc.size();i++) {
+			String s=acc.get(i);
+			AccountBalance accBal=new AccountBalance();
+			accBal.setAccountNo(s);
+			int z=accRepo.getBalance(s);
+			accBal.setBalance(z);
+			res.add(accBal);
+		}
+		return res;
+	}
 }
+
+
+
+
+
+

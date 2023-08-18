@@ -12,6 +12,7 @@ import com.example.bankingapp.dao.OccupationRepository;
 import com.example.bankingapp.model.Account;
 import com.example.bankingapp.model.AccountData;
 import com.example.bankingapp.model.Address;
+import com.example.bankingapp.model.ChangePassword;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.model.Occupation;
 
@@ -51,6 +52,15 @@ public class AccountService {
 		} catch (Error e) {
 			return "Error creating account: " + e.toString();
 		}
+	}
+
+	public String updatePassword(String custId, ChangePassword pass) {
+		String s=pass.getPassword();
+		int rows=userRepo.updatePassword(custId,s);
+		if(rows>0) {
+			return "Password updated successfully.";
+		}
+		return "ERROR.";
 	}
 
 }
