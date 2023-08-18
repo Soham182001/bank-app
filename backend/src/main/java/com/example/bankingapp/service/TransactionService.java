@@ -1,5 +1,8 @@
 package com.example.bankingapp.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -90,5 +93,22 @@ public class TransactionService {
 		
 		transRepo.save(trans);
 		return res;
+	}
+	
+	public List<Transaction>fetchTransactions(String custId){
+		List<String> accList=accRepo.findByUsername(custId);
+		
+		List<Transaction> txnList  = new ArrayList<Transaction>();
+				
+		for(int i=0; i<accList.size(); i++) {
+			String str = accList.get(i);
+			List<Transaction> subTranx = transRepo.findByAccountNo(str);
+			for(int j=0; j<subTranx.size(); j++) {
+				Transaction x = subTranx.get(j);
+				txnList.add(x);
+			}
+		}
+			
+		return txnList;
 	}
 }
