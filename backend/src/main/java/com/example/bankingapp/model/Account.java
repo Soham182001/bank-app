@@ -3,7 +3,7 @@ package com.example.bankingapp.model;
 import java.time.LocalDate;
 import java.util.List;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
@@ -34,6 +34,7 @@ public class Account {
 
 	@Column(nullable = false)
 	private String type;
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "custId")
 	private Customer customer;
