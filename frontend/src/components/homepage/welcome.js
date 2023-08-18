@@ -27,24 +27,24 @@ const WelcomePage = () =>{
 
     const fetchAndMove = ()=>{
 
-        const URL = `http://localhost:8080/fetchAccounts/${custId}`
-        axios({
-            method: 'get',
-            url: URL,
-          })
-        .then(
-            (response)=>{
-                console.log(response.data);
-                saveData(JSON.stringify(response.data));
-            }
-        )
-        .then(()=>{
-            navigate('/transact');
-        })
-        .catch(e => {
-            alert(e.message);
-            console.log(e);
-        })
+        // const URL = `http://localhost:8080/fetchAccounts/${custId}`
+        // axios({
+        //     method: 'get',
+        //     url: URL,
+        //   })
+        // .then(
+        //     (response)=>{
+        //         console.log(response.data);
+        //         saveData(JSON.stringify(response.data));
+        //     }
+        // )
+        // .then(()=>{
+        //     navigate('/transact');
+        // })
+        // .catch(e => {
+        //     alert(e.message);
+        //     console.log(e);
+        // })
 
         
         navigate('/transact')
