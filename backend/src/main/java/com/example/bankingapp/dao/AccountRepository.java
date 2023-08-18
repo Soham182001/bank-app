@@ -26,6 +26,9 @@ public interface AccountRepository extends  JpaRepository <Account,String> {
 	@Query("update Account account set account.balance=account.balance+?1 where account.accountNo=?2")
 	public int updateBalance1(int bal,String acc);
 	
+	@Query("select account.balance from Account account where account.accountNo=?1")
+	public int getBalance(String accNo);
+	
 }
 
 

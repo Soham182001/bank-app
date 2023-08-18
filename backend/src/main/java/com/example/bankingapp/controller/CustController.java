@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankingapp.model.AccountBalance;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.model.LoginModel;
 import com.example.bankingapp.service.CustService;
@@ -36,4 +37,11 @@ public class CustController {
 		List<String>accountList=custService.fetchAccounts(uname);
 		return accountList;
 	}
+	
+	@GetMapping("/checkBalance/{custId}")
+	public List<AccountBalance> checkBalance(@PathVariable("custId") String uname) {
+		return custService.checkBalance(uname);
+	}
 }
+
+
