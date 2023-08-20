@@ -7,6 +7,7 @@ import Select from 'react-select';
 
 const Transact= () =>{
 
+    
     const saveData = (res) => {
         sessionStorage.setItem("account", res);
         console.log(JSON.stringify(sessionStorage))
@@ -15,7 +16,7 @@ const Transact= () =>{
     useEffect(()=>{
         let data = sessionStorage.getItem("info");
         data = JSON.parse(data);
-    
+        console.log("hello")
         const custId = data.custId;
         
         const URL = `http://localhost:8080/fetchAccounts/${custId}`
@@ -27,9 +28,16 @@ const Transact= () =>{
             (response)=>{
                 console.log(response.data);
                 saveData(JSON.stringify(response.data));
+                let accNums = JSON.parse((sessionStorage.getItem("account")));
+                accNums.map((val,index)=>accountIds.push({label:val,value:index}))
+                console.log(accountIds)
+                console.log(accNums,typeof(accNums))
             }
         )
-    },[])
+        .catch(e => {
+            console.log(e);
+        })
+        },[])
     const [senderAccount,setSenderAccount] = useState('');
     const [type,setType]  = useState('');
 
@@ -47,12 +55,7 @@ const Transact= () =>{
     // const accountIds = JSON.parse(sessionStorage.getItem("account"));
     // const accountIds = [{label:989897878,value:1},{label:78766545544,value:2},{label:89878767654543,value:3}];
         
-let accNums = JSON.parse((sessionStorage.getItem("account")));
-console.log(accNums)
 let accountIds=[];
-accNums.map((val,index)=>accountIds.push({label:val,value:index}))
-console.log(accountIds)
-console.log(accNums,typeof(accNums))
 
 
     const transactTypes=[{label:"withdrawal",value:1},{label:"deposit",value:2},{label:"fund transfer",value:3}];
