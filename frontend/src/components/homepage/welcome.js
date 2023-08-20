@@ -1,8 +1,10 @@
 import React from 'react';
 import sessionStorage from "sessionstorage";
-
 import {useNavigate} from "react-router-dom"
 import axios from 'axios';
+import NavbarBootstrap from './navbar';
+import Sidebar from './sideBar';
+
 const WelcomePage = () =>{    
 
     const navigate = useNavigate();
@@ -50,10 +52,9 @@ const WelcomePage = () =>{
         navigate('/transact')
     }
 
-
     return(
         <div>
-            <button onClick={handleLogout}>
+            {/* <button onClick={handleLogout}>
                 Logout
             </button>
             <h1>
@@ -66,7 +67,9 @@ const WelcomePage = () =>{
             
             <div>
                 <h2>Have a good day!</h2>
-            </div>
+            </div> */}
+            <NavbarBootstrap></NavbarBootstrap>
+            <Sidebar></Sidebar>
             
         </div>
     )

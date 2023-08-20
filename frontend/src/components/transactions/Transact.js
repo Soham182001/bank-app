@@ -18,7 +18,7 @@ const [accountIds,setAccountIDs]=useState([]);
         console.log("Hello")
         let data = sessionStorage.getItem("info");
         data = JSON.parse(data);
-    
+        console.log("hello")
         const custId = data.custId;
         
         const URL = `http://localhost:8080/fetchAccounts/${custId}`
@@ -39,7 +39,10 @@ const [accountIds,setAccountIDs]=useState([]);
 
             }
         )
-    },[])
+        .catch(e => {
+            console.log(e);
+        })
+        },[])
     const [senderAccount,setSenderAccount] = useState('');
     const [type,setType]  = useState('');
 
