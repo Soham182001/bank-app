@@ -10,15 +10,17 @@ import {
 
 const Sidebar = () => {
   return (
-      <CDBSidebar>
-        <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>Contrast</CDBSidebarHeader>
+    <div>      
+      <CDBSidebar style={{height: "91.5vh"}} >
+        <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>Dashboard</CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>
-            <CDBSidebarMenuItem icon="th-large"><a href='/account'>Account Details</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="sticky-note"><a href='/transact'>Fund Transfer</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="credit-card" iconType="solid"><a href='/showTransaction'>Transactions</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="th-large" iconType="solid"><a href='/transact'>Withdrawal/Deposit</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="th-large" iconType="solid"><a href='/showBalance'>Check Balance</a></CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="user"><a href='/welcome/account'>Account Details</a></CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="exchange-alt"><a href='/welcome/transact'>Fund Transfer</a></CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="hourglass" iconType="solid"><a href='/welcome/showTransaction'>Transactions</a></CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="credit-card" iconType="solid"><a href='/welcome/transact'>Withdrawal/Deposit</a></CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="money-bill" iconType="solid"><a href='/welcome/showBalance'>Check Balance</a></CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="plus" iconType="solid"><a href='/welcome/createaccount'>New Account</a></CDBSidebarMenuItem>            
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
@@ -27,10 +29,11 @@ const Sidebar = () => {
             className="sidebar-btn-wrapper"
             style={{padding: '20px 5px'}}
           >
-            Sidebar Footer
+            Bank-App
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>
+    </div>
   );
 };
 

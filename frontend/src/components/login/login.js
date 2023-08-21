@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
-import { CDBInput, CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
+import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import sessionStorage from "sessionstorage";
 
 const Login = () => {
