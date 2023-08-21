@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.bankingapp.dao.AccountRepository;
 import com.example.bankingapp.dao.CustomerRepository;
 import com.example.bankingapp.model.AccountBalance;
+import com.example.bankingapp.model.ChangePassword;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.model.LoginModel;
 
@@ -75,6 +76,15 @@ public class CustService {
 			res.add(accBal);
 		}
 		return res;
+	}
+	
+	public String updatePassword(String custId, ChangePassword pass) {
+		String s=pass.getPassword();
+		int rows=custRepo.updatePassword(custId,s);
+		if(rows>0) {
+			return "Password updated successfully.";
+		}
+		return "ERROR.";
 	}
 }
 
