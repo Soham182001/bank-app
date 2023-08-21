@@ -5,7 +5,7 @@ import Register from './components/register/Register';
 import HomePage from './components/homepage/homePage';
 import Login from './components/login/login';
 import WelcomePage from './components/homepage/welcome';
-import CreateAccountPage from './components/createaccount/createAccount';
+import ChangePassword from './components/login/changePassword';
 import AddOccupation from './components/createaccount/addOccupation';
 import Address from './components/createaccount/addAddress';
 
@@ -18,6 +18,7 @@ function App() {
           <Route path='/register' element={<Register/>} />
           <Route path='/' element={<HomePage/>} />
           <Route path='/welcome/*' element={<WelcomePage/>} />
+          <Route path='/changepassword' element={<ChangePassword/>}/>
           <Route path='/addOccupation' element={<AddOccupation/>} />
           <Route path='/addPermanentAddress' element={<Address type="Permanent"/>}/>
           <Route path='/addTemporaryAddress' element={<Address type="Temporary"/>}/>
