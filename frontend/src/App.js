@@ -11,6 +11,7 @@ import Address from './components/createaccount/addAddress';
 import Transact from './components/transactions/Transact';
 import ShowBalance from './components/showBalance/showBalance';
 import ShowTransaction from './components/showTransaction/showTransaction';
+import ChangePassword from './components/login/changePassword';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path='/addTemporaryAddress' element={<Address type="Temporary"/>}/>
           <Route path='/transact' element={<Transact/>}/>
           <Route path='/showBalance' element={<ShowBalance/>}/>
+          <Route path='/changePassword' element={<ChangePassword/>}/>
+          
           <Route path='showTransaction' element={<ShowTransaction/>} />
 
           <Route index element={<HomePage/>} />

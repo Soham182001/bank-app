@@ -4,24 +4,23 @@ import {useNavigate} from "react-router-dom";
 import { CDBInput, CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import sessionStorage from "sessionstorage";
 
-const Login = () => {
+const ChangePassword = () => {
 
     const navigate = useNavigate();
-    const baseURL="http://localhost:8080/checkLogin"
+    
 
-
-    const [state, setState] =  useState({
-        custId: "",
-        password: ""
-    }) 
+    
+    const [newPassword, setNewPassword] =  useState('') 
+    const [userId, setUserId] =  useState('') 
 
 
     const handleInputChange = (e) =>{
         const {name, value} = e.target;
-        setState((prevProps) => ({
-            ...prevProps, 
-            [name]: value
-        }));
+        setNewPassword(value);
+    }
+    handleInputUserName=(e)=>{
+        const{name,value} = e.target;
+        setUserId(value);
     }
 
     const saveData = (res) => {
@@ -29,24 +28,25 @@ const Login = () => {
     }
 
     const handleSubmit = (e) => {
-       
+        const baseURL=`http://localhost:8080//updatePassword/${userId}`
+
         e.preventDefault();
-        console.log(state);
         axios({
             method: 'post',
             url: baseURL,
-            data: state
+            data: {password:newPassword}
           })
         .then(
             response=>{
             console.log(response.data)
-            if(response.data === 'Login Success')
+            if(response.data)
             {
                     saveData(JSON.stringify(state));
-                    navigate('/welcome');
+                    navigate('/login');
             }
             else{
-                alert("Incorrect Credentials! Please try again!!");            }
+                alert("Some error occurred . Please try again later");            
+            }
             }
         )
         .catch(e => {
@@ -61,30 +61,29 @@ const Login = () => {
                 <CDBCard style={{ width: '30rem' }}>
                     <CDBCardBody className="mx-4">
                     <div className="text-center mt-4 mb-2">
-                        <p className="h4"> Sign in </p>
+                        <p className="h4"> Change Password</p>
                     </div>
                     <form onSubmit={handleSubmit}>
-                    <CDBInput material hint="E-mail" type='text' placeholder="Customer ID"
-                                    name='custId'
-                                    value={state.custId}
+                    <CDBInput material hint="Enter user Id" type='text' placeholder="Enter user Id"
+                                    name='userId'
+                                    value={userId}
+                                    onChange={handleInputUserName} />
+                  
+                  
+                    <CDBInput material hint="Enter new password" type='password' placeholder="Enter new password"
+                                    name='newPassword'
+                                    value={newPassword}
                                     onChange={handleInputChange} />
-                    <CDBInput material hint="Password" type="password" placeholder="Password" 
+                    <CDBInput material hint="Retype new Password" type="password" placeholder="Retype Password" 
                                     name='password'
-                                    value={state.password}
-                                    onChange={handleInputChange}/>
+                    />-----------------------
                     <div>
                     <CDBBtn color="dark" className="btn-block my-3 mx-0 " type="submit">
-                        Sign in
+                        Change Password
                     </CDBBtn>
-                    <CDBLink className="my-6 mx-0">Forgot password?</CDBLink>
                     </div>    
                     </form>
-                    <p className="text-center">
-                        Not a customer?{' '}
-                        <CDBLink className="d-inline p-0" to="/register">
-                        Register
-                        </CDBLink>
-                    </p>
+                    
                     </CDBCardBody>
                 </CDBCard>
                 </CDBContainer>
@@ -93,4 +92,4 @@ const Login = () => {
 
 }
 
-export default Login;
+export default ChangePassword;
