@@ -40,6 +40,6 @@ public class AccountController {
 	
 	@GetMapping("/checkBalance/{accountNo}")
 	public Integer checkBalance(@PathVariable("accountNo") String accNo) {
-		return accService.checkBalance(accNo);
+		return accService.checkBalanceByAccNo(accNo);
 	}
 }

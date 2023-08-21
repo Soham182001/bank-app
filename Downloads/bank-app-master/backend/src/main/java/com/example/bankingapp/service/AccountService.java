@@ -65,7 +65,7 @@ public class AccountService {
 		return "ERROR.";
 	}
 
-	public Integer checkBalancebyaccNo(String accNo) {
+	public Integer checkBalanceByAccNo(String accNo) {
 		
 		int z=accRepo.getBalance(accNo);
 		return z;
