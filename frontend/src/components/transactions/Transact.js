@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import {useForm, useController, Controller} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom"
 import axios from 'axios';
 import Select from 'react-select';
@@ -9,10 +9,6 @@ const Transact= () =>{
 
 const [accountIds,setAccountIDs]=useState([]);
                 
-    const saveData = (res) => {
-        sessionStorage.setItem("account", res);
-        console.log(JSON.stringify(sessionStorage))
-    }
 
     useEffect(()=>{
         console.log("Hello")
