@@ -12,6 +12,7 @@ import com.example.bankingapp.dao.CustomerRepository;
 import com.example.bankingapp.model.AccountBalance;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.model.LoginModel;
+import com.example.bankingapp.model.UserDetails;
 
 @Service
 public class CustService {
@@ -75,6 +76,11 @@ public class CustService {
 			res.add(accBal);
 		}
 		return res;
+	}
+	
+	public List<UserDetails> fetchCustomer(String uname)
+	{
+		return custRepo.fetchCustomer(uname);
 	}
 }
 

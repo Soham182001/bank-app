@@ -72,10 +72,12 @@ const Login = () => {
                                     name='password'
                                     value={state.password}
                                     onChange={handleInputChange}/>
-                        
+                    <div>
                     <CDBBtn color="dark" className="btn-block my-3 mx-0 " type="submit">
                         Sign in
                     </CDBBtn>
+                    <CDBLink className="my-6 mx-0">Forgot password?</CDBLink>
+                    </div>    
                     </form>
                     <p className="text-center">
                         Not a customer?{' '}
