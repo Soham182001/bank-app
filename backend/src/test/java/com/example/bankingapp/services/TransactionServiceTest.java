@@ -74,16 +74,16 @@ public class TransactionServiceTest {
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(tm);
 	
-		MvcResult res = ((ResultActions) ((MockHttpServletRequestBuilder) this.mvc.perform(post("/transaction")))
+		MvcResult res =  mvc.perform(post("/transaction")
 		.contentType(MediaType.APPLICATION_JSON)
 		.characterEncoding("utf-8")
 		.content(json)
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk()).andReturn();
 		
-//		String result = mvcRes.getResponse().getContentAsString();
+		String result = res.getResponse().getContentAsString();
 ////		assertEquals(result,"");
-//		System.out.println(result);
+		System.out.println(result);
 	
 	}
 	
