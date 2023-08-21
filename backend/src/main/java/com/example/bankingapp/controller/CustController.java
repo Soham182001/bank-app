@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.bankingapp.model.AccountBalance;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.model.LoginModel;
+import com.example.bankingapp.model.UserDetails;
 import com.example.bankingapp.service.CustService;
 
 @RestController
@@ -41,6 +42,13 @@ public class CustController {
 	@GetMapping("/checkBalance/{custId}")
 	public List<AccountBalance> checkBalance(@PathVariable("custId") String uname) {
 		return custService.checkBalance(uname);
+	}
+	
+	@GetMapping("/fetchCustomer/{custId}")
+	public List<UserDetails>fetchCustomer(@PathVariable("custId") String uname){
+	
+		List<UserDetails> customer=custService.fetchCustomer(uname);
+		return customer;
 	}
 }
 
