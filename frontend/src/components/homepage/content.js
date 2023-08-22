@@ -8,6 +8,7 @@ import UserDetails from '../details/userDetails';
 import AddOccupation from './../createaccount/addOccupation';
 import Address from './../createaccount/addAddress';
 import Withdraw from '../withdraw/withdraw';
+import AccountDetails from '../details/accountDetails';
 
 const Content = () => {
     const style = {
@@ -24,6 +25,8 @@ const Content = () => {
                 <Route path='/showTransaction' element={<ShowTransaction/>} />
                 <Route path='/createaccount' element={<CreateAccountPage/>} />
                 <Route path='/userDetails' element={<UserDetails/>}/>
+                <Route path='/accountDetails' element={<AccountDetails/>}/>
+                
                 <Route path='/createaccount' element={<CreateAccountPage/>} />                
                 <Route path='/addOccupation' element={<AddOccupation/>} />
                 <Route path='/addPermanentAddress' element={<Address type="Permanent"/>}/>
