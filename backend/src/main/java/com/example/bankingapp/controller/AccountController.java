@@ -29,8 +29,19 @@ public class AccountController {
 
 	}
 	
-	@PutMapping("/updatePassword/{custId}")
-	public String updatePassword(@PathVariable ("custId") String custId,@RequestBody ChangePassword pass) {
-		return accService.updatePassword(custId,pass);
+	
+	
+	@PutMapping("/updatePasswordByAccountNo/{accountNo}")
+	public String updatePasswordByAccountNo(@PathVariable ("accountNo") String accountNo,@RequestBody ChangePassword pass) {
+		return accService.updatePasswordByAccountNo(accountNo,pass);
+	}
+	
+	@PutMapping("/suspendAccount/{accountNo}")
+	public String suspendAccount(@PathVariable ("accountNo") String accNo) {
+		return accService.suspendAccount(accNo);
 	}
 }
+
+
+
+
