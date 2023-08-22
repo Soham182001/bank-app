@@ -1,5 +1,7 @@
 package com.example.bankingapp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +19,8 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sNo;
 
+
+	@JsonBackReference
     @ManyToOne
     @JoinColumn(name = "custId")
     private Customer customer;
