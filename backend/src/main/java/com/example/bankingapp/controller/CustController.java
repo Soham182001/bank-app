@@ -15,6 +15,7 @@ import com.example.bankingapp.model.AccountBalance;
 import com.example.bankingapp.model.ChangePassword;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.model.LoginModel;
+import com.example.bankingapp.model.UserDetails;
 import com.example.bankingapp.service.CustService;
 
 @RestController
@@ -48,7 +49,13 @@ public class CustController {
 	@PutMapping("/updatePassword/{custId}")
 	public String updatePassword(@PathVariable ("custId") String custId,@RequestBody ChangePassword pass) {
 		return custService.updatePassword(custId,pass);
-	}
+  }
+  @GetMapping("/fetchCustomer/{custId}")
+	public List<UserDetails>fetchCustomer(@PathVariable("custId") String uname){
+	
+		List<UserDetails> customer=custService.fetchCustomer(uname);
+		return customer;
+  }
 }
 
 
