@@ -29,7 +29,7 @@ const CreateAccountPage = () =>{
             dateOpened: new Date().toISOString().split('T')[0]
         }
         sessionStorage.setItem("account",JSON.stringify(account));
-        navigate('/addOccupation')
+        navigate('/welcome/addOccupation')
     };
 
     return(

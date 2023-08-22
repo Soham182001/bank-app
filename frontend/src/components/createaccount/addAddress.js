@@ -14,7 +14,7 @@ const Address = (props) =>{
         } = useForm();
     
     const accType = JSON.parse(JSON.stringify(sessionStorage.getItem("account"))).accountType;
-    console.log(accType)
+
     const addressType = props.type;
     const onSubmit = (data)=>{
 
@@ -32,28 +32,21 @@ const Address = (props) =>{
             addresses = []
          else{
             addresses = JSON.parse(JSON.parse(JSON.stringify(sessionStorage.getItem("address"))))
-            console.log(addresses,typeof(addresses))
          }
          addresses.push(address);
 
         sessionStorage.setItem("address",JSON.stringify(addresses));
 
         if(addressType === "Permanent")
-        navigate('/addTemporaryAddress')
-
-
-
+            navigate('/welcome/addTemporaryAddress')
         else{
-        // console.log(JSON.stringify(sessionStorage));
         const  sessionData = JSON.parse(JSON.stringify(sessionStorage))
-        // console.log(sessionData)
         const custId = JSON.parse(sessionData.info).custId;
         const data = {occupation : JSON.parse(sessionData.occupation),
                     account:JSON.parse(sessionData.account),
                     address:JSON.parse(sessionData.address)}
         const URL = `http://localhost:8080/createAccount/${custId}`;
-        console.log(data.account,data.address,data.occupation)
-        console.log(Object.keys(data),Object.keys(data.occupation),Object.keys(data.account),Object.keys(data.address[0]))
+        console.log(data);
 
         axios({
             method: 'post',
@@ -141,3 +134,5 @@ const Address = (props) =>{
 }
 
 export default Address;
+
+

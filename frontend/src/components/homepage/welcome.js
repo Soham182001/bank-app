@@ -16,7 +16,6 @@ const WelcomePage = () =>{
     }
 
     useEffect(()=>{
-        console.log('we are here');
         checkUser();
     },[sessionStorage.getItem('info')])
 

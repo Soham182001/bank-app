@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
-import { CDBInput, CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
-import sessionStorage from "sessionstorage";
+import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBContainer } from 'cdbreact';
 
 const ChangePassword = () => {
 
@@ -18,21 +17,17 @@ const ChangePassword = () => {
         const {name, value} = e.target;
         setNewPassword(value);
     }
-    handleInputUserName=(e)=>{
+    const handleInputUserName=(e)=>{
         const{name,value} = e.target;
         setUserId(value);
     }
 
-    const saveData = (res) => {
-        sessionStorage.setItem("info", res);
-    }
-
     const handleSubmit = (e) => {
-        const baseURL=`http://localhost:8080//updatePassword/${userId}`
-
+        const baseURL=`http://localhost:8080/updatePassword/${userId}`
+        console.log(baseURL);
         e.preventDefault();
         axios({
-            method: 'post',
+            method: 'put',
             url: baseURL,
             data: {password:newPassword}
           })
@@ -41,7 +36,6 @@ const ChangePassword = () => {
             console.log(response.data)
             if(response.data)
             {
-                    saveData(JSON.stringify(state));
                     navigate('/login');
             }
             else{
@@ -75,8 +69,7 @@ const ChangePassword = () => {
                                     value={newPassword}
                                     onChange={handleInputChange} />
                     <CDBInput material hint="Retype new Password" type="password" placeholder="Retype Password" 
-                                    name='password'
-                    />-----------------------
+                                    name='password' />
                     <div>
                     <CDBBtn color="dark" className="btn-block my-3 mx-0 " type="submit">
                         Change Password
