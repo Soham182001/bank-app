@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.AccountBalance;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.model.LoginModel;
@@ -40,7 +41,7 @@ public class CustController {
 	}
 	
 	@GetMapping("/checkBalance/{custId}")
-	public List<AccountBalance> checkBalance(@PathVariable("custId") String uname) {
+	public List<AccountBalance> checkBalance(@PathVariable("custId") String uname) throws ResourceNotFoundException {
 		return custService.checkBalance(uname);
 	}
 	

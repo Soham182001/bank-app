@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.bankingapp.dao.AccountRepository;
 import com.example.bankingapp.dao.CustomerRepository;
+import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.AccountBalance;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.model.LoginModel;
@@ -64,8 +65,10 @@ public class CustService {
 		return accRepo.findByUsername(uname);
 	}
 	
-	public List<AccountBalance> checkBalance(String uname) {
+	public List<AccountBalance> checkBalance(String uname) throws ResourceNotFoundException {
 		List<String> acc=accRepo.findByUsername(uname);
+		if(acc.size()==0)
+			throw new ResourceNotFoundException("No accounts found");
 		List<AccountBalance> res=new ArrayList<AccountBalance>();
 		for(int i=0;i<acc.size();i++) {
 			String s=acc.get(i);

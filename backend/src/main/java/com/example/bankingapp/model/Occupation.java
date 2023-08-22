@@ -2,6 +2,8 @@ package com.example.bankingapp.model;
 
 import java.math.BigInteger;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +37,7 @@ public class Occupation {
 
     // Getters and setters
 
+	@JsonBackReference
     public Customer getCustomer() {
         return customer;
     }
