@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
-
-
-
 import {useNavigate} from "react-router-dom"
+
+
 const Register = () => {
 
         const navigate = useNavigate();

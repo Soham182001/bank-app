@@ -1,17 +1,17 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import sessionStorage from "sessionstorage";
 
-const Login = () => {
+const AdminLogin = () =>{
 
     const navigate = useNavigate();
-    const baseURL="http://localhost:8080/checkLogin"
+    const baseURL="http://localhost:8080/checkLoginAdmin"
 
 
     const [state, setState] =  useState({
-        custId: "",
+        empId: "",
         password: ""
     }) 
 
@@ -43,7 +43,7 @@ const Login = () => {
             if(response.data === 'Login Success')
             {
                     saveData(JSON.stringify(state));
-                    navigate('/welcome');
+                    navigate('/welcomeAdmin');
             }
             else{
                 alert("Incorrect Credentials! Please try again!!");            }
@@ -54,18 +54,17 @@ const Login = () => {
         })
     }
 
-    return (
+    return(
         <div>
-            
-                <CDBContainer style={{marginTop: "5em", marginLeft: "25em"}}>
+            <CDBContainer style={{marginTop: "5em", marginLeft: "25em"}}>
                 <CDBCard style={{ width: '30rem' }}>
                     <CDBCardBody className="mx-4">
                     <div className="text-center mt-4 mb-2">
                         <p className="h4"> Sign in </p>
                     </div>
                     <form onSubmit={handleSubmit}>
-                    <CDBInput material hint="E-mail" type='text' placeholder="Customer ID"
-                                    name='custId'
+                    <CDBInput material hint="E-mail" type='text' placeholder="Admin ID"
+                                    name='empId'
                                     value={state.custId}
                                     onChange={handleInputChange} />
                     <CDBInput material hint="Password" type="password" placeholder="Password" 
@@ -80,8 +79,8 @@ const Login = () => {
                     </div>    
                     </form>
                     <p className="text-center">
-                        Not a customer?{' '}
-                        <CDBLink className="d-inline p-0" to="/register">
+                        Not a Admin?{' '}
+                        <CDBLink className="d-inline p-0" to="/registerAdmin">
                         Register
                         </CDBLink>
                     </p>
@@ -90,7 +89,6 @@ const Login = () => {
                 </CDBContainer>
         </div>
     )
-
 }
 
-export default Login;
+export default AdminLogin

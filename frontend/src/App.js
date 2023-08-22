@@ -5,9 +5,9 @@ import Register from './components/register/Register';
 import HomePage from './components/homepage/homePage';
 import Login from './components/login/login';
 import WelcomePage from './components/homepage/welcome';
-import CreateAccountPage from './components/createaccount/createAccount';
-import AddOccupation from './components/createaccount/addOccupation';
-import Address from './components/createaccount/addAddress';
+import ChangePassword from './components/login/changePassword';
+import AdminLogin from './components/login/adminLogin';
+import AdminRegister from './components/register/registerAdmin';
 
 function App() {
   return (
@@ -18,9 +18,9 @@ function App() {
           <Route path='/register' element={<Register/>} />
           <Route path='/' element={<HomePage/>} />
           <Route path='/welcome/*' element={<WelcomePage/>} />
-          <Route path='/addOccupation' element={<AddOccupation/>} />
-          <Route path='/addPermanentAddress' element={<Address type="Permanent"/>}/>
-          <Route path='/addTemporaryAddress' element={<Address type="Temporary"/>}/>
+          <Route path='/changepassword' element={<ChangePassword/>}/>
+          <Route path='/loginAdmin' element={<AdminLogin/>}/>
+          <Route path='/registerAdmin' element={<AdminRegister/>}/>
           <Route index element={<HomePage/>} />
         </Routes>
       </BrowserRouter>

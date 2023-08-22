@@ -22,7 +22,7 @@ const AddOccupation = () =>{
             grossAnnualSalary: data.grossAnnualSalary
         }
         sessionStorage.setItem("occupation",JSON.stringify(occupation));
-        navigate('/addPermanentAddress')
+        navigate('/welcome/addPermanentAddress')
     };
 
     return(
