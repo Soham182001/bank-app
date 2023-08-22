@@ -40,6 +40,7 @@ public class AccountController {
 	public String suspendAccount(@PathVariable ("accountNo") String accNo) {
 		return accService.suspendAccount(accNo);
 	}
+	
 }
 
 

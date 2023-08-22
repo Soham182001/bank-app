@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom"
 import axios from 'axios';
 import Select from 'react-select';
 
-const Transact= () =>{
+const Withdraw= () =>{
 
 const [accountIds,setAccountIDs]=useState([]);
                 
@@ -110,8 +110,8 @@ const [accountIds,setAccountIDs]=useState([]);
 
     return(
 
-        <div>
-            <h1>Transact</h1>
+        <div className='wrapper'>
+            <h1>Withdrawal/Deposit</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                <Select
                name='select1'
@@ -133,11 +133,11 @@ const [accountIds,setAccountIDs]=useState([]);
                 /> */}
                 <br/>
  
-                 <label>Receiver account no: </label>
+                 {/* <label>Receiver account no: </label>
                 <input type="text" 
                         name="receiverAccountNo"
                         {...register("receiverAccount")}
-                ></input>
+                ></input> */}
                 <label>Amount in Rs: </label>
                 <input type="text" 
                         name="amount"
@@ -151,4 +151,4 @@ const [accountIds,setAccountIDs]=useState([]);
     )
 }
 
-export default Transact;
+export default Withdraw;
