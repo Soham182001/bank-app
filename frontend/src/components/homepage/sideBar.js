@@ -15,7 +15,7 @@ const Sidebar = () => {
         <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>Dashboard</CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>
-            <CDBSidebarMenuItem icon="user"><a href='/welcome/account'>Account Details</a></CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="user"><a href='/welcome/accountDetails'>Account Details</a></CDBSidebarMenuItem>
             <CDBSidebarMenuItem icon="exchange-alt"><a href='/welcome/transact'>Fund Transfer</a></CDBSidebarMenuItem>
             <CDBSidebarMenuItem icon="hourglass" iconType="solid"><a href='/welcome/showTransaction'>Transactions</a></CDBSidebarMenuItem>
             <CDBSidebarMenuItem icon="credit-card" iconType="solid"><a href='/welcome/withdraw'>Withdrawal/Deposit</a></CDBSidebarMenuItem>
