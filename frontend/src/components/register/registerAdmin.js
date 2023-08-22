@@ -37,7 +37,7 @@ const handleSubmit = (e) => {
       })
     .then(
         response=>{
-            navigate('/login')
+            navigate('/loginAdmin')
         }
     )
     .catch(e => {

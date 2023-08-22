@@ -26,7 +26,6 @@ const Content = () => {
                 <Route path='/createaccount' element={<CreateAccountPage/>} />
                 <Route path='/userDetails' element={<UserDetails/>}/>
                 <Route path='/accountDetails' element={<AccountDetails/>}/>
-                
                 <Route path='/createaccount' element={<CreateAccountPage/>} />                
                 <Route path='/addOccupation' element={<AddOccupation/>} />
                 <Route path='/addPermanentAddress' element={<Address type="Permanent"/>}/>
