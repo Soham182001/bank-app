@@ -78,7 +78,7 @@ const Register = () => {
                                 <CDBInput material hint="Middle name" type="text" placeholder='Middle Name'
                                 name="middleName"
                                 onChange={handleInputChange}
-                                required/>
+                                />
                         </div>
                         <div className="col">
                                 <CDBInput material hint="Last name" type="text" placeholder='Last Name'

@@ -4,6 +4,7 @@ import Transact from '../transactions/Transact';
 import ShowBalance from '../showBalance/showBalance';
 import ShowTransaction from '../showTransaction/showTransaction';
 import CreateAccountPage from '../createaccount/createAccount';
+import UserDetails from '../details/userDetails';
 import AddOccupation from './../createaccount/addOccupation';
 import Address from './../createaccount/addAddress';
 import Withdraw from '../withdraw/withdraw';
@@ -21,6 +22,8 @@ const Content = () => {
                 <Route path='/withdraw' element={<Withdraw/>}/>
                 <Route path='/showBalance' element={<ShowBalance/>}/>
                 <Route path='/showTransaction' element={<ShowTransaction/>} />
+                <Route path='/createaccount' element={<CreateAccountPage/>} />
+                <Route path='/userDetails' element={<UserDetails/>}/>
                 <Route path='/createaccount' element={<CreateAccountPage/>} />                
                 <Route path='/addOccupation' element={<AddOccupation/>} />
                 <Route path='/addPermanentAddress' element={<Address type="Permanent"/>}/>
