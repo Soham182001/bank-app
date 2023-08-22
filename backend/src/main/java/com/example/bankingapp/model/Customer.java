@@ -73,12 +73,10 @@ public class Customer {
 	private List<Account> account;
 
 
-	@JsonBackReference
 	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Address> address;
 
 
-	@JsonBackReference
 	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Occupation> occupation;
 
