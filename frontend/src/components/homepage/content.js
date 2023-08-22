@@ -4,6 +4,7 @@ import Transact from '../transactions/Transact';
 import ShowBalance from '../showBalance/showBalance';
 import ShowTransaction from '../showTransaction/showTransaction';
 import CreateAccountPage from '../createaccount/createAccount';
+import UserDetails from '../details/userDetails';
 
 const Content = () => {
     return(
@@ -14,6 +15,7 @@ const Content = () => {
                 <Route path='/showBalance' element={<ShowBalance/>}/>
                 <Route path='/showTransaction' element={<ShowTransaction/>} />
                 <Route path='/createaccount' element={<CreateAccountPage/>} />
+                <Route path='/userDetails' element={<UserDetails/>}/>
             </Routes>
         </div>
     )
