@@ -1,5 +1,6 @@
 package com.example.bankingapp.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,6 +29,11 @@ public interface AccountRepository extends  JpaRepository <Account,String> {
 	
 	@Query("select account.balance from Account account where account.accountNo=?1")
 	public int getBalance(String accNo);
+	
+	@Modifying
+	@Transactional
+	@Query("update Account account set account.dateClosed=?1 where account.accountNo=?2")
+	public int updateDateClosed(LocalDate date,String accNo);
 	
 }
 

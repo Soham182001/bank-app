@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.bankingapp.dao.AccountRepository;
 import com.example.bankingapp.dao.CustomerRepository;
+import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.AccountBalance;
+import com.example.bankingapp.model.ChangePassword;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.model.LoginModel;
 import com.example.bankingapp.model.UserDetails;
@@ -64,8 +66,10 @@ public class CustService {
 		return accRepo.findByUsername(uname);
 	}
 	
-	public List<AccountBalance> checkBalance(String uname) {
+	public List<AccountBalance> checkBalance(String uname) throws ResourceNotFoundException {
 		List<String> acc=accRepo.findByUsername(uname);
+		if(acc.size()==0)
+			throw new ResourceNotFoundException("No accounts found");
 		List<AccountBalance> res=new ArrayList<AccountBalance>();
 		for(int i=0;i<acc.size();i++) {
 			String s=acc.get(i);
@@ -78,9 +82,18 @@ public class CustService {
 		return res;
 	}
 	
-	public List<UserDetails> fetchCustomer(String uname)
+public String updatePassword(String custId, ChangePassword pass) {
+		String s=pass.getPassword();
+		int rows=custRepo.updatePassword(custId,s);
+		if(rows>0) {
+			return "Password updated successfully.";
+		}
+		return "ERROR.";
+}
+  public List<UserDetails> fetchCustomer(String uname)
 	{
 		return custRepo.fetchCustomer(uname);
+
 	}
 }
 

@@ -1,6 +1,8 @@
 package com.example.bankingapp.service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ import com.example.bankingapp.model.Occupation;
 
 @Service
 public class AccountService {
+	
+	@Autowired
+	CustService custService;
 
 	@Autowired
 	AccountRepository accRepo;
@@ -54,13 +59,27 @@ public class AccountService {
 		}
 	}
 
-	public String updatePassword(String custId, ChangePassword pass) {
-		String s=pass.getPassword();
-		int rows=userRepo.updatePassword(custId,s);
-		if(rows>0) {
-			return "Password updated successfully.";
-		}
+	
+	
+	public String updatePasswordByAccountNo(String accountNo,ChangePassword pass) {
+		Account acc=accRepo.findById(accountNo).get();
+		Customer cust=acc.getCustomer();
+		String custId=cust.getCustId();
+		String s=custService.updatePassword(custId,pass);
+		return s;
+	}
+
+
+
+	public String suspendAccount(String accNo) {
+		int rows=accRepo.updateDateClosed(LocalDate.now(),accNo);
+		if(rows>0) return "Account Suspended.";
 		return "ERROR.";
 	}
 
 }
+
+
+
+
+
