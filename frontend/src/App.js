@@ -22,7 +22,7 @@ function App() {
           <Route path='/changepassword' element={<ChangePassword/>}/>
           <Route path='/loginAdmin' element={<AdminLogin/>}/>
           <Route path='/registerAdmin' element={<AdminRegister/>}/>
-          <Route path='/welcomeAdmin' element={<AdminWelcomePage/>}/>
+          <Route path='/welcomeAdmin/*' element={<AdminWelcomePage/>}/>
           <Route index element={<HomePage/>} />
         </Routes>
       </BrowserRouter>

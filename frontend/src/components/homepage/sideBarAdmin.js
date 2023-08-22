@@ -17,7 +17,7 @@ const SidebarAdmin = () => {
           <CDBSidebarMenu>
             <CDBSidebarMenuItem icon="user"><a href='/welcomeAdmin/account'>Transactions</a></CDBSidebarMenuItem>
             <CDBSidebarMenuItem icon="exchange-alt"><a href='/welcomeAdmin/transact'>Update Details</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="hourglass" iconType="solid"><a href='/welcomeAdmin/showTransaction'>Check Balance</a></CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="hourglass" iconType="solid"><a href='/welcomeAdmin/showBalanceAdmin'>Check Balance</a></CDBSidebarMenuItem>
             <CDBSidebarMenuItem icon="credit-card" iconType="solid"><a href='/welcomeAdmin/withdraw'>Suspend Account</a></CDBSidebarMenuItem>           
           </CDBSidebarMenu>
         </CDBSidebarContent>
