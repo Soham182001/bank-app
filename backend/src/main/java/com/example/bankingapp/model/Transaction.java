@@ -16,8 +16,14 @@ public class Transaction {
 	private int amount;
 	private String timeStamp;
 	private String status;
+	private String mode;
 	
-	
+	public String getMode() {
+		return mode;
+	}
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
 	@ManyToOne
 	@JoinColumn(name="senderAccount")
 	private Account senderAccount;
