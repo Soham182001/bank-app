@@ -9,10 +9,14 @@ import Address from './../createaccount/addAddress';
 import Withdraw from '../withdraw/withdraw';
 
 const Content = () => {
+    const style = {
+        position: 'absolute',
+        left: '50%'
+    }
     return(
         <div>
             <Routes>
-                <Route path='/' element={<div>Hello Welcome To Your Account</div>} />
+                <Route path='/' element={<div style={style}>Hello Welcome To Your Account</div>} />
                 <Route path='/transact' element={<Transact/>}/>
                 <Route path='/withdraw' element={<Withdraw/>}/>
                 <Route path='/showBalance' element={<ShowBalance/>}/>
