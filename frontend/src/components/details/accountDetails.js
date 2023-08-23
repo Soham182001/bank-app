@@ -2,7 +2,7 @@ import React, {useEffect,useState} from 'react';
 import axios from 'axios';
 
 import Occupation from "../../models/Occupation";
-import UserDetail from "../../models/UserDetails"
+import UserDetail from "../../models/UserDetail"
 import Customer from '../../models/Customer';
 import Address from '../../models/Address';
 import Account from '../../models/Account'

@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import sessionStorage from "sessionstorage";
-
+import helper from './helper';
 const Login = () => {
 
     const navigate = useNavigate();
@@ -24,10 +24,6 @@ const Login = () => {
         }));
     }
 
-    const saveData = (res) => {
-        sessionStorage.setItem("info", res);
-    }
-
     const handleSubmit = (e) => {
        
         e.preventDefault();
@@ -39,11 +35,19 @@ const Login = () => {
           })
         .then(
             response=>{
-            console.log(response.data)
+            // console.log(response.data)
             if(response.data === 'Login Success')
             {
-                    saveData(JSON.stringify(state));
-                    navigate('/welcome');
+                    helper(state.custId).then(
+                        (res)=> {
+                            console.log(res);
+                            console.log(sessionStorage.getItem('info'));
+                            navigate('/welcome');
+                        }
+                    )
+                    .catch(e =>{
+                        console.log(e);
+                    })
             }
             else{
                 alert("Incorrect Credentials! Please try again!!");            }

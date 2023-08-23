@@ -10,14 +10,15 @@ const WelcomePage = () =>{
     const navigate  = useNavigate();
 
     const checkUser = () => {
-        if(sessionStorage.getItem('info') == null){
+        if(JSON.parse(sessionStorage.getItem('info')) === null){
             navigate('/login');
         }
     }
 
     useEffect(()=>{
         checkUser();
-    },[sessionStorage.getItem('info')])
+
+    },[JSON.parse(sessionStorage.getItem('info'))])
 
     return(
         <div>

@@ -1,172 +1,150 @@
 import React, {useEffect,useState} from 'react';
 import axios from 'axios';
+import {
+    MDBTabs,
+    MDBTabsItem,
+    MDBTabsLink,
+    MDBTabsContent,
+    MDBTabsPane,
+    MDBIcon
+  } from 'mdb-react-ui-kit';
+import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
+import UserDetail from '../../models/UserDetail';
 
-import Occupation from "../../models/Occupation";
-import UserDetail from "../../models/UserDetails"
-import Customer from '../../models/Customer';
-import Address from '../../models/Address';
-import Account from '../../models/Account'
 const UserDetails = () =>{
     const [userData,setUserData]=useState(null);
     useEffect(()=>{
-        let data = sessionStorage.getItem("info");
-        data = JSON.parse(data);
-        // console.log("hello")
-        const custId = data.custId;
-        
-        const URL = `http://localhost:8080/fetchCustomer/${custId}`
-        axios({
-            method: 'get',
-            url: URL,
-          })
-        .then(
-            (response)=>{
-                let temp= (response.data);
-                
-                let val = Object.values(temp[0]["occupation"])
-                const occ = new Occupation(...val);
-                
-                val = Object.values(temp[0]["customer"])
-                const cust = new Customer(...val);
-                
-                let addresses=[]
-                val = Object.values(temp[0]["address"])
+        const x = new UserDetail(JSON.parse(sessionStorage.getItem('info')), JSON.parse(sessionStorage.getItem('occupation')))
+        x.addAddress(JSON.parse(sessionStorage.getItem('address')));
+        x.addAccount(JSON.parse(sessionStorage.getItem('accounts')));
+        setUserData(x);
+    },[])
 
-                let permanentAddress = new Address(...val);
-                val = Object.values(temp[1]["address"])
+        const [iconsActive, setIconsActive] = useState('tab1');
 
-                let temporaryAddress = new Address(...val);
-
-                addresses.push(permanentAddress)
-                addresses.push(temporaryAddress)
-
-                let accountSet = new Set()
-                temp.forEach(element => {
-                val = Object.values(element["account"])
-                
-                let acc = new Account(...val);
-                accountSet.add(JSON.stringify(acc));
-                });
-
-                let accounts = []
-                for (const entry of accountSet.values())
-                {
-                    accounts.push(JSON.parse(entry));
-                }
-
-                console.log(accounts);
-
-                const u = new UserDetail(cust,occ);
-
-                u.addAccount(accounts);
-                u.addAddress(addresses)
-
-                console.log(u);
-
-                setUserData(u);
-                
-                console.log(Object.keys(userData));
-                console.log(Object.keys(userData.customer));
-            }
-        )
-        .catch(e => {
-            console.log(e);
-        })
-        },[])
+        const handleIconsClick = (value) => {
+          if (value === iconsActive) {
+            return;
+          }
+      
+          setIconsActive(value);
+        };
 
     return(
-        <div>
-            <h1>User profile</h1>
-         <div>{userData ?  ( <div> 
-            <h2>Contact Info</h2>
-         
-                <table>
-                    <tbody>
-                        <tr>
-                        {Object.keys(userData.customer).map((value,i)=>{
-                        
-                        return  <th key={i}> {value} </th>
-                     })}
-                        </tr>
-                        <tr>
-                        {Object.values(userData.customer).map((value,i)=>{
-                        
-                        return  <td key={i}> {value} </td>
-                     })}
-                        </tr>
-                    </tbody>
-                </table>
-                
-                
-                
+         <div>
+            {userData ?  ( 
+                <div>
+                    <CDBContainer style={{marginLeft: "3%", marginTop: "5%"}}>
+                    <CDBCard style={{ width: "60rem", borderRadius: "1rem" }} border>
+                    <CDBCardBody>
+                    <h3 style={{padding: "3%"}}>User Details</h3>
+                    <MDBTabs className='mb-3'>
+                        <MDBTabsItem>
+                        <MDBTabsLink onClick={() => handleIconsClick('tab1')} active={iconsActive === 'tab1'}>
+                            <MDBIcon fas icon='chart-pie' className='me-2' /> Contact
+                        </MDBTabsLink>
+                        </MDBTabsItem>
+                        <MDBTabsItem>
+                        <MDBTabsLink onClick={() => handleIconsClick('tab2')} active={iconsActive === 'tab2'}>
+                            <MDBIcon fas icon='chart-line' className='me-2' /> Address
+                        </MDBTabsLink>
+                        </MDBTabsItem>
+                        <MDBTabsItem>
+                        <MDBTabsLink onClick={() => handleIconsClick('tab3')} active={iconsActive === 'tab3'}>
+                            <MDBIcon fas icon='cogs' className='me-2' /> Occupation
+                        </MDBTabsLink>
+                        </MDBTabsItem>
+                    </MDBTabs>
 
-            <br/>
-             <br/>
-            <h2>Address Info</h2>
-            <h3>Permanent Address</h3>
-            <table>
-                <tbody>
-                <tr>
-                    {Object.keys(userData.addresses[0]).map((key,i)=>{
-                        
-                       return  <th key={i}> {key} </th>
-                    })}
-                </tr>
+                    <MDBTabsContent>
+                        <MDBTabsPane show={iconsActive === 'tab1'}>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                    {Object.keys(userData.customer).map((value,i)=>{
+                                    
+                                    return  <th key={i}> {value} </th>
+                                })}
+                                    </tr>
+                                    <tr>
+                                    {Object.values(userData.customer).map((value,i)=>{
+                                    
+                                    return  <td key={i}> {value} </td>
+                                })}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </MDBTabsPane>
+                        <MDBTabsPane show={iconsActive === 'tab2'}>
+                        <h3>Permanent Address</h3>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    {Object.keys(userData.addresses[0]).map((key,i)=>{
+                                        
+                                    return  <th key={i}> {key} </th>
+                                    })}
+                                </tr>
 
-                <tr>
-                    {Object.values(userData.addresses[0]).map((value,i)=>{
-                        
-                       return  <td key={i}> {value} </td>
-                    })}
-                </tr>
-                
-                </tbody>
-            </table>
+                                <tr>
+                                    {Object.values(userData.addresses[0]).map((value,i)=>{
+                                        
+                                    return  <td key={i}> {value} </td>
+                                    })}
+                                </tr>
+                                
+                                </tbody>
+                            </table>
 
-            <h3>Temporary Address</h3>
-            <table>
-                <tbody>
-                <tr>
-                    {Object.keys(userData.addresses[1]).map((key,i)=>{
-                        
-                       return  <th key={i}> {key} </th>
-                    })}
-                </tr>
+                            <h3>Temporary Address</h3>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    {Object.keys(userData.addresses[1]).map((key,i)=>{
+                                        
+                                    return  <th key={i}> {key} </th>
+                                    })}
+                                </tr>
 
-                <tr>
-                    {Object.values(userData.addresses[1]).map((value,i)=>{
-                        
-                       return  <td key={i}> {value} </td>
-                    })}
-                </tr>
-                
-                </tbody>
-            </table> 
+                                <tr>
+                                    {Object.values(userData.addresses[1]).map((value,i)=>{
+                                        
+                                    return  <td key={i}> {value} </td>
+                                    })}
+                                </tr>
+                                
+                                </tbody>
+                            </table> 
+                        </MDBTabsPane>
+                        <MDBTabsPane show={iconsActive === 'tab3'}>
+                        <table>
+                            <tbody>
+                            <tr>
+                                {Object.keys(userData.occupation).map((key,i)=>{
+                                    
+                                return  <th key={i}> {key} </th>
+                                })}
+                            </tr>
 
-            <h2>Occupation Info</h2>
-            <table>
-                <tbody>
-                <tr>
-                    {Object.keys(userData.occupation).map((key,i)=>{
-                        
-                       return  <th key={i}> {key} </th>
-                    })}
-                </tr>
-
-                <tr>
-                    {Object.values(userData.occupation).map((value,i)=>{
-                        
-                       return  <td key={i}> {value} </td>
-                    })}
-                </tr>
-                
-                </tbody>
-            </table> 
-            </div>)
-           :        <h3>No data yet</h3>} </div>
-  
-            
-        </div>
+                            <tr>
+                                {Object.values(userData.occupation).map((value,i)=>{
+                                    
+                                return  <td key={i}> {value} </td>
+                                })}
+                            </tr>
+                            
+                            </tbody>
+                        </table> 
+                        </MDBTabsPane>
+                    </MDBTabsContent>
+                    
+                    </CDBCardBody>
+                    </CDBCard>
+                    </CDBContainer>
+                </div>
+            )
+           :  
+           <h3>No data yet</h3>} </div>
     )
 
 }
