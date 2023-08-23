@@ -60,7 +60,6 @@ public class CustController {
   
   @PutMapping("/updateCustomer/{custId}")
   public String updateCustomer(@PathVariable("custId") String custId, @RequestBody Customer cust) {
-	  System.out.println(cust.toString());
 	  return custService.updateCustomer(custId,cust);
   }
   
