@@ -5,19 +5,28 @@ import Select from 'react-select';
 const ShowBalanceAdmin = () =>{
 
     const [custId, setCustId] = useState("");
+    const [balance, setBalance] = useState(-1);
+    const [accountId, setAccountId] = useState("");
     const [account, setAccount] = useState([]);
-    const [type,setType]  = useState('');
+    const [type,setType]  = useState('customer id');
 
     const handleFetch = () => {
-        if(type == 'customer id') {
+        if(type === 'customer id') {
             fetchBalanceCustId();
         }
-        else if(type == 'account id') {
+        else if(type === 'account id') {
                 fetchBalanceAccId();
         }
     }
     const fetchBalanceAccId = () => {
-        const URL = `http://localhost:8080/checkBalance/${custId.target.value}`
+        const URL = `http://localhost:8080/checkBalanceByAccNo/${accountId.target.value}`
+        axios({
+            method: 'get',
+            url: URL
+        })
+        .then((response) => {
+            setBalance(response.data)
+        })
     }
     const fetchBalanceCustId = () =>{
         const URL = `http://localhost:8080/checkBalance/${custId.target.value}`
@@ -48,7 +57,14 @@ const ShowBalanceAdmin = () =>{
                 options={queryTypes}
                 onChange={value=>setType(value.label)}
                />
-            <input name='custId' placeholder='Enter Customer Id' onChange={e => setCustId(e)}></input>
+               {
+                type === 'customer id' ? 
+
+                <input name='custId' placeholder='Enter Customer Id' onChange={e => setCustId(e)}></input>
+                :
+                <input name='accountId' placeholder='Enter Account Id' onChange={e => setAccountId(e)}></input>
+
+                }
             <button onClick={handleFetch}>Check Balance</button>
             
             { account.length > 0 ? 
@@ -67,8 +83,9 @@ const ShowBalanceAdmin = () =>{
                 </tbody>
             </table>
             : 
-            <div>Enter Customer Id to search records!</div>
+            <div></div>
             }
+            {balance !== -1 ? <div>Balance is {balance}</div> : <div></div>}
             
        </div>
     )
