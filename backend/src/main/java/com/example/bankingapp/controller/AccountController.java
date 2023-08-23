@@ -53,6 +53,10 @@ public class AccountController {
 	}
 	
 	
+	@PutMapping("/activateAccount/{accountNo}")
+	public String activateAccount(@PathVariable ("accountNo") String accNo) {
+		return accService.activateAccount(accNo);
+	}
 }
 
 
