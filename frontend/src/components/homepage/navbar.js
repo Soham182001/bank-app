@@ -10,6 +10,8 @@ const NavbarBootstrap = () => {
     const navigate = useNavigate();
     let data = sessionStorage.getItem("info");
     data = JSON.parse(data);
+    console.log(data)
+    
 
     const handleLogout = () => {
       sessionStorage.clear();
@@ -26,7 +28,7 @@ const NavbarBootstrap = () => {
             Signed in as:
           </Navbar.Text>
           <NavDropdown title={data.custId} id="navbarScrollingDropdown">
-            <NavDropdown.Item href="/welcome/userDetails">Profile</NavDropdown.Item>
+            <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
           </NavDropdown>
         </Navbar.Collapse>

@@ -11,6 +11,7 @@ class Customer{
         this.email=email;
         this.adhaarNumber=adhaarNumber;
         this.DOB=DOB;
+        this.password=password;
     }
 
     
