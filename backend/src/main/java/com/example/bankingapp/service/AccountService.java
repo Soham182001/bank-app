@@ -82,10 +82,13 @@ public class AccountService {
 		int z=accRepo.getBalance(accNo);
 		return z;
 		
-	
-
 }
-
+	public String getCustomerName(String accNo) throws ResourceNotFoundException{
+		List<String> custName = accRepo.getCustomerName(accNo);
+		String name = String.join("",custName);
+		name = name.replace(",", " ");
+		return name;
+	}
 }
 
 

@@ -35,6 +35,10 @@ public interface AccountRepository extends  JpaRepository <Account,String> {
 	@Query("update Account account set account.dateClosed=?1 where account.accountNo=?2")
 	public int updateDateClosed(LocalDate date,String accNo);
 	
+
+	@Query("select account.customer.firstName,account.customer.lastName from Account account where account.accountNo=?1")
+	public List<String> getCustomerName(String accNo);
+	
 }
 
 
