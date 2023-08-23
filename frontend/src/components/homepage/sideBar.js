@@ -8,6 +8,8 @@ import {
   CDBSidebarFooter,
 } from 'cdbreact';
 
+import { NavLink } from 'react-router-dom'
+
 const Sidebar = () => {
   return (
     <div>      
@@ -15,7 +17,9 @@ const Sidebar = () => {
         <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>Dashboard</CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>
-            <CDBSidebarMenuItem icon="user"><a href='/welcome/accountDetails'>Account Details</a></CDBSidebarMenuItem>
+          <NavLink exact to='/welcome/accountDetails' activeClassName="activeClicked">
+            <CDBSidebarMenuItem icon="user">Account Details</CDBSidebarMenuItem>
+           </NavLink>
             <CDBSidebarMenuItem icon="exchange-alt"><a href='/welcome/transact'>Fund Transfer</a></CDBSidebarMenuItem>
             <CDBSidebarMenuItem icon="hourglass" iconType="solid"><a href='/welcome/showTransaction'>Transactions</a></CDBSidebarMenuItem>
             <CDBSidebarMenuItem icon="credit-card" iconType="solid"><a href='/welcome/withdraw'>Withdrawal/Deposit</a></CDBSidebarMenuItem>
