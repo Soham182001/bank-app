@@ -14,7 +14,6 @@ const Register = () => {
                 phone: "",
                 email: "",
                 DOB: "",
-                address: "",
                 password: "",
                 adhaarNumber: "",
                 middleName: "",
