@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-
+import Container from 'react-bootstrap/Container';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import Select from 'react-select';
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
+import './transact.css'
 
 const Transact = () => {
 
@@ -95,62 +96,54 @@ const Transact = () => {
             })
     };
 
-    const style = {
-        // background: 'rgba(255, 255, 255, 0.5)',
-        position: 'absolute',
-        width: '40%',
-        left: '40%',
-        top: '20%',
-        // padding: '8px'
-    }
-    const group = {
-        padding: '5px'
-    }
+    
     return (
-        <CDBContainer style={style}>
-            <CDBCard style={{ background: 'rgba(255, 255, 255, 0.8)' }}>
-                <CDBCardBody className="mx-4">
+        <div>
+            <CDBContainer style={{marginLeft: "40%", marginTop: "10%"}}>
+            <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border>
+            <CDBCardBody>
+                <h3 style={{padding: "6%"}}>Transfer Funds</h3>
+              <div className="d-flex justify-content-center">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <Container>
 
-                    <div>
-                        <h1 style={group}>Transact</h1>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <Select
-                                name='select1'
-                                options={accountIds}
-
-                                onChange={value => { setSenderAccount(value.label); }}
-                            />
-                            <br />
-                            <div style={group}>
-
-                                <label>Receiver account no: </label>
-                                <input type="text"
-                                    name="receiverAccountNo"
-                                    {...register("receiverAccount")}
-                                ></input>
-                            </div>
-                            <br />
-                            <div style={group}>
-
-                                <label>Amount in Rs: </label>
-                                <input type="text"
-                                    name="amount"
-                                    {...register("amount")}
-                                ></input>
-                            </div>
-                            < br />
-                            <div style={group}>
-
-                                <input type="submit" value="Next"
-
-                                ></input>
-                            </div>
-                        </form>
+                    <div class="group">
+                        <Select
+                            placeholder="Select Your Account"
+                            options={accountIds}
+                            onChange={value => { setSenderAccount(value.label); }}
+                        />
                     </div>
-                </CDBCardBody>
-            </CDBCard>
-        </CDBContainer>
 
+                    <div class="group">      
+                        <input type="text" required  name="receiverAccountNo"
+                                {...register("receiverAccount")} />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Receiver Account</label>
+                    </div>
+
+                    <div class="group">      
+                        <input type="text" required name="amount"
+                                {...register("amount")}/>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Amount ( &#x20b9; )</label>
+                    </div>
+                
+                    <div class="group">
+                    
+                        <input type="submit" value="Transfer"
+
+                        ></input>
+                    </div>
+                    </Container>
+                </form>
+              </div>
+            </CDBCardBody>
+          </CDBCard>
+          </CDBContainer>
+        </div>
     )
 }
 
