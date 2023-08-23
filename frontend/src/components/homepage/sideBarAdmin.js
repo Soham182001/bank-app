@@ -6,7 +6,11 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem,
   CDBSidebarFooter,
+  CDBContainer,
+  CDBCard,
+  CDBCardBody
 } from 'cdbreact';
+import {NavLink, Navlink} from "react-router-dom";
 
 const SidebarAdmin = () => {
   return (
@@ -15,10 +19,25 @@ const SidebarAdmin = () => {
         <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>Admin Dashboard</CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>
-            <CDBSidebarMenuItem icon="user"><a href='/welcomeAdmin/transact'>Transactions</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="exchange-alt"><a href='/welcomeAdmin/update'>Update Details</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="money-bill" iconType="solid"><a href='/welcomeAdmin/showBalanceAdmin'>Check Balance</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="dumpster" iconType="solid"><a href='/welcomeAdmin/suspendAccount'>Suspend Account</a></CDBSidebarMenuItem>           
+            <NavLink  exact to='/welcomeAdmin/transact'>
+            <CDBSidebarMenuItem icon="user">Transactions</CDBSidebarMenuItem>
+
+            </NavLink>
+            <NavLink exact to='/welcomeAdmin/update'>
+            <CDBSidebarMenuItem icon="exchange-alt">Update Details</CDBSidebarMenuItem>
+
+            </NavLink>
+          
+          <NavLink exact to='/welcomeAdmin/showBalanceAdmin'>
+          <CDBSidebarMenuItem icon="money-bill" iconType="solid">Check Balance</CDBSidebarMenuItem>
+
+
+          </NavLink>
+
+          <NavLink exact to='/welcomeAdmin/suspendAccount'>
+          <CDBSidebarMenuItem icon="dumpster" iconType="solid">Suspend Account</CDBSidebarMenuItem>           
+
+          </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
