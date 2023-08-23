@@ -1,5 +1,7 @@
 import React, {useEffect,useState} from 'react';
+import { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer, CDBCard, CDBCardBody } from 'cdbreact';
 import axios from 'axios';
+import './showBalance.css'
 
 
 const ShowBalance = () =>{
@@ -29,21 +31,34 @@ const ShowBalance = () =>{
 
     return(
         <div>
-            <h1>All Your Accounts</h1>
-            <table>
-                <tbody>
-                <tr>
-                    <th>Account No.</th>
-                    <th>Balance</th>
-                </tr>
-                {balance.map((bal,i)=>
-                <tr key={i}>
-                    <td>{bal.accountNo}</td>
-                    <td>{bal.balance}</td>
-                </tr>
-                )}
-                </tbody>
-            </table>
+            <CDBContainer style={{marginLeft: "70%", marginTop: "10%"}}>
+            <CDBCard style={{ width: "25rem", borderRadius: "1rem" }} border>
+            <CDBCardBody>
+                <h3 style={{padding: "6%"}}>Your Accounts</h3>
+              <div className="d-flex justify-content-center">
+              <CDBTable>
+                    <caption>List of Accounts</caption>
+                    <CDBTableHeader color='primary-info'>
+                    <tr>
+                        <th >#</th>
+                        <th >Account No.</th>
+                        <th >Balance</th>
+                    </tr>
+                    </CDBTableHeader>
+                    <CDBTableBody>
+                    {balance.map((bal,i)=>
+                        <tr key={i}>
+                            <td>{i}</td>
+                            <td>{bal.accountNo}</td>
+                            <td>{bal.balance}</td>
+                        </tr>
+                        )}
+                    </CDBTableBody>
+                </CDBTable>
+              </div>
+            </CDBCardBody>
+          </CDBCard>
+          </CDBContainer>
         </div>
     )
 
