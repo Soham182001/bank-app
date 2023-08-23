@@ -31,12 +31,12 @@ const ShowBalance = () =>{
 
     return(
         <div>
-            <CDBContainer style={{marginLeft: "70%", marginTop: "10%"}}>
-            <CDBCard style={{ width: "25rem", borderRadius: "1rem" }} border>
+            <CDBContainer style={{marginLeft: "50%", marginTop: "10%"}}>
+            <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border>
             <CDBCardBody>
                 <h3 style={{padding: "6%"}}>Your Accounts</h3>
               <div className="d-flex justify-content-center">
-              <CDBTable>
+              <CDBTable style={{width:"400px"}}>
                     <caption>List of Accounts</caption>
                     <CDBTableHeader color='primary-info'>
                     <tr>
@@ -45,10 +45,10 @@ const ShowBalance = () =>{
                         <th >Balance</th>
                     </tr>
                     </CDBTableHeader>
-                    <CDBTableBody>
+                    <CDBTableBody >
                     {balance.map((bal,i)=>
                         <tr key={i}>
-                            <td>{i}</td>
+                            <td style={{color:"red",width:"200 px"} }>{i}</td>
                             <td>{bal.accountNo}</td>
                             <td>{bal.balance}</td>
                         </tr>
