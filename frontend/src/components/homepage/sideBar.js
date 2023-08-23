@@ -8,6 +8,8 @@ import {
   CDBSidebarFooter,
 } from 'cdbreact';
 
+import { NavLink } from 'react-router-dom'
+
 const Sidebar = () => {
   return (
     <div>      
@@ -15,12 +17,30 @@ const Sidebar = () => {
         <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>Dashboard</CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>
-            <CDBSidebarMenuItem icon="user"><a href='/welcome/accountDetails'>Account Details</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="exchange-alt"><a href='/welcome/transact'>Fund Transfer</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="hourglass" iconType="solid"><a href='/welcome/showTransaction'>Transactions</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="credit-card" iconType="solid"><a href='/welcome/withdraw'>Withdrawal/Deposit</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="money-bill" iconType="solid"><a href='/welcome/showBalance'>Check Balance</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="plus" iconType="solid"><a href='/welcome/createaccount'>New Account</a></CDBSidebarMenuItem>            
+          <NavLink exact to='/welcome/accountDetails' activeClassName="activeClicked">
+            <CDBSidebarMenuItem icon="user">Account Details                                                   </CDBSidebarMenuItem>
+           </NavLink>
+            
+          <NavLink exact to='/welcome/transact' activeClassName="activeClicked">
+            <CDBSidebarMenuItem icon="exchange-alt">Fund Transfer</CDBSidebarMenuItem>
+            </NavLink>
+          <NavLink exact to='/welcome/showTransaction' activeClassName="activeClicked">
+            
+            <CDBSidebarMenuItem icon="hourglass" iconType="solid">Transactions</CDBSidebarMenuItem>
+            </NavLink>
+          <NavLink exact to='/welcome/withdraw' activeClassName="activeClicked">
+
+            <CDBSidebarMenuItem icon="credit-card" iconType="solid">Withdrawal/Deposit</CDBSidebarMenuItem>
+          </NavLink>
+          <NavLink exact to='/welcome/showBalance' activeClassName="activeClicked">
+           
+            <CDBSidebarMenuItem icon="money-bill" iconType="solid"><a href=''>Check Balance</a></CDBSidebarMenuItem>
+          </NavLink>
+          <NavLink exact to='/welcome/createaccount' activeClassName="activeClicked">
+           
+            <CDBSidebarMenuItem icon="plus" iconType="solid">New Account</CDBSidebarMenuItem>            
+          </NavLink>
+
           </CDBSidebarMenu>
         </CDBSidebarContent>
 

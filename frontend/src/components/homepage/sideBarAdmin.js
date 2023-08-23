@@ -15,8 +15,8 @@ const SidebarAdmin = () => {
         <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>Admin Dashboard</CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>
-            <CDBSidebarMenuItem icon="user"><a href='/welcomeAdmin/account'>Transactions</a></CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="exchange-alt"><a href='/welcomeAdmin/transact'>Update Details</a></CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="user"><a href='/welcomeAdmin/transact'>Transactions</a></CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="exchange-alt"><a href='/welcomeAdmin/update'>Update Details</a></CDBSidebarMenuItem>
             <CDBSidebarMenuItem icon="money-bill" iconType="solid"><a href='/welcomeAdmin/showBalanceAdmin'>Check Balance</a></CDBSidebarMenuItem>
             <CDBSidebarMenuItem icon="dumpster" iconType="solid"><a href='/welcomeAdmin/suspendAccount'>Suspend Account</a></CDBSidebarMenuItem>           
           </CDBSidebarMenu>
