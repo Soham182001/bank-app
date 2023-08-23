@@ -77,6 +77,14 @@ public class AccountService {
 		return "ERROR.";
 	}
 
+
+
+	public String activateAccount(String accNo) {
+		int rows=accRepo.updateDateClosed(null,accNo);
+		if(rows>0) return "Account Activated.";
+		return "ERROR.";
+	}
+
 }
 
 

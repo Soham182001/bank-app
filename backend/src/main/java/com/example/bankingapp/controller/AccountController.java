@@ -41,6 +41,10 @@ public class AccountController {
 		return accService.suspendAccount(accNo);
 	}
 	
+	@PutMapping("/activateAccount/{accountNo}")
+	public String activateAccount(@PathVariable ("accountNo") String accNo) {
+		return accService.activateAccount(accNo);
+	}
 }
 
 
