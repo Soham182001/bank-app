@@ -38,10 +38,14 @@ public class Account {
 	@ManyToOne
 	@JoinColumn(name = "custId")
 	private Customer customer;
-
+	
+	
+	@JsonBackReference
 	@OneToMany(mappedBy = "senderAccount", fetch = FetchType.EAGER)
 	private List<Transaction> senders;
-
+	
+	
+	@JsonBackReference
 	@OneToMany(mappedBy = "recieverAccount", fetch = FetchType.EAGER)
 	private List<Transaction> recievers;
 
