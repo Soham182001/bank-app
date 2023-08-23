@@ -6,6 +6,8 @@ import UserDetail from "../../models/UserDetails"
 import Customer from '../../models/Customer';
 import Address from '../../models/Address';
 import Account from '../../models/Account'
+import { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer, CDBCard, CDBCardBody } from 'cdbreact';
+
 const AccountDetails = () =>{
     const [userData,setUserData]=useState(null);
     useEffect(()=>{
@@ -76,29 +78,42 @@ const AccountDetails = () =>{
 
     return(
         <div>
-            <h1>Account Details</h1>
          <div>{userData ?  ( <div> 
-         
-                <table>
-                    <tbody>
+
+                
+            <CDBContainer style={{marginLeft: "50%", marginTop: "10%"}}>
+            <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border>
+            <CDBCardBody>  
+                
+            <h3>Account Details</h3>
+            <div className="d-flex justify-content-center">
+                
+            <CDBTable style={{width:"400px"}}>
+                <caption>List of Transactions</caption>
+                <CDBTableHeader color='primary-info'>
+
                         <tr>
                         {Object.keys(userData.accounts[0]).map((value,i)=>{
                         
-                        return  <th key={i}> {value} </th>
+                        return  <th key={i}> {value === "dateClosed"? "Status":value} </th>
                      })}
+
                         </tr>
+                </CDBTableHeader>
+
                         {userData.accounts.map((acc,index)=>{
                            return ( <tr key = {index}>
                             {Object.values(acc).map((value,i)=>{
                             
-                            return  <td key={i}> {value} </td>
+                            return  <td key={i}> {i === 3 ? (value === null ? 'active' : 'suspended'):value} </td>
                          })}
                             </tr>);
                         })}
-                        
-                    </tbody>
-                </table>
-                
+                        </CDBTable>
+                </div>
+            </CDBCardBody>
+          </CDBCard>
+          </CDBContainer>
                 
             </div>)
            :        <h3>No data yet</h3>} </div>
