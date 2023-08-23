@@ -35,7 +35,7 @@ const SuspendAccount = () => {
             <CDBContainer style={{marginLeft: "40%", marginTop: "10%"}}>
             <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border>
             <CDBCardBody>
-            <h3 style={{padding: "6%"}}>Suspend Account Using Account Number</h3>
+            <h3 style={{padding: "6%"}}>Suspend Account</h3>
             <div className="d-flex justify-content-center">
                 <form>
                 <Container>

@@ -31,13 +31,13 @@ const ShowTransaction = () =>{
     return(
         <div>
             
-            <CDBContainer style={{marginLeft: "50%", marginTop: "10%"}}>
-            <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border>
+            <CDBContainer style={{marginLeft: "22%", marginTop: "10%"}}>
+            <CDBCard style={{ width: "45rem", borderRadius: "1rem" }} border>
             <CDBCardBody>
-            <h3>All Your Transactions</h3>
+            <h3 style={{padding: "3%"}}>Transactions</h3>
             <div className="d-flex justify-content-center">
             
-            <CDBTable style={{width:"400px"}}>
+            <CDBTable style={{width:"650px"}}>
                 <caption>List of Transactions</caption>
                 <CDBTableHeader color='primary-info'>
 
