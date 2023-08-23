@@ -68,7 +68,7 @@ public class Customer {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate DOB;
 
-	@JsonBackReference
+	//@JsonBackReference
 	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Account> account;
 

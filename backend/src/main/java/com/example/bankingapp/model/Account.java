@@ -40,12 +40,12 @@ public class Account {
 	private Customer customer;
 	
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@OneToMany(mappedBy = "senderAccount", fetch = FetchType.EAGER)
 	private List<Transaction> senders;
 	
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@OneToMany(mappedBy = "recieverAccount", fetch = FetchType.EAGER)
 	private List<Transaction> recievers;
 
