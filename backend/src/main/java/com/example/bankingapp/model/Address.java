@@ -19,7 +19,6 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sNo;
 
-
 	@JsonBackReference
     @ManyToOne
     @JoinColumn(name = "custId")

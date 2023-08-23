@@ -57,6 +57,13 @@ public class CustController {
 		List<UserDetails> customer=custService.fetchCustomer(uname);
 		return customer;
   }
+  
+  @PutMapping("/updateCustomer/{custId}")
+  public String updateCustomer(@PathVariable("custId") String custId, @RequestBody Customer cust) {
+	  System.out.println(cust.toString());
+	  return custService.updateCustomer(custId,cust);
+  }
+  
 }
 
 
