@@ -79,13 +79,22 @@ public class AccountService {
 	}
 	public Integer checkBalanceByAccNo(String accNo) throws ResourceNotFoundException {
 
-		int z=accRepo.getBalance(accNo);
+    int z=accRepo.getBalance(accNo);
 		return z;
 		
-	
-
 }
-
+  
+  public String activateAccount(String accNo) {
+		int rows=accRepo.updateDateClosed(null,accNo);
+		if(rows>0) return "Account Activated.";
+		return "ERROR.";
+	}
+	public String getCustomerName(String accNo) throws ResourceNotFoundException{
+		List<String> custName = accRepo.getCustomerName(accNo);
+		String name = String.join("",custName);
+		name = name.replace(",", " ");
+		return name;
+	}
 }
 
 

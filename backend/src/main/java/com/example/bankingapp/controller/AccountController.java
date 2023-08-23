@@ -47,6 +47,16 @@ public class AccountController {
 		return accService.checkBalanceByAccNo(accNo);
 	}
 	
+	@GetMapping("/getCustomerName/{accountNo}")
+	public String getCustomerName(@PathVariable("accountNo") String accNo) throws ResourceNotFoundException {
+		return accService.getCustomerName(accNo);
+	}
+	
+	
+	@PutMapping("/activateAccount/{accountNo}")
+	public String activateAccount(@PathVariable ("accountNo") String accNo) {
+		return accService.activateAccount(accNo);
+	}
 }
 
 

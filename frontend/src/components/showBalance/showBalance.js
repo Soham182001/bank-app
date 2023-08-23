@@ -48,9 +48,9 @@ const ShowBalance = () =>{
                     <CDBTableBody >
                     {balance.map((bal,i)=>
                         <tr key={i}>
-                            <td style={{color:"red",width:"200 px"} }>{i}</td>
-                            <td>{bal.accountNo}</td>
-                            <td>{bal.balance}</td>
+                            <td style={{width:"200 px"} }>{i}</td>
+                            <td style={{width:"200 px"} }>{bal.accountNo}</td>
+                            <td style={{width:"200 px"} }>{bal.balance}</td>
                         </tr>
                         )}
                     </CDBTableBody>

@@ -1,9 +1,10 @@
 import React from 'react';
+import CustomerDetailUpdate from '../updateForms/customerDetailUpdate';
 
-const UpdateDetails = () =>{
+const UpdateDetails = (props) =>{
     return(
         <div>
-            Update Details
+            {props.type === "Customer Details" ? <CustomerDetailUpdate/> : <h3>No data</h3>}
         </div>
     )
 }
