@@ -24,7 +24,7 @@ public class Account {
 
 	@Column(nullable = false)
 	private int balance;
-
+	
 	@Column(nullable = false)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate dateOpened;
