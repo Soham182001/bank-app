@@ -3,7 +3,7 @@ import axios from 'axios';
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import {useNavigate} from "react-router-dom"
 
-const CustomerDetailUpdate = () => {
+const OccupationDetailUpdate = () => {
 
         const navigate = useNavigate();
 
@@ -130,4 +130,4 @@ const CustomerDetailUpdate = () => {
     )
 }
 
-export default CustomerDetailUpdate;
+export default OccupationDetailUpdate;
