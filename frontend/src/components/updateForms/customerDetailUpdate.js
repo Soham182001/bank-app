@@ -27,7 +27,7 @@ const CustomerDetailUpdate = () => {
         }));
         }
 
-    const baseURL="http://localhost:8080/updateCustomer"
+    const baseURL="http://localhost:8080/updateCustomer/{custId}"
 
     const handleSubmit = (e) => {
         console.log("Hello");
