@@ -41,7 +41,6 @@ const Transact = () => {
             })
     }, [])
     const [senderAccount, setSenderAccount] = useState('');
-    const [type, setType] = useState('');
 
     const navigate = useNavigate();
     const {
@@ -50,16 +49,6 @@ const Transact = () => {
         control
     } = useForm();
 
-    // const {field : {value: accountNo, onChange: accNoChange, ...restAccNum}} = useController({name: 'accountNum',control});
-
-    // const {field : {value: transactionType, onChange: transactionTypeChange, ...restTransactionType}} = useController({name: 'transactionType',control});
-
-    // const accountIds = JSON.parse(sessionStorage.getItem("account"));
-    // const accountIds = [{label:989897878,value:1},{label:78766545544,value:2},{label:89878767654543,value:3}];
-
-
-
-    const transactTypes = [{ label: "withdrawal", value: 1 }, { label: "deposit", value: 2 }, { label: "fund transfer", value: 3 }];
 
     const min = 100000000000; // Minimum 12-digit number
     const max = 999999999999; // Maximum 12-digit number
@@ -76,7 +65,7 @@ const Transact = () => {
                 amount: parseInt(data.amount)
             },
             transaction: {
-                type: type,
+                type: "fund transfer",
                 timeStamp: new Date().toISOString().split('T')[0],
                 amount: parseInt(data.amount),
                 transactionId: transactionId,
@@ -104,8 +93,6 @@ const Transact = () => {
                 alert(e.message);
                 console.log(e);
             })
-        // // sessionStorage.setItem("account",JSON.stringify(account));
-        // navigate('/addOccupation')
     };
 
     const style = {
@@ -133,18 +120,6 @@ const Transact = () => {
 
                                 onChange={value => { setSenderAccount(value.label); }}
                             />
-                            {/* <Select
-                name='select2'
-                options={transactTypes}
-                onChange={value=>setType(value.label)}
-            /> */}
-                            <br />
-                            {/* <Select placeholder="Select transaction type"
-                options={transactTypes}
-                value={transactionType?transactTypes.find(x=>x===transactionType):transactionType} {...register("type")}
-                onChange={option => transactionTypeChange(option?option.value:option)}
-                {...restTransactionType}
-            /> */}
                             <br />
                             <div style={group}>
 
