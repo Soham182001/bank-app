@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import Select from 'react-select';
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
-import './transact.css'
+import '../../components/css/components.css'
 
 const Transact = () => {
 
