@@ -3,8 +3,7 @@ import axios from 'axios';
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import {useNavigate} from "react-router-dom"
 
-
-const Register = () => {
+const CustomerDetailUpdate = () => {
 
         const navigate = useNavigate();
 
@@ -14,7 +13,6 @@ const Register = () => {
                 phone: "",
                 email: "",
                 DOB: "",
-                password: "",
                 adhaarNumber: "",
                 middleName: "",
                 lastName: "",
@@ -29,7 +27,7 @@ const Register = () => {
         }));
         }
 
-    const baseURL="http://localhost:8080/saveCustomer"
+    const baseURL="http://localhost:8080/updateCustomer/{custId}"
 
     const handleSubmit = (e) => {
         console.log("Hello");
@@ -42,7 +40,8 @@ const Register = () => {
           })
         .then(
             response=>{
-                navigate('/login')
+                alert("Customer updated success")
+                navigate('/welcome')
             }
         )
         .catch(e => {
@@ -65,12 +64,14 @@ const Register = () => {
                                 <CDBInput material hint="Customer ID" type='text' placeholder='Customer ID' 
                                 name='custId'
                                 onChange={handleInputChange}
+                                disabled
                                 required/>
                         </div>
                         <div className="col">
                                 <CDBInput material hint="First name" type="text" placeholder='First Name'
                                 name="firstName"
                                 onChange={handleInputChange}
+                                
                                 required/>
                         </div>
                         <div className="col">
@@ -98,6 +99,7 @@ const Register = () => {
                                 <CDBInput id='dob' type='date' material
                                 name='DOB'
                                 onChange={handleInputChange}
+                                disabled
                                 required/>
                         </div>
                         </div>
@@ -112,21 +114,14 @@ const Register = () => {
                         <CDBInput material hint="Adhaar" type="number" placeholder='Adhaar Number'
                                 name="adhaarNumber"
                                 onChange={handleInputChange}
+                                disabled
                                 required/>
-                        <CDBInput material hint="Password" type="password" placeholder='Password'
-                                name="password"
-                                onChange={handleInputChange}
-                                required/>
+                      
                         <CDBBtn color="dark" className="btn-block my-3 mx-0" type='submit'>
-                        Sign up
+                        Update
                         </CDBBtn>
                         </form>
-                        <p className="text-center m-0">
-                        Already have an account?{' '}
-                        <CDBLink className="d-inline p-0" to="/login">
-                        Sign In
-                        </CDBLink>
-                        </p>
+                   
                         </CDBCardBody>
                 </CDBCard>
                 </CDBContainer>
@@ -134,4 +129,4 @@ const Register = () => {
     )
 }
 
-export default Register;
+export default CustomerDetailUpdate;

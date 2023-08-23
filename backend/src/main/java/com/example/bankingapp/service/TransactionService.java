@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.bankingapp.dao.AccountRepository;
 import com.example.bankingapp.dao.TransactionRepository;
+import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.Account;
 import com.example.bankingapp.model.AccountUpdateModel;
 import com.example.bankingapp.model.Customer;
@@ -110,5 +111,20 @@ public class TransactionService {
 		}
 			
 		return txnList;
+	}
+public List<Transaction>fetchTransactionsByAccNo(String accNo) {
+		
+		
+		List<Transaction> txnList  = new ArrayList<Transaction>();
+
+		List<Transaction> subTranx = transRepo.findByAccountNo(accNo);
+		for(int j=0; j<subTranx.size(); j++) {
+		Transaction x = subTranx.get(j);
+		txnList.add(x);
+			
+		}
+			
+		return txnList;
+//		return subTranx;
 	}
 }
