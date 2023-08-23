@@ -49,12 +49,6 @@ const [accountIds,setAccountIDs]=useState([]);
         control
         } = useForm();
 
-    // const {field : {value: accountNo, onChange: accNoChange, ...restAccNum}} = useController({name: 'accountNum',control});
-    
-    // const {field : {value: transactionType, onChange: transactionTypeChange, ...restTransactionType}} = useController({name: 'transactionType',control});
-
-    // const accountIds = JSON.parse(sessionStorage.getItem("account"));
-    // const accountIds = [{label:989897878,value:1},{label:78766545544,value:2},{label:89878767654543,value:3}];
         
 
 
@@ -71,7 +65,7 @@ const [accountIds,setAccountIDs]=useState([]);
             accountUpdateModel:{
                 
             senderAccount: senderAccount,
-            recieverAccount: data.receiverAccount,
+            recieverAccount: senderAccount,
             amount: parseInt(data.amount)
             },
           transaction:{  
@@ -82,7 +76,6 @@ const [accountIds,setAccountIDs]=useState([]);
             status:"in progress"
           }
         }
-        console.log(payload);
 
         const URL = `http://localhost:8080/transaction`
         axios({
@@ -103,8 +96,6 @@ const [accountIds,setAccountIDs]=useState([]);
             alert(e.message);
             console.log(e);
         })
-        // // sessionStorage.setItem("account",JSON.stringify(account));
-        // navigate('/addOccupation')
     };
 
 
@@ -125,19 +116,8 @@ const [accountIds,setAccountIDs]=useState([]);
                 onChange={value=>setType(value.label)}
                />
                 <br/>
-                {/* <Select placeholder="Select transaction type"
-                options={transactTypes}
-                value={transactionType?transactTypes.find(x=>x===transactionType):transactionType} {...register("type")}
-                onChange={option => transactionTypeChange(option?option.value:option)}
-                {...restTransactionType}
-                /> */}
                 <br/>
  
-                 {/* <label>Receiver account no: </label>
-                <input type="text" 
-                        name="receiverAccountNo"
-                        {...register("receiverAccount")}
-                ></input> */}
                 <label>Amount in Rs: </label>
                 <input type="text" 
                         name="amount"
