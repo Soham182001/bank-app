@@ -58,7 +58,7 @@ const [accountIds,setAccountIDs]=useState([]);
         
 
 
-    const transactTypes=[{label:"withdrawal",value:1},{label:"deposit",value:2},{label:"fund transfer",value:3}];
+    const transactTypes=[{label:"withdrawal",value:1},{label:"deposit",value:2}];
 
       const min = 100000000000; // Minimum 12-digit number
       const max = 999999999999; // Maximum 12-digit number
@@ -119,11 +119,11 @@ const [accountIds,setAccountIDs]=useState([]);
                 
                 onChange={value=>{setSenderAccount(value.label);}}
                />
-                {/* <Select
+                <Select
                 name='select2'
                 options={transactTypes}
                 onChange={value=>setType(value.label)}
-               /> */}
+               />
                 <br/>
                 {/* <Select placeholder="Select transaction type"
                 options={transactTypes}

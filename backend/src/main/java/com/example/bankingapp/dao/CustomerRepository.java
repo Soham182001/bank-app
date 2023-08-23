@@ -20,7 +20,7 @@ public interface CustomerRepository extends JpaRepository <Customer,String> {
 	@Query("update Customer customer set customer.password=?2 where customer.custId=?1")
 	public int updatePassword(String custId, String pass);
 	
-	@Query("select new com.example.bankingapp.model.UserDetails(c,a,ad,o) from Customer c join c.account a join c.address ad join c.occupation o where c.custId=?1")
+	@Query("select DISTINCT new com.example.bankingapp.model.UserDetails(c,a,ad,o) from Customer c join c.account a join c.address ad join c.occupation o where c.custId=?1")
 	public List<UserDetails> fetchCustomer(String custId);
 	
 }

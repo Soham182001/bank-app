@@ -5,7 +5,7 @@ import { NavDropdown } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 
-const NavbarBootstrap = () => {
+const NavbarBootstrapAdmin = () => {
 
     const navigate = useNavigate();
     let data = sessionStorage.getItem("info");
@@ -13,20 +13,20 @@ const NavbarBootstrap = () => {
 
     const handleLogout = () => {
       sessionStorage.clear();
-      navigate('../login')
+      navigate('../loginAdmin')
     }
 
   return (
     <Navbar className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">Bank-App</Navbar.Brand>
+        <Navbar.Brand href="#home">Bank-App (Admins Only)</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Signed in as:
+            Admin:
           </Navbar.Text>
-          <NavDropdown title={data.custId} id="navbarScrollingDropdown">
-            <NavDropdown.Item href="/welcome/userDetails">Profile</NavDropdown.Item>
+          <NavDropdown title={data.empId} id="navbarScrollingDropdown">
+            <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
           </NavDropdown>
         </Navbar.Collapse>
@@ -35,4 +35,4 @@ const NavbarBootstrap = () => {
   );
 }
 
-export default NavbarBootstrap;
+export default NavbarBootstrapAdmin;
