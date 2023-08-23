@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.Transaction;
 import com.example.bankingapp.model.TransactionModel;
 import com.example.bankingapp.service.TransactionService;
@@ -30,6 +31,11 @@ public class TransactionController {
 	@GetMapping("/fetchTransactions/{custId}")
 	public List<Transaction>fetchTransactions(@PathVariable("custId") String uname){
 		List<Transaction> txnList=transSer.fetchTransactions(uname);
+		return txnList;
+	}
+	@GetMapping("/fetchTransactionsByAccNo/{accountNo}")
+	public List<Transaction>fetchTransactionsByAccNo(@PathVariable("accountNo") String accNo){
+		List<Transaction> txnList=transSer.fetchTransactionsByAccNo(accNo);
 		return txnList;
 	}
 	

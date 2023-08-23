@@ -24,7 +24,7 @@ public class Account {
 
 	@Column(nullable = false)
 	private int balance;
-
+	
 	@Column(nullable = false)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate dateOpened;
@@ -38,10 +38,14 @@ public class Account {
 	@ManyToOne
 	@JoinColumn(name = "custId")
 	private Customer customer;
-
+	
+	
+	@JsonBackReference
 	@OneToMany(mappedBy = "senderAccount", fetch = FetchType.EAGER)
 	private List<Transaction> senders;
-
+	
+	
+	@JsonBackReference
 	@OneToMany(mappedBy = "recieverAccount", fetch = FetchType.EAGER)
 	private List<Transaction> recievers;
 

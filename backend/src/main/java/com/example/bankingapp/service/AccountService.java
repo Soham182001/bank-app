@@ -11,6 +11,7 @@ import com.example.bankingapp.dao.AccountRepository;
 import com.example.bankingapp.dao.AddressRepository;
 import com.example.bankingapp.dao.CustomerRepository;
 import com.example.bankingapp.dao.OccupationRepository;
+import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.Account;
 import com.example.bankingapp.model.AccountData;
 import com.example.bankingapp.model.Address;
@@ -76,6 +77,14 @@ public class AccountService {
 		if(rows>0) return "Account Suspended.";
 		return "ERROR.";
 	}
+	public Integer checkBalanceByAccNo(String accNo) throws ResourceNotFoundException {
+
+		int z=accRepo.getBalance(accNo);
+		return z;
+		
+	
+
+}
 
 }
 

@@ -95,6 +95,12 @@ public String updatePassword(String custId, ChangePassword pass) {
 		return custRepo.fetchCustomer(uname);
 
 	}
+
+public String updateCustomer(String custId, Customer cust) {
+	int rows=custRepo.updateCustomer(custId,cust.getDOB(),cust.getFirstName(),cust.getMiddleName(),cust.getLastName(),cust.getFatherName(),cust.getPhone(),cust.getEmail(),cust.getAdhaarNumber());
+	if(rows>0) return "Successfully Updated";
+	return "ERROR.";
+}
 }
 
 

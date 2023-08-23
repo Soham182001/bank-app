@@ -10,7 +10,7 @@ import com.example.bankingapp.model.Transaction;
 
 @Repository
 public interface TransactionRepository extends JpaRepository <Transaction,String> {
-	@Query("select transaction from Transaction transaction where transaction.senderAccount.accountNo=?1 or transaction.recieverAccount.accountNo=?1")
+	@Query("select distinct transaction from Transaction transaction where transaction.senderAccount.accountNo=?1 or transaction.recieverAccount.accountNo=?1")
 	public List<Transaction> findByAccountNo(String accno);
 	
 }
