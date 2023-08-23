@@ -31,7 +31,7 @@ const ShowBalance = () =>{
 
     return(
         <div>
-            <CDBContainer style={{marginLeft: "50%", marginTop: "10%"}}>
+            <CDBContainer style={{marginLeft: "40%", marginTop: "10%"}}>
             <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border>
             <CDBCardBody>
                 <h3 style={{padding: "6%"}}>Your Accounts</h3>
