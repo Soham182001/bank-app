@@ -117,31 +117,37 @@ const TransactAdmin = () =>{
                 <CDBTable style={{width:"730px", outerHeight: "500px"}}>
                     <CDBTableHeader color='primary-info'>
 
-                    <tr>
-                        <th>Reciever Account No.</th>
-                        <th>Sender Account No.</th>
-                        <th>Amount</th>
-                        <th>Time Stamp</th>
-                        <th>Type</th>
-                    </tr>
-                    </CDBTableHeader>
-                    <CDBTableBody>
-                    {transactions.map((Trans,i)=>
-                    <tr key={i} style={{backgroundColor:Trans.type == 'deposit'?"green":Trans.type=='withdrawal'?'red':'greenyellow'}}>
-                        <td  style={{width:"200 px"} }>{Trans.recieverAccount.accountNo}</td>
-                        <td style={{width:"200 px"} }>{Trans.senderAccount.accountNo}</td>
-                        <td style={{width:"200 px"} } >{Trans.amount}</td>
-                        <td style={{width:"200 px"} } >{Trans.timeStamp}</td>
-                        <td style={{width:"200 px"} }>{Trans.type}</td>
-                    </tr>
-                    )}
-                    </CDBTableBody>
-                </CDBTable>
-                :
-                    <div>Data Not Found</div>
-                }
-                </SweetAlert2>
-            </div>        
+                <tr>
+                    <th>Reciever Account No.</th>
+                    <th>Sender Account No.</th>
+                    <th>Amount</th>
+                    <th>Time Stamp</th>
+                    <th>Type</th>
+                </tr>
+                </CDBTableHeader>
+                <CDBTableBody>
+                {transactions.map((Trans,i)=>
+                <tr key={i} style={{backgroundColor:Trans.type === 'deposit'?"green":Trans.type==='withdrawal'?'red':'greenyellow'}}>
+                    <td  style={{width:"200 px"} }>{Trans.recieverAccount.accountNo}</td>
+                    <td style={{width:"200 px"} }>{Trans.senderAccount.accountNo}</td>
+                    <td style={{width:"200 px"} } >{Trans.amount}</td>
+                    <td style={{width:"200 px"} } >{Trans.timeStamp}</td>
+                    <td style={{width:"200 px"} }>{Trans.type}</td>
+                </tr>
+                )}
+                </CDBTableBody>
+                
+            </CDBTable>
+            
+            : 
+            <div>No data found</div>}
+            </SweetAlert2>
+            </div>
+          
+
+            
+            {/* {balance !== -1 ? <div>Balance is {balance}</div> : <div></div>} */}
+            
              </CDBCardBody>
             </CDBCard>
           </CDBContainer>
