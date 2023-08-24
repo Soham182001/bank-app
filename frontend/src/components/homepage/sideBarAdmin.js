@@ -20,11 +20,11 @@ const SidebarAdmin = () => {
         <CDBSidebarContent>
           <CDBSidebarMenu>
             <NavLink  exact to='/welcomeAdmin/transact'>
-            <CDBSidebarMenuItem icon="user">Transactions</CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="exchange-alt">Transactions</CDBSidebarMenuItem>
 
             </NavLink>
             <NavLink exact to='/welcomeAdmin/update'>
-            <CDBSidebarMenuItem icon="exchange-alt">Update Details</CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="edit">Update Details</CDBSidebarMenuItem>
 
             </NavLink>
           
@@ -35,7 +35,12 @@ const SidebarAdmin = () => {
           </NavLink>
 
           <NavLink exact to='/welcomeAdmin/suspendAccount'>
-          <CDBSidebarMenuItem icon="dumpster" iconType="solid">Suspend Account</CDBSidebarMenuItem>           
+          <CDBSidebarMenuItem icon="ban" iconType="solid">Suspend Account</CDBSidebarMenuItem>           
+
+          </NavLink>
+
+          <NavLink exact to='/welcomeAdmin/activateAccount'>
+          <CDBSidebarMenuItem icon="check-circle" iconType="solid">Activate Account</CDBSidebarMenuItem>           
 
           </NavLink>
           </CDBSidebarMenu>
