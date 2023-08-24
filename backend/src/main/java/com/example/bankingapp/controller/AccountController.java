@@ -39,9 +39,10 @@ public class AccountController {
 	}
 	
 	@PutMapping("/suspendAccount/{accountNo}")
-	public String suspendAccount(@PathVariable ("accountNo") String accNo) {
+	public String suspendAccount(@PathVariable ("accountNo") String accNo) throws ResourceNotFoundException{
 		return accService.suspendAccount(accNo);
 	}
+	
 	@GetMapping("/checkBalanceByAccNo/{accountNo}")
 	public Integer checkBalanceByAccNo(@PathVariable("accountNo") String accNo) throws ResourceNotFoundException {
 		return accService.checkBalanceByAccNo(accNo);

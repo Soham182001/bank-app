@@ -148,7 +148,6 @@ const TransactAdmin = () =>{
             : 
             <div>No data found</div>
             }
-            {/* {balance !== -1 ? <div>Balance is {balance}</div> : <div></div>} */}
             
              </CDBCardBody>
             </CDBCard>

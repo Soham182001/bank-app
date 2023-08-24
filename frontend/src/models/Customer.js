@@ -1,6 +1,6 @@
 class Customer{
 
-    constructor(custId,firstName,middleName,lastName,fatherName,phone,email,adhaarNumber,password,DOB,dob)
+    constructor(custId,firstName,middleName,lastName,fatherName,phone,email,adhaarNumber,DOB,password)
     {
         this.custId = custId;
         this.firstName = firstName;

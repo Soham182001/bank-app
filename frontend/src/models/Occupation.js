@@ -1,10 +1,10 @@
 class Occupation{
 
-    constructor(occupationType,sourceOfIncome,grossAnnualIncome)
+    constructor(occupationType,sourceOfIncome,grossAnnualSalary)
     {
         this.occupationType=occupationType;
         this.sourceOfIncome=sourceOfIncome;
-        this.grossAnnualIncome=grossAnnualIncome;
+        this.grossAnnualSalary=grossAnnualSalary;
     }
 
     

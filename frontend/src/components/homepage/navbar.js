@@ -27,6 +27,7 @@ const NavbarBootstrap = () => {
           <Navbar.Text>
             Signed in as&nbsp; 
           </Navbar.Text>
+
           <NavDropdown title={data.firstName} id="navbarScrollingDropdown">
             <NavDropdown.Item href="/welcome/userDetails">Profile</NavDropdown.Item>
             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
