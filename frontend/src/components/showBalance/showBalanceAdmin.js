@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-
+import SweetAlert2 from 'react-sweetalert2';
 import Container from 'react-bootstrap/Container';
 import { CDBTable, CDBTableHeader, CDBTableBody, CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import '../../components/css/components.css'
@@ -13,13 +13,19 @@ const ShowBalanceAdmin = () =>{
     const [accountId, setAccountId] = useState("");
     const [account, setAccount] = useState([]);
     const [type,setType]  = useState('customer id');
+    const [swalProps, setSwalProps] = useState({});
+
 
     const handleFetch = () => {
         if(type === 'customer id') {
+            setBalance(-1);
+            setAccount([]);
             fetchBalanceCustId();
         }
         else if(type === 'account id') {
-                fetchBalanceAccId();
+            setBalance(-1);
+            setAccount([]);
+            fetchBalanceAccId();
         }
     }
     const fetchBalanceAccId = () => {
@@ -30,6 +36,14 @@ const ShowBalanceAdmin = () =>{
         })
         .then((response) => {
             setBalance(response.data)
+            setSwalProps({
+                show: true,
+                title: 'Transactions',
+                width: "800px"
+            })
+        })
+        .catch(e => {
+            console.log(e);
         })
     }
     const fetchBalanceCustId = () =>{
@@ -42,8 +56,12 @@ const ShowBalanceAdmin = () =>{
         .then(
             (response)=>{
 ;                let temp= (response.data);
-                console.log(temp);
                 setAccount(temp);
+                setSwalProps({
+                    show: true,
+                    title: 'Transactions',
+                    width: "800px"
+                })
             }
         )
         .catch(e => {
@@ -73,9 +91,6 @@ const ShowBalanceAdmin = () =>{
                </div>
                {
                 type === 'customer id' ? 
-
-                // <input name='custId' placeholder='Enter Customer Id' onChange={e => setCustId(e)}></input>
-               
                 <div class="group">  
                     <input name='custId' required onChange={e => setCustId(e.target.value)}></input>
                     <span class="highlight"></span>
@@ -83,8 +98,6 @@ const ShowBalanceAdmin = () =>{
                     <label>Customer ID</label>     
                 </div>
                 :
-                // <input name='accountId' placeholder='Enter Account Id' onChange={e => setAccountId(e)}></input>
-
                 <div class="group">  
                     <input name='accountId' required onChange={e => setAccountId(e.target.value)}></input>
                     <span class="highlight"></span>
@@ -93,53 +106,52 @@ const ShowBalanceAdmin = () =>{
                 </div>
                 }
                 <div class="group">
-            <button onClick={handleFetch}>Check Balance</button>
+            <input onClick={handleFetch} type='submit' value='Check Balance' />
             </div>
             </Container>
             </form>
             </div>
+                { account.length > 0 ? 
+                <SweetAlert2 {...swalProps}
+                onConfirm={()=>{setSwalProps({show:false})}}
+                >
+                <div className="d-flex justify-content-center">
+                <CDBTable style={{width:"400px"}}>
+                    <caption>List of Accounts</caption>
+                    <CDBTableHeader color='primary-info'>
+                    <tr>
+                        <th >#</th>
+                        <th >Account No.</th>
+                        <th >Balance</th>
+                    </tr>
+                    </CDBTableHeader>
+                    <CDBTableBody >
+                    {account.map((bal,i)=>
+                        <tr key={i}>
+                            <td style={{width:"200 px"} }>{i}</td>
+                            <td style={{width:"200 px"} }>{bal.accountNo}</td>
+                            <td style={{width:"200 px"} }>{bal.balance}</td>
+                        </tr>
+                        )}
+                    </CDBTableBody>
+                </CDBTable>
+                </div>
+                
+                </SweetAlert2>
+                : 
+                    <div></div>
+                }
+            
 
-            { account.length > 0 ? 
-            // <table>
-            //     <tbody>
-            //     <tr>
-            //         <th>Account No.</th>
-            //         <th>Balance</th>
-            //     </tr>
-            //     {account.map((bal,i)=>
-            //     <tr key={i}>
-            //         <td>{bal.accountNo}</td>
-            //         <td>{bal.balance}</td>
-            //     </tr>
-            //     )}
-            //     </tbody>
-            // </table>
-            <div className="d-flex justify-content-center">
-            <CDBTable style={{width:"400px"}}>
-                  <caption>List of Accounts</caption>
-                  <CDBTableHeader color='primary-info'>
-                  <tr>
-                      <th >#</th>
-                      <th >Account No.</th>
-                      <th >Balance</th>
-                  </tr>
-                  </CDBTableHeader>
-                  <CDBTableBody >
-                  {account.map((bal,i)=>
-                      <tr key={i}>
-                          <td style={{width:"200 px"} }>{i}</td>
-                          <td style={{width:"200 px"} }>{bal.accountNo}</td>
-                          <td style={{width:"200 px"} }>{bal.balance}</td>
-                      </tr>
-                      )}
-                  </CDBTableBody>
-              </CDBTable>
-            </div>
-
-            : 
-            <div></div>
-            }
-            {balance !== -1 ? <div>Balance is {balance}</div> : <div></div>}
+            {balance !== -1 ? 
+            <SweetAlert2 {...swalProps}
+            onConfirm={()=>{setSwalProps({show:false})}}
+            >
+            <div>Balance is {balance}</div>
+            </SweetAlert2>
+             : 
+             <div></div>
+             }
             
              </CDBCardBody>
             </CDBCard>
