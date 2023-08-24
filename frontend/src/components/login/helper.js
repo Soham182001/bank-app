@@ -7,6 +7,7 @@ import Account from '../../models/Account';
 import axios from 'axios'
 const  getUserDetails = async  (custId) =>{
 
+    console.log("helper:",custId)
     const saveData =  (res) => {
         console.log(JSON.stringify(res.customer));
        sessionStorage.setItem("info", JSON.stringify(res.customer));
