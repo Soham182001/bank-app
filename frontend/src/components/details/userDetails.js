@@ -12,6 +12,7 @@ import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'c
 import UserDetail from '../../models/UserDetail';
 import CustomerDetailUpdate from '../updateForms/customerDetailUpdate';
 import AddressUpdateHome from '../updateForms/addressDetailHome';
+import OccupationDetailUpdate from '../updateForms/occupationDetailUpdate';
 
 const UserDetails = () =>{
     const [userData,setUserData]=useState(null);
@@ -121,7 +122,7 @@ const UserDetails = () =>{
                             </table>  */}
                         </MDBTabsPane>
                         <MDBTabsPane show={iconsActive === 'tab3'}>
-                        <table>
+                        {/* <table>
                             <tbody>
                             <tr>
                                 {Object.keys(userData.occupation).map((key,i)=>{
@@ -138,7 +139,9 @@ const UserDetails = () =>{
                             </tr>
                             
                             </tbody>
-                        </table> 
+                        </table>  */}
+
+                        <OccupationDetailUpdate/>
                         </MDBTabsPane>
                     </MDBTabsContent>
                     
