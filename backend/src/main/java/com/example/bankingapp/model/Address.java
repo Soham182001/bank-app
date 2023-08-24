@@ -23,6 +23,7 @@ public class Address {
     @ManyToOne
     @JoinColumn(name = "custId")
     private Customer customer;
+	
     @Column(nullable = false)
     private String addressLine1;
 

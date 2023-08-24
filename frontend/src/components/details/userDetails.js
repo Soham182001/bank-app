@@ -10,6 +10,7 @@ import {
   } from 'mdb-react-ui-kit';
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import UserDetail from '../../models/UserDetail';
+import CustomerDetailUpdate from '../updateForms/customerDetailUpdate';
 
 const UserDetails = () =>{
     const [userData,setUserData]=useState(null);
@@ -58,7 +59,7 @@ const UserDetails = () =>{
 
                     <MDBTabsContent>
                         <MDBTabsPane show={iconsActive === 'tab1'}>
-                            <table>
+                            {/* <table>
                                 <tbody>
                                     <tr>
                                     {Object.keys(userData.customer).map((value,i)=>{
@@ -73,7 +74,8 @@ const UserDetails = () =>{
                                 })}
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> */
+                            <CustomerDetailUpdate/>}
                         </MDBTabsPane>
                         <MDBTabsPane show={iconsActive === 'tab2'}>
                         <h3>Permanent Address</h3>
