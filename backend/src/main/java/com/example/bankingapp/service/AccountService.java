@@ -62,7 +62,11 @@ public class AccountService {
 
 	
 	
-	public String updatePasswordByAccountNo(String accountNo,ChangePassword pass) {
+	public String updatePasswordByAccountNo(String accountNo,ChangePassword pass) throws ResourceNotFoundException{
+		Optional<Account> acc1=accRepo.findById(accountNo);
+		if(!acc1.isPresent()) {
+			throw new ResourceNotFoundException("Account not found.");
+		}
 		Account acc=accRepo.findById(accountNo).get();
 		Customer cust=acc.getCustomer();
 		String custId=cust.getCustId();
@@ -73,26 +77,42 @@ public class AccountService {
 
 
 	public String suspendAccount(String accNo) throws ResourceNotFoundException{
+		Optional<Account> acc1=accRepo.findById(accNo);
+		if(!acc1.isPresent()) {
+			throw new ResourceNotFoundException("Account not found.");
+		}
 		Account acc=accRepo.findById(accNo).get();
-		if(acc==null) throw new ResourceNotFoundException("Account not found.");
 		if(acc.getDateClosed()!=null) return "Account already suspended.";
 		int rows=accRepo.updateDateClosed(LocalDate.now(),accNo);
 		if(rows>0) return "Account Suspended.";
 		return "ERROR.";
 	}
 	public Integer checkBalanceByAccNo(String accNo) throws ResourceNotFoundException {
-
-    int z=accRepo.getBalance(accNo);
+		Optional<Account> acc1=accRepo.findById(accNo);
+		if(!acc1.isPresent()) {
+			throw new ResourceNotFoundException("Account not found.");
+		}
+		int z=accRepo.getBalance(accNo);
 		return z;
 }
   
-  public String activateAccount(String accNo) {
+  public String activateAccount(String accNo) throws ResourceNotFoundException{
+	  Optional<Account> acc1=accRepo.findById(accNo);
+		if(!acc1.isPresent()) {
+			throw new ResourceNotFoundException("Account not found.");
+		}
+	  	Account acc=accRepo.findById(accNo).get();
+	  	if(acc.getDateClosed()==null) return "Account already activated.";
 		int rows=accRepo.updateDateClosed(null,accNo);
 		if(rows>0) return "Account Activated.";
 		return "ERROR.";
 	}
   
 	public String getCustomerName(String accNo) throws ResourceNotFoundException{
+		Optional<Account> acc1=accRepo.findById(accNo);
+		if(!acc1.isPresent()) {
+			throw new ResourceNotFoundException("Account not found.");
+		}
 		List<String> custName = accRepo.getCustomerName(accNo);
 		String name = String.join("",custName);
 		name = name.replace(",", " ");
