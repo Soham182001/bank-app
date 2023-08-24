@@ -3,7 +3,7 @@ import axios from 'axios';
 import Select from 'react-select';
 
 import Container from 'react-bootstrap/Container';
-import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
+import { CDBTable, CDBTableHeader, CDBTableBody, CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import '../../components/css/components.css'
 
 const ShowBalanceAdmin = () =>{
@@ -97,26 +97,50 @@ const ShowBalanceAdmin = () =>{
             </div>
             </Container>
             </form>
+            </div>
+
             { account.length > 0 ? 
-            <table>
-                <tbody>
-                <tr>
-                    <th>Account No.</th>
-                    <th>Balance</th>
-                </tr>
-                {account.map((bal,i)=>
-                <tr key={i}>
-                    <td>{bal.accountNo}</td>
-                    <td>{bal.balance}</td>
-                </tr>
-                )}
-                </tbody>
-            </table>
+            // <table>
+            //     <tbody>
+            //     <tr>
+            //         <th>Account No.</th>
+            //         <th>Balance</th>
+            //     </tr>
+            //     {account.map((bal,i)=>
+            //     <tr key={i}>
+            //         <td>{bal.accountNo}</td>
+            //         <td>{bal.balance}</td>
+            //     </tr>
+            //     )}
+            //     </tbody>
+            // </table>
+            <div className="d-flex justify-content-center">
+            <CDBTable style={{width:"400px"}}>
+                  <caption>List of Accounts</caption>
+                  <CDBTableHeader color='primary-info'>
+                  <tr>
+                      <th >#</th>
+                      <th >Account No.</th>
+                      <th >Balance</th>
+                  </tr>
+                  </CDBTableHeader>
+                  <CDBTableBody >
+                  {account.map((bal,i)=>
+                      <tr key={i}>
+                          <td style={{width:"200 px"} }>{i}</td>
+                          <td style={{width:"200 px"} }>{bal.accountNo}</td>
+                          <td style={{width:"200 px"} }>{bal.balance}</td>
+                      </tr>
+                      )}
+                  </CDBTableBody>
+              </CDBTable>
+            </div>
+
             : 
             <div></div>
             }
             {balance !== -1 ? <div>Balance is {balance}</div> : <div></div>}
-            </div>
+            
              </CDBCardBody>
             </CDBCard>
           </CDBContainer>
