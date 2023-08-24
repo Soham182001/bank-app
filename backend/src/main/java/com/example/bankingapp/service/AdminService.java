@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.bankingapp.dao.AdminRepository;
+import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.Admin;
 import com.example.bankingapp.model.AdminLoginModel;
 import com.example.bankingapp.model.ChangePassword;
@@ -19,15 +20,11 @@ public class AdminService {
 	AdminRepository adminRepo;
 
 	public String saveAdmin(Admin admin) {
-		System.out.println("line 19");
 		Optional<Admin> obj = adminRepo.findById(admin.getEmpId());
-		System.out.println("line 21");
 		String result = "";
 		if (obj.isPresent()) {
 			result = "exists";
-			System.out.println("line 25");
 		} else {
-			System.out.println("line 27");
 			result = "inserted success";
 			adminRepo.save(admin);
 
@@ -58,7 +55,9 @@ public class AdminService {
 		return result;
 	}
 
-	public String updatePasswordAdmin(String empId, ChangePassword pass) {
+	public String updatePasswordAdmin(String empId, ChangePassword pass) throws ResourceNotFoundException{
+		Optional<Admin> ad=adminRepo.findById(empId);
+		if(!ad.isPresent()) throw new ResourceNotFoundException("Admin not found.");
 		String s=pass.getPassword();
 		int rows=adminRepo.updatePasswordAdmin(empId,s);
 		if(rows>0) {
