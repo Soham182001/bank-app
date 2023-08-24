@@ -17,9 +17,9 @@ import com.example.bankingapp.service.OccupationService;
 public class OccupationController {
 	@Autowired
 	OccupationService occuService;
+	
 	@PutMapping("/updateOccupation/{custId}")
 	  public String updateOccupation(@PathVariable("custId") String custId, @RequestBody Occupation occu) {
-		  
 		  return occuService.updateOccupation(custId,occu);
 	  }
 

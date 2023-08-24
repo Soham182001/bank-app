@@ -27,10 +27,10 @@ public class AccountService {
 
 	@Autowired
 	AccountRepository accRepo;
-
+	
 	@Autowired
 	CustomerRepository userRepo;
-
+	
 	@Autowired
 	AddressRepository addressRepo;
 
@@ -72,7 +72,10 @@ public class AccountService {
 
 
 
-	public String suspendAccount(String accNo) {
+	public String suspendAccount(String accNo) throws ResourceNotFoundException{
+		Account acc=accRepo.findById(accNo).get();
+		if(acc==null) throw new ResourceNotFoundException("Account not found.");
+		if(acc.getDateClosed()!=null) return "Account already suspended.";
 		int rows=accRepo.updateDateClosed(LocalDate.now(),accNo);
 		if(rows>0) return "Account Suspended.";
 		return "ERROR.";
@@ -81,7 +84,6 @@ public class AccountService {
 
     int z=accRepo.getBalance(accNo);
 		return z;
-		
 }
   
   public String activateAccount(String accNo) {
@@ -89,6 +91,7 @@ public class AccountService {
 		if(rows>0) return "Account Activated.";
 		return "ERROR.";
 	}
+  
 	public String getCustomerName(String accNo) throws ResourceNotFoundException{
 		List<String> custName = accRepo.getCustomerName(accNo);
 		String name = String.join("",custName);

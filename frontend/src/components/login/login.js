@@ -72,7 +72,7 @@ const Login = () => {
             .then(
                 (response)=>{
                     let temp= (response.data)
-                    
+                    console.log(temp);
                     let val = Object.values(temp[0]["occupation"])
                     const occ = new Occupation(...val)
                     

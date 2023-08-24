@@ -16,9 +16,9 @@ import com.example.bankingapp.service.AddressService;
 public class AddressController {
 	@Autowired
 	AddressService addService;
+	
 	@PutMapping("/updateAddress/{custId}")
 	  public String updateAddress(@PathVariable("custId") String custId, @RequestBody Address address) {
-		  
 		  return addService.updateAddress(custId,address);
 	  }
 
