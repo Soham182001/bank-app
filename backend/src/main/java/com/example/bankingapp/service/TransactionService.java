@@ -34,6 +34,9 @@ public class TransactionService {
 		Account senderAccount = accRepo.findById(senderNum).get();
 
 		Account recieverAccount = accRepo.findById(recieverNum).get();
+		if(recieverAccount.getDateClosed()!=null) {
+			return "Receiver account suspended.";
+		}
 		
 		trans.setSenderAccount(senderAccount);
 		trans.setRecieverAccount(recieverAccount);
