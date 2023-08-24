@@ -11,6 +11,7 @@ import {
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import UserDetail from '../../models/UserDetail';
 import CustomerDetailUpdate from '../updateForms/customerDetailUpdate';
+import AddressUpdateHome from '../updateForms/addressDetailHome';
 
 const UserDetails = () =>{
     const [userData,setUserData]=useState(null);
@@ -78,7 +79,8 @@ const UserDetails = () =>{
                             <CustomerDetailUpdate/>}
                         </MDBTabsPane>
                         <MDBTabsPane show={iconsActive === 'tab2'}>
-                        <h3>Permanent Address</h3>
+                            <AddressUpdateHome/>
+                        {/* <h3>Permanent Address</h3>
                             <table>
                                 <tbody>
                                 <tr>
@@ -116,7 +118,7 @@ const UserDetails = () =>{
                                 </tr>
                                 
                                 </tbody>
-                            </table> 
+                            </table>  */}
                         </MDBTabsPane>
                         <MDBTabsPane show={iconsActive === 'tab3'}>
                         <table>
