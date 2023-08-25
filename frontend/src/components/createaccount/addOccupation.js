@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn} from 'cdbreact'
+import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn } from 'cdbreact'
 
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
+import '../../components/css/components.css'
 import axios from 'axios';
 
 const AddOccupation = () => {
@@ -36,24 +37,45 @@ const AddOccupation = () => {
 
                         <h1>Creating a {accType} Account</h1>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <div>Occupation Type </div>
-                            <CDBInput type="text"
-                                {...register("occupationType")}
-                            ></CDBInput>
+                            <div className='d-flex justify-content-center'>
+
+                                <div className='group'>
+
+                                    <div>Occupation Type </div>
+                                    <input type="text"
+                                        name="occupationType"
+                                        {...register("occupationType")}
+                                    ></input>
+                                </div>
+
+                                <br></br>
+                            </div>
+                            <div className='d-flex justify-content-center'>
+
+
+                                <div className='group'>
+
+                                    <div>Source Of Income </div>
+                                    <input type="text"
+                                        name="sourceOfIncome"
+                                        {...register("sourceOfIncome")}
+                                    ></input>
+                                </div>
+                            </div>
 
                             <br></br>
 
-                            <div>Source Of Income </div>
-                            <CDBInput type="text"
-                                {...register("sourceOfIncome")}
-                            ></CDBInput>
+                            <div className='d-flex justify-content-center'>
 
-                            <br></br>
+                                <div className='group'>
 
-                            <div>Gross Annual Salary  </div>
-                            <CDBInput type="number"
-                                {...register("grossAnnualSalary")}
-                            ></CDBInput>
+                                    <div>Gross Annual Salary  </div>
+                                    <input type="number"
+                                        name="grossAnnualSalary"
+                                        {...register("grossAnnualSalary")}
+                                    ></input>
+                                </div>
+                            </div>
 
                             <br></br>
 
