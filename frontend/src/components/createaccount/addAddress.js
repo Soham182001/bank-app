@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn} from 'cdbreact'
+import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn } from 'cdbreact'
 
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
@@ -82,70 +82,85 @@ const Address = (props) => {
                         <h1>Creating a {accType} Account</h1>
                         <h3>{addressType} Address Details</h3>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className='group'>
+                            <div className='d-flex justify-content-center'>
 
-                            <div>Address Line 1 </div>
-                            <input type="text"
-                                name="addressLine1"
-                                {...register("addressLine1")}
-                                required
-                                ></input>
+                                <div className='group'>
+
+                                    <div>Address Line 1 </div>
+                                    <input type="text"
+                                        name="addressLine1"
+                                        {...register("addressLine1")}
+                                        required
+                                    ></input>
+                                </div>
+                            </div>
+
+                            <br></br>
+                            <div className='d-flex justify-content-center'>
+
+                                <div className='group'>
+
+                                    <div>Address Line 2</div>
+                                    <input type="text"
+                                        name="addressLine2"
+                                        {...register("addressLine2")}
+                                    ></input>
+                                </div>
+                            </div>
+
+
+                            <br></br>
+                            <div className='d-flex justify-content-center'>
+
+                                <div className='group'>
+
+                                    <div>Landmark</div>
+                                    <input type="text"
+                                        name="landmark"
+                                        {...register("landmark")}
+                                    ></input>
+                                </div>
+                            </div>
+
+                            <br></br>
+                            <div className='d-flex justify-content-center'>
+
+                                <div className='group'>
+
+                                    <div>State</div>
+                                    <input type="text"
+                                        name="state"
+                                        {...register("state")}
+                                    ></input>
+                                </div>
                             </div>
 
                             <br></br>
 
-                            <div className='group'>
+                            <div className='d-flex justify-content-center'>
+                                <div className='group'>
 
-                            <div>Address Line 2</div>
-                            <input type="text"
-                                name="addressLine2"
-                                {...register("addressLine2")}
-                                ></input>
+
+                                    <div>City</div>
+                                    <input type="text"
+                                        name="city"
+                                        {...register("city")}
+                                    ></input>
                                 </div>
+                            </div>
 
                             <br></br>
+                            <div className='d-flex justify-content-center'>
 
-                            <div className='group'>
+                                <div className='group'>
 
-                            <div>Landmark</div>
-                            <input type="text"
-                                name="landmark"
-                                {...register("landmark")}
-                                ></input>
+                                    <div>Pincode  </div>
+                                    <input type="number"
+                                        name="pincode"
+                                        {...register("pincode")}
+                                    ></input>
                                 </div>
-
-                            <br></br>
-
-                            <div className='group'>
-
-                            <div>State</div>
-                            <input type="text"
-                                name="state"
-                                {...register("state")}
-                                ></input>
-                                </div>
-
-                            <br></br>
-
-                            <div className='group'>
-
-                            <div>City</div>
-                            <input type="text"
-                                name="city"
-                                {...register("city")}
-                                ></input>
-                                </div>
-
-                            <br></br>
-
-                            <div className='group'>
-
-                            <div>Pincode  </div>
-                            <input type="number"
-                                name="pincode"
-                                {...register("pincode")}
-                                ></input>
-                                </div>
+                            </div>
 
                             <br></br>
                             <CDBBtnGrp>

@@ -42,15 +42,18 @@ const CreateAccountPage = () => {
 
                         <h1>Create an Account</h1>
                         <form onSubmit={handleSubmit(onSubmit)}>
+
                             <div>Account Type (savings/current): </div>
                             {/* <CDBInput type='text' {...register("accountType")} /> */}
-                            <div className='group'>
+                            <div className='d-flex justify-content-center'>
+                                <div className='group'>
 
-                            <input type="text"
-                                name="accountType"
-                                {...register("accountType")}
-                                ></input>
+                                    <input type="text"
+                                        name="accountType"
+                                        {...register("accountType")}
+                                    ></input>
                                 </div>
+                            </div>
                             <br />
                             <CDBBtnGrp>
                                 <CDBBtn>
