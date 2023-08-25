@@ -11,6 +11,7 @@ import com.example.bankingapp.dao.AccountRepository;
 import com.example.bankingapp.dao.CustomerRepository;
 import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.AccountBalance;
+import com.example.bankingapp.model.Admin;
 import com.example.bankingapp.model.ChangePassword;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.model.LoginModel;
@@ -62,7 +63,9 @@ public class CustService {
 		return result;
 	}
 	
-	public List<String>fetchAccounts(String uname){
+	public List<String>fetchAccounts(String uname) throws ResourceNotFoundException{
+		Optional<Customer> ad=custRepo.findById(uname);
+		if(!ad.isPresent()) throw new ResourceNotFoundException("Customer not found.");
 		return accRepo.findByUsername(uname);
 	}
 	
@@ -82,7 +85,9 @@ public class CustService {
 		return res;
 	}
 	
-public String updatePassword(String custId, ChangePassword pass) {
+public String updatePassword(String custId, ChangePassword pass) throws ResourceNotFoundException{
+	Optional<Customer> ad=custRepo.findById(custId);
+	if(!ad.isPresent()) throw new ResourceNotFoundException("Customer not found.");
 		String s=pass.getPassword();
 		int rows=custRepo.updatePassword(custId,s);
 		if(rows>0) {
@@ -90,13 +95,17 @@ public String updatePassword(String custId, ChangePassword pass) {
 		}
 		return "ERROR.";
 }
-  public List<UserDetails> fetchCustomer(String uname)
+  public List<UserDetails> fetchCustomer(String uname) throws ResourceNotFoundException
 	{
+	  Optional<Customer> ad=custRepo.findById(uname);
+		if(!ad.isPresent()) throw new ResourceNotFoundException("Customer not found.");
 		return custRepo.fetchCustomer(uname);
 
 	}
 
-public String updateCustomer(String custId, Customer cust) {
+public String updateCustomer(String custId, Customer cust) throws ResourceNotFoundException{
+	Optional<Customer> ad=custRepo.findById(custId);
+	if(!ad.isPresent()) throw new ResourceNotFoundException("Customer not found.");
 	int rows=custRepo.updateCustomer(custId,cust.getDOB(),cust.getFirstName(),cust.getMiddleName(),cust.getLastName(),cust.getFatherName(),cust.getPhone(),cust.getEmail(),cust.getAdhaarNumber());
 	if(rows>0) return "Successfully Updated";
 	return "ERROR.";
