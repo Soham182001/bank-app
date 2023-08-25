@@ -4,7 +4,7 @@ import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn} from '
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
 import axios from 'axios';
-
+import '../../components/css/components.css'
 const Address = (props) => {
 
 
@@ -82,53 +82,70 @@ const Address = (props) => {
                         <h1>Creating a {accType} Account</h1>
                         <h3>{addressType} Address Details</h3>
                         <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className='group'>
+
                             <div>Address Line 1 </div>
-                            <CDBInput type="text"
+                            <input type="text"
                                 name="addressLine1"
                                 {...register("addressLine1")}
                                 required
-                            ></CDBInput>
+                                ></input>
+                            </div>
 
                             <br></br>
+
+                            <div className='group'>
 
                             <div>Address Line 2</div>
-                            <CDBInput type="text"
+                            <input type="text"
                                 name="addressLine2"
                                 {...register("addressLine2")}
-                            ></CDBInput>
+                                ></input>
+                                </div>
 
                             <br></br>
 
+                            <div className='group'>
 
                             <div>Landmark</div>
-                            <CDBInput type="text"
+                            <input type="text"
                                 name="landmark"
                                 {...register("landmark")}
-                            ></CDBInput>
+                                ></input>
+                                </div>
 
                             <br></br>
+
+                            <div className='group'>
 
                             <div>State</div>
-                            <CDBInput type="text"
+                            <input type="text"
                                 name="state"
                                 {...register("state")}
-                            ></CDBInput>
+                                ></input>
+                                </div>
 
                             <br></br>
+
+                            <div className='group'>
 
                             <div>City</div>
-                            <CDBInput type="text"
+                            <input type="text"
                                 name="city"
                                 {...register("city")}
-                            ></CDBInput>
+                                ></input>
+                                </div>
 
                             <br></br>
 
+                            <div className='group'>
+
                             <div>Pincode  </div>
-                            <CDBInput type="number"
+                            <input type="number"
                                 name="pincode"
                                 {...register("pincode")}
-                            ></CDBInput>
+                                ></input>
+                                </div>
 
                             <br></br>
                             <CDBBtnGrp>

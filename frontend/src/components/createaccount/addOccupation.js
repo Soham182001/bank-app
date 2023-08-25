@@ -3,6 +3,7 @@ import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn} from '
 
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
+import '../../components/css/components.css'
 import axios from 'axios';
 
 const AddOccupation = () => {
@@ -35,27 +36,36 @@ const AddOccupation = () => {
 
                         <h1>Creating a {accType} Account</h1>
                         <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className='group'>
+
                             <div>Occupation Type </div>
-                            <CDBInput type="text"
+                            <input type="text"
                                 name="occupationType"
                                 {...register("occupationType")}
-                            ></CDBInput>
+                                ></input>
+                                </div>
 
                             <br></br>
+
+                            <div className='group'>
 
                             <div>Source Of Income </div>
-                            <CDBInput type="text"
+                            <input type="text"
                                 name="sourceOfIncome"
                                 {...register("sourceOfIncome")}
-                            ></CDBInput>
+                                ></input>
+                                </div>
 
                             <br></br>
 
+                            <div className='group'>
+
                             <div>Gross Annual Salary  </div>
-                            <CDBInput type="number"
+                            <input type="number"
                                 name="grossAnnualSalary"
                                 {...register("grossAnnualSalary")}
-                            ></CDBInput>
+                                ></input>
+                                </div>
 
                             <br></br>
 
