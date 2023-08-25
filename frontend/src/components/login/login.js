@@ -1,10 +1,18 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import sessionStorage from "sessionstorage";
 import helper from './helper';
+
+
+import Occupation from "../../models/Occupation";
+import UserDetail from "../../models/UserDetail"
+import Customer from '../../models/Customer';
+import Address from '../../models/Address';
+import Account from '../../models/Account';
 const Login = () => {
+
 
     const navigate = useNavigate();
     const baseURL="http://localhost:8080/checkLogin"
@@ -23,7 +31,13 @@ const Login = () => {
             [name]: value
         }));
     }
-
+    const saveData =  (res) => {
+        console.log(JSON.stringify(res.customer));
+       sessionStorage.setItem("info", JSON.stringify(res.customer));
+      sessionStorage.setItem("address", JSON.stringify(res.addresses))
+        sessionStorage.setItem("occupation",JSON.stringify(res.occupation));
+        sessionStorage.setItem("accounts",JSON.stringify(res.accounts));
+    }
     const handleSubmit = (e) => {
        
         e.preventDefault();
@@ -34,20 +48,77 @@ const Login = () => {
             data: state
           })
         .then(
-            response=>{
+          async  response=>{
             // console.log(response.data)
             if(response.data === 'Login Success')
             {
-                    helper(state.custId).then(
-                        (res)=> {
-                            console.log(res);
-                            console.log(sessionStorage.getItem('info'));
-                            navigate('/welcome');
-                        }
-                    )
-                    .catch(e =>{
-                        console.log(e);
-                    })
+            //     try{
+            //    const res =   await  helper(state.custId);      
+               
+            //    console.log(res);
+            //    console.log(sessionStorage.getItem('info'));
+            //    navigate('/welcome');
+
+            //     }
+            //     catch(e){
+            //         console.log(e)
+            //     }
+
+            const URL = `http://localhost:8080/fetchCustomer/${state.custId}`
+            axios({
+                method: 'get',
+                url: URL,
+              })
+            .then(
+                (response)=>{
+                    let temp= (response.data)
+                    console.log(temp);
+                    let val = Object.values(temp[0]["occupation"])
+                    const occ = new Occupation(...val)
+                    
+                    val = Object.values(temp[0]["customer"])
+                    const cust = new Customer(...val)
+                    
+                    let addresses=[]
+                    val = Object.values(temp[0]["address"])
+        
+                    let permanentAddress = new Address(...val)
+                    val = Object.values(temp[1]["address"])
+        
+                    let temporaryAddress = new Address(...val)
+        
+                    addresses.push(permanentAddress)
+                    addresses.push(temporaryAddress)
+        
+                    let accountSet = new Set()
+                    temp.forEach(element => {
+                    val = Object.values(element["account"])
+                    
+                    let acc = new Account(...val);
+                    accountSet.add(JSON.stringify(acc))
+                    });
+        
+                    let accounts = []
+                    for (const entry of accountSet.values())
+                    {
+                        accounts.push(JSON.parse(entry))
+                    }
+        
+                    const u = new UserDetail(cust,occ)
+        
+                    u.addAccount(accounts)
+                    u.addAddress(addresses)
+        
+                    saveData(u)
+                    console.log(u)
+
+                    navigate("/welcome");
+                }
+            ).catch(e=>{
+                console.log(e)
+            })
+
+          
             }
             else{
                 alert("Incorrect Credentials! Please try again!!");            }

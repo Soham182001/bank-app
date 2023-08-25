@@ -1,63 +1,74 @@
 import React, { useState } from 'react';
+import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn} from 'cdbreact'
 
-import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom"
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 
-const AddOccupation = () =>{
+const AddOccupation = () => {
 
 
     const navigate = useNavigate();
     const {
         register,
         handleSubmit
-        } = useForm();
-    
-    const accType = JSON.parse(JSON.stringify(sessionStorage.getItem("account"))).accountType;
-    const onSubmit = (data)=>{
+    } = useForm();
 
+    const accType = JSON.parse(JSON.stringify(sessionStorage.getItem("account"))).accountType;
+    const onSubmit = (data) => {
+        console.log(data);
         const occupation = {
-            occupationType : data.occupationType,
+            occupationType: data.occupationType,
             sourceOfIncome: data.sourceOfIncome,
             grossAnnualSalary: data.grossAnnualSalary
         }
-        sessionStorage.setItem("occupation",JSON.stringify(occupation));
+        console.log(occupation)
+        sessionStorage.setItem("occupation", JSON.stringify(occupation));
         navigate('/welcome/addPermanentAddress')
     };
 
-    return(
+    return (
 
         <div>
-            <h1>Creating a {accType} Account</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <label>Occupation Type </label>
-                <input type="text" 
-                        name="occupationType"
-                        {...register("occupationType")}
-                ></input>
+            <CDBContainer style={{ marginLeft: "40%", marginTop: "10%" }}>
+                <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border>
+                    <CDBCardBody>
 
-                <br></br>
+                        <h1>Creating a {accType} Account</h1>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div>Occupation Type </div>
+                            <CDBInput type="text"
+                                {...register("occupationType")}
+                            ></CDBInput>
 
-                <label>Source Of Income </label>
-                <input type="text" 
-                        name="sourceOfIncome"
-                        {...register("sourceOfIncome")}
-                ></input>
+                            <br></br>
 
-                <br></br>
+                            <div>Source Of Income </div>
+                            <CDBInput type="text"
+                                {...register("sourceOfIncome")}
+                            ></CDBInput>
 
-                <label>Gross Annual Salary  </label>
-                <input type="number" 
-                        name="grossAnnualSalary"
-                        {...register("grossAnnualSalary")}
-                ></input>
+                            <br></br>
 
-                <br></br>
+                            <div>Gross Annual Salary  </div>
+                            <CDBInput type="number"
+                                {...register("grossAnnualSalary")}
+                            ></CDBInput>
 
-                <input type="submit" value ="Next"
-                ></input>
-                
-            </form>
+                            <br></br>
+
+                            <CDBBtnGrp>
+                                <CDBBtn>
+
+                                    <input type="submit" value="Next"
+                                    ></input>
+                                </CDBBtn>
+                            </CDBBtnGrp>
+
+                        </form>
+                    </CDBCardBody>
+                </CDBCard>
+            </CDBContainer>
         </div>
     )
 }

@@ -25,10 +25,11 @@ const NavbarBootstrap = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Signed in as:
+            Signed in as&nbsp; 
           </Navbar.Text>
-          <NavDropdown title={data.custId} id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
+
+          <NavDropdown title={data.firstName} id="navbarScrollingDropdown">
+            <NavDropdown.Item href="/welcome/userDetails">Profile</NavDropdown.Item>
             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
           </NavDropdown>
         </Navbar.Collapse>
