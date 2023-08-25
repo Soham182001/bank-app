@@ -67,7 +67,7 @@ public class AccountService {
 		if(!acc1.isPresent()) {
 			throw new ResourceNotFoundException("Account not found.");
 		}
-		Account acc=accRepo.findById(accountNo).get();
+		Account acc=acc1.get();
 		Customer cust=acc.getCustomer();
 		String custId=cust.getCustId();
 		String s=custService.updatePassword(custId,pass);
@@ -81,7 +81,7 @@ public class AccountService {
 		if(!acc1.isPresent()) {
 			throw new ResourceNotFoundException("Account not found.");
 		}
-		Account acc=accRepo.findById(accNo).get();
+		Account acc=acc1.get();
 		if(acc.getDateClosed()!=null) return "Account already suspended.";
 		int rows=accRepo.updateDateClosed(LocalDate.now(),accNo);
 		if(rows>0) return "Account Suspended.";

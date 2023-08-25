@@ -2,11 +2,13 @@ package com.example.bankingapp.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.bankingapp.dao.AccountRepository;
+import com.example.bankingapp.dao.CustomerRepository;
 import com.example.bankingapp.dao.TransactionRepository;
 import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.Account;
@@ -22,20 +24,27 @@ public class TransactionService {
 	
 	@Autowired
 	AccountRepository accRepo;
+	
+	@Autowired
+	CustomerRepository custRepo;
 
-	public String transaction(TransactionModel transModel) {
+	public String transaction(TransactionModel transModel) throws ResourceNotFoundException{
 		
 		AccountUpdateModel accountModel = transModel.getAccountUpdateModel();
 		Transaction trans = transModel.getTransaction();
 		String senderNum=accountModel.getSenderAccount();
 		String recieverNum=accountModel.getRecieverAccount();
 		
+		Optional<Account> acc=accRepo.findById(senderNum);
+		if(!acc.isPresent()) throw new ResourceNotFoundException( "Sender account invalid.");
+		Account senderAccount = acc.get();
+		
+		Optional<Account> acc1=accRepo.findById(recieverNum);
+		if(!acc1.isPresent()) throw new ResourceNotFoundException( "Reciever account invalid.");
 
-		Account senderAccount = accRepo.findById(senderNum).get();
-
-		Account recieverAccount = accRepo.findById(recieverNum).get();
+		Account recieverAccount = acc1.get();
 		if(recieverAccount.getDateClosed()!=null) {
-			return "Receiver account suspended.";
+			throw new ResourceNotFoundException( "Receiver account suspended.");
 		}
 		
 		trans.setSenderAccount(senderAccount);
@@ -47,15 +56,20 @@ public class TransactionService {
 		if(senderNum.equals(recieverNum)) {
 			if(trans.getType().equals("withdrawal")) {
 				int balance=senderAccount.getBalance();
-				if((balance-accountModel.getAmount())<0) {
+				if((balance-accountModel.getAmount())<1000) {
 					res="Insufficient Balance";
 					trans.setStatus("Failed");
+//					throw new ResourceNotFoundException( "Insufficient Balance");
 				}
 				else {
 					int rows=accRepo.updateBalance(accountModel.getAmount(),senderNum);
 					if(rows>0) {
 						res="Withdrawal Successful";
 						trans.setStatus("Success");
+					}
+					else {
+						res="Error";
+						trans.setStatus("Failed");
 					}
 				}
 			}
@@ -76,7 +90,7 @@ public class TransactionService {
 		else {
 			int b1=senderAccount.getBalance();
 			int b2=recieverAccount.getBalance();
-			if((b1-accountModel.getAmount())<0) {
+			if((b1-accountModel.getAmount())<1000) {
 				res="Insufficient Balance";
 				trans.setStatus("Failed");
 			}
@@ -99,8 +113,11 @@ public class TransactionService {
 		return res;
 	}
 	
-	public List<Transaction>fetchTransactions(String custId){
+	public List<Transaction>fetchTransactions(String custId) throws ResourceNotFoundException{
+//		Optional<Customer> ad=custRepo.findById(custId);
+//		if(!ad.isPresent()) throw new ResourceNotFoundException("Customer not found.");
 		List<String> accList=accRepo.findByUsername(custId);
+		if(accList.size()==0) throw new ResourceNotFoundException("Customer not found.");
 		
 		List<Transaction> txnList  = new ArrayList<Transaction>();
 				
@@ -115,12 +132,13 @@ public class TransactionService {
 			
 		return txnList;
 	}
-public List<Transaction>fetchTransactionsByAccNo(String accNo) {
+public List<Transaction>fetchTransactionsByAccNo(String accNo) throws ResourceNotFoundException{
 		
 		
 		List<Transaction> txnList  = new ArrayList<Transaction>();
 
 		List<Transaction> subTranx = transRepo.findByAccountNo(accNo);
+		if(subTranx.size()==0) throw new ResourceNotFoundException("Account number not found.");
 		for(int j=0; j<subTranx.size(); j++) {
 		Transaction x = subTranx.get(j);
 		txnList.add(x);
