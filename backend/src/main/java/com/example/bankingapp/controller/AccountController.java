@@ -34,7 +34,7 @@ public class AccountController {
 	
 	
 	@PutMapping("/updatePasswordByAccountNo/{accountNo}")
-	public String updatePasswordByAccountNo(@PathVariable ("accountNo") String accountNo,@RequestBody ChangePassword pass) {
+	public String updatePasswordByAccountNo(@PathVariable ("accountNo") String accountNo,@RequestBody ChangePassword pass) throws ResourceNotFoundException{
 		return accService.updatePasswordByAccountNo(accountNo,pass);
 	}
 	
@@ -55,7 +55,7 @@ public class AccountController {
 	
 	
 	@PutMapping("/activateAccount/{accountNo}")
-	public String activateAccount(@PathVariable ("accountNo") String accNo) {
+	public String activateAccount(@PathVariable ("accountNo") String accNo) throws ResourceNotFoundException{
 		return accService.activateAccount(accNo);
 	}
 }

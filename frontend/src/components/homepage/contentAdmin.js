@@ -4,7 +4,8 @@ import ShowBalanceAdmin from '../showBalance/showBalanceAdmin';
 import SuspendAccount from './suspendAccount';
 import TransactAdmin from './transactAdmin';
 import UpdateDetails from './updateDetailsAdmin';
-
+import ActivateAccount from './activateAccount';
+import NotFoundPage from '../NotFoundPage';
 const AdminContent = () =>{
     const style = {
         position: 'absolute',
@@ -18,6 +19,9 @@ const AdminContent = () =>{
                 <Route path='/transact' element={<TransactAdmin/>}/>
                 <Route path='/update' element={<UpdateDetails/>}/>
                 <Route path='/suspendAccount' element={<SuspendAccount/>}/>
+                <Route path='/activateAccount' element={<ActivateAccount/>}/>
+                <Route path="*" element={<NotFoundPage home="/welcomeAdmin"/>} />
+
             </Routes>
         </div>
     )

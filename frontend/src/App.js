@@ -9,7 +9,7 @@ import ChangePassword from './components/login/changePassword';
 import AdminLogin from './components/login/adminLogin';
 import AdminRegister from './components/register/registerAdmin';
 import AdminWelcomePage from './components/homepage/welcomeAdmin';
-
+import NotFoundPage from './components/NotFoundPage';
 function App() {
   return (
     <div className="App">
@@ -24,6 +24,9 @@ function App() {
           <Route path='/registerAdmin' element={<AdminRegister/>}/>
           <Route path='/welcomeAdmin/*' element={<AdminWelcomePage/>}/>
           <Route index element={<HomePage/>} />
+          <Route path="*" element={<NotFoundPage home={"/"}/>
+          
+        } />
         </Routes>
       </BrowserRouter>
     </div>

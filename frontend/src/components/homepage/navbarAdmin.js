@@ -8,8 +8,9 @@ import React from 'react';
 const NavbarBootstrapAdmin = () => {
 
     const navigate = useNavigate();
-    let data = sessionStorage.getItem("info");
+    let data = sessionStorage.getItem("admin_info");
     data = JSON.parse(data);
+    console.log(data);
 
     const handleLogout = () => {
       sessionStorage.clear();
@@ -26,7 +27,6 @@ const NavbarBootstrapAdmin = () => {
             Admin:
           </Navbar.Text>
           <NavDropdown title={data.empId} id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
           </NavDropdown>
         </Navbar.Collapse>

@@ -17,12 +17,13 @@ const AddOccupation = () => {
 
     const accType = JSON.parse(JSON.stringify(sessionStorage.getItem("account"))).accountType;
     const onSubmit = (data) => {
-
+        console.log(data);
         const occupation = {
             occupationType: data.occupationType,
             sourceOfIncome: data.sourceOfIncome,
             grossAnnualSalary: data.grossAnnualSalary
         }
+        console.log(occupation)
         sessionStorage.setItem("occupation", JSON.stringify(occupation));
         navigate('/welcome/addPermanentAddress')
     };
