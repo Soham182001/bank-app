@@ -81,7 +81,7 @@ const AccountDetails = () =>{
          <div>{userData ?  ( <div> 
 
                 
-            <CDBContainer style={{marginLeft: "40%", marginTop: "10%"}}>
+            <CDBContainer style={{marginLeft: "35%", marginTop: "10%"}}>
             <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border>
             <CDBCardBody>  
                 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.Admin;
 import com.example.bankingapp.model.AdminLoginModel;
 import com.example.bankingapp.model.ChangePassword;
@@ -34,7 +35,7 @@ public class AdminController {
 	}
 	
 	@PutMapping("/updatePasswordAdmin/{empId}")
-	public String updatePassword(@PathVariable ("empId") String empId,@RequestBody ChangePassword pass) {
+	public String updatePassword(@PathVariable ("empId") String empId,@RequestBody ChangePassword pass) throws ResourceNotFoundException{
 		return adminService.updatePasswordAdmin(empId,pass);
   }
 

@@ -1,134 +1,148 @@
 import React, { useState } from 'react';
+import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn} from 'cdbreact'
 
-import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom"
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 
-const Address = (props) =>{
+const Address = (props) => {
 
 
     const navigate = useNavigate();
     const {
         register,
         handleSubmit
-        } = useForm();
-    
+    } = useForm();
+
     const accType = JSON.parse(JSON.stringify(sessionStorage.getItem("account"))).accountType;
 
     const addressType = props.type;
-    const onSubmit = (data)=>{
+    const onSubmit = (data) => {
 
         let addresses;
         const address = {
-            addressType : addressType,
+            addressType: addressType,
             addressLine1: data.addressLine1,
             addressLine2: data.addressLine2,
             landmark: data.landmark,
-            state:data.state,
-            city:data.city,
-            pincode:data.pincode,
-         }
-         if(addressType === "Permanent")
+            state: data.state,
+            city: data.city,
+            pincode: data.pincode,
+        }
+        if (addressType === "Permanent")
             addresses = []
-         else{
+        else {
             addresses = JSON.parse(JSON.parse(JSON.stringify(sessionStorage.getItem("address"))))
-         }
-         addresses.push(address);
+        }
+        addresses.push(address);
 
-        sessionStorage.setItem("address",JSON.stringify(addresses));
+        sessionStorage.setItem("address", JSON.stringify(addresses));
 
-        if(addressType === "Permanent")
+        if (addressType === "Permanent")
             navigate('/welcome/addTemporaryAddress')
-        else{
-        const  sessionData = JSON.parse(JSON.stringify(sessionStorage))
-        const custId = JSON.parse(sessionData.info).custId;
-        const data = {occupation : JSON.parse(sessionData.occupation),
-                    account:JSON.parse(sessionData.account),
-                    address:JSON.parse(sessionData.address)}
-        const URL = `http://localhost:8080/createAccount/${custId}`;
-        console.log(data);
-
-        axios({
-            method: 'post',
-            url: URL,
-            data: data
-          })
-        .then(
-            response=>{
-                console.log(response.data);
-                navigate('/welcome')
+        else {
+            const sessionData = JSON.parse(JSON.stringify(sessionStorage))
+            const custId = JSON.parse(sessionData.info).custId;
+            const data = {
+                occupation: JSON.parse(sessionData.occupation),
+                account: JSON.parse(sessionData.account),
+                address: JSON.parse(sessionData.address)
             }
-        )
-        .catch(e => {
-            alert(e.message);
-            console.log(e);
-        })
-   
-   
-    }
+            const URL = `http://localhost:8080/createAccount/${custId}`;
+            console.log(data);
+
+            axios({
+                method: 'post',
+                url: URL,
+                data: data
+            })
+                .then(
+                    response => {
+                        console.log(response.data);
+                        navigate('/welcome')
+                    }
+                )
+                .catch(e => {
+                    alert(e.message);
+                    console.log(e);
+                })
+
+
+        }
         // navigate('/reviewPage')
     };
 
-    return(
+    return (
 
         <div>
-            <h1>Creating a {accType} Account</h1>
-            <h3>{addressType} Address Details</h3>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <label>Address Line 1 </label>
-                <input type="text" 
-                        name="addressLine1"
-                        {...register("addressLine1")}
-                        required
-                ></input>
+            <CDBContainer style={{ marginLeft: "40%", marginTop: "10%" }}>
+                <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border>
+                    <CDBCardBody>
 
-                <br></br>
+                        <h1>Creating a {accType} Account</h1>
+                        <h3>{addressType} Address Details</h3>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div>Address Line 1 </div>
+                            <CDBInput type="text"
+                                name="addressLine1"
+                                {...register("addressLine1")}
+                                required
+                            ></CDBInput>
 
-                <label>Address Line 2</label>
-                <input type="text" 
-                        name="addressLine2"
-                        {...register("addressLine2")}
-                ></input>
+                            <br></br>
 
-                <br></br>
+                            <div>Address Line 2</div>
+                            <CDBInput type="text"
+                                name="addressLine2"
+                                {...register("addressLine2")}
+                            ></CDBInput>
+
+                            <br></br>
 
 
-                <label>Landmark</label>
-                <input type="text" 
-                        name="landmark"
-                        {...register("landmark")}
-                ></input>
+                            <div>Landmark</div>
+                            <CDBInput type="text"
+                                name="landmark"
+                                {...register("landmark")}
+                            ></CDBInput>
 
-                <br></br>
+                            <br></br>
 
-                <label>State</label>
-                <input type="text" 
-                        name="state"
-                        {...register("state")}
-                ></input>
+                            <div>State</div>
+                            <CDBInput type="text"
+                                name="state"
+                                {...register("state")}
+                            ></CDBInput>
 
-                <br></br>
+                            <br></br>
 
-                <label>City</label>
-                <input type="text" 
-                        name="city"
-                        {...register("city")}
-                ></input>
+                            <div>City</div>
+                            <CDBInput type="text"
+                                name="city"
+                                {...register("city")}
+                            ></CDBInput>
 
-                <br></br>
+                            <br></br>
 
-                <label>Pincode  </label>
-                <input type="number" 
-                        name="pincode"
-                        {...register("pincode")}
-                ></input>
+                            <div>Pincode  </div>
+                            <CDBInput type="number"
+                                name="pincode"
+                                {...register("pincode")}
+                            ></CDBInput>
 
-                <br></br>
+                            <br></br>
+                            <CDBBtnGrp>
+                                <CDBBtn>
 
-                <input type="submit" value="Next"
-                ></input>
-                
-            </form>
+                                    <input type="submit" value="Next"
+                                    ></input>
+                                </CDBBtn>
+                            </CDBBtnGrp>
+
+                        </form>
+                    </CDBCardBody>
+                </CDBCard>
+            </CDBContainer>
         </div>
     )
 }

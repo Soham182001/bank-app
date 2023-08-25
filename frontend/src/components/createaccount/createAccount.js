@@ -1,53 +1,66 @@
 import React, { useState } from 'react';
-
-import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom"
+import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn } from 'cdbreact'
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 
-const CreateAccountPage = () =>{
+const CreateAccountPage = () => {
 
 
     const navigate = useNavigate();
     const {
         register,
         handleSubmit
-        } = useForm();
-    
+    } = useForm();
+
     const cust_id = JSON.parse(sessionStorage.getItem("info")).custId;
 
-      const min = 100000000000; // Minimum 12-digit number
-      const max = 999999999999; // Maximum 12-digit number
-      const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
-      const acc_num = randomNum.toString();
+    const min = 100000000000; // Minimum 12-digit number
+    const max = 999999999999; // Maximum 12-digit number
+    const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    const acc_num = randomNum.toString();
 
-    const onSubmit = (data)=>{
+    const onSubmit = (data) => {
 
         const account = {
-            type : data.accountType,
+            type: data.accountType,
             accountNo: acc_num,
             balance: 0,
             dateOpened: new Date().toISOString().split('T')[0]
         }
-        sessionStorage.setItem("account",JSON.stringify(account));
+        sessionStorage.setItem("account", JSON.stringify(account));
         navigate('/welcome/addOccupation')
     };
 
-    return(
+    return (
 
         <div>
-            <h1>Create an Account</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <label>Account Type (savings/current): </label>
-                <input type="text" 
-                        name="accountType"
-                        {...register("accountType")}
-                ></input>
-                <br/>
-                <input type="submit" value="Next"
-                ></input>
+            <CDBContainer style={{ marginLeft: "40%", marginTop: "10%" }}>
+                <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border>
+                    <CDBCardBody>
 
-                
-            </form>
+                        <h1>Create an Account</h1>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div>Account Type (savings/current): </div>
+                            <CDBInput type='text' {...register("accountType")} />
+                            {/* <input type="text"
+                                name="accountType"
+                                {...register("accountType")}
+                            ></input> */}
+                            <br />
+                            <CDBBtnGrp>
+                                <CDBBtn>
+
+                                    <input type="submit" value="Next"
+                                    ></input>
+                                </CDBBtn>
+                            </CDBBtnGrp>
+
+
+                        </form>
+                    </CDBCardBody>
+                </CDBCard>
+            </CDBContainer>
         </div>
     )
 }
