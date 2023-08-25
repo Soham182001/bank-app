@@ -16,12 +16,13 @@ const AddOccupation = () => {
 
     const accType = JSON.parse(JSON.stringify(sessionStorage.getItem("account"))).accountType;
     const onSubmit = (data) => {
-
+        console.log(data);
         const occupation = {
             occupationType: data.occupationType,
             sourceOfIncome: data.sourceOfIncome,
             grossAnnualSalary: data.grossAnnualSalary
         }
+        console.log(occupation)
         sessionStorage.setItem("occupation", JSON.stringify(occupation));
         navigate('/welcome/addPermanentAddress')
     };
@@ -37,7 +38,6 @@ const AddOccupation = () => {
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div>Occupation Type </div>
                             <CDBInput type="text"
-                                name="occupationType"
                                 {...register("occupationType")}
                             ></CDBInput>
 
@@ -45,7 +45,6 @@ const AddOccupation = () => {
 
                             <div>Source Of Income </div>
                             <CDBInput type="text"
-                                name="sourceOfIncome"
                                 {...register("sourceOfIncome")}
                             ></CDBInput>
 
@@ -53,7 +52,6 @@ const AddOccupation = () => {
 
                             <div>Gross Annual Salary  </div>
                             <CDBInput type="number"
-                                name="grossAnnualSalary"
                                 {...register("grossAnnualSalary")}
                             ></CDBInput>
 

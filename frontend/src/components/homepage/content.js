@@ -9,7 +9,7 @@ import AddOccupation from './../createaccount/addOccupation';
 import Address from './../createaccount/addAddress';
 import Withdraw from '../withdraw/withdraw';
 import AccountDetails from '../details/accountDetails';
-
+import NotFoundPage from '../NotFoundPage';
 const Content = () => {
     const style = {
         position: 'absolute',
@@ -30,6 +30,8 @@ const Content = () => {
                 <Route path='/addOccupation' element={<AddOccupation/>} />
                 <Route path='/addPermanentAddress' element={<Address type="Permanent"/>}/>
                 <Route path='/addTemporaryAddress' element={<Address type="Temporary"/>}/>
+                <Route path="*" element={<NotFoundPage home="/welcome"/>} />
+
             </Routes>
         </div>
     )
