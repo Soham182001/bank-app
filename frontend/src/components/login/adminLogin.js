@@ -61,6 +61,8 @@ const AdminLogin = () =>{
                     <CDBCardBody className="mx-4">
                     <div className="text-center mt-4 mb-2">
                         <p className="h4"> Sign in </p>
+                        
+                        <CDBBtn color='dark' className='my-8' onClick={()=>{navigate("/login")}} value="Login as Customer"><h6>Login as Customer</h6></CDBBtn>
                     </div>
                     <form onSubmit={handleSubmit}>
                     <CDBInput material hint="E-mail" type='text' placeholder="Admin ID"
