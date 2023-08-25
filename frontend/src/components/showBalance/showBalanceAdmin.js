@@ -46,7 +46,8 @@ const ShowBalanceAdmin = () =>{
             console.log(e);
         })
     }
-    const fetchBalanceCustId = () =>{
+    const fetchBalanceCustId = (e) =>{
+        e.preventDefault();
         const URL = `http://localhost:8080/checkBalance/${custId}`
         // console.log(custId.target.value);
         axios({
@@ -106,7 +107,8 @@ const ShowBalanceAdmin = () =>{
                 </div>
                 }
                 <div class="group">
-            <input onClick={handleFetch} type='submit' value='Check Balance' />
+                    
+                <button className='button button5' onClick={handleFetch} type='submit' >Check Balance</button>
             </div>
             </Container>
             </form>
