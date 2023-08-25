@@ -57,6 +57,7 @@ public class Customer {
 	private String email;
 
 	@Column(nullable = false)
+	@Size(min=12, max=12, message="Aadhar number must be 12 digits")
 	private BigInteger adhaarNumber;
 
 	@Column(nullable = false)

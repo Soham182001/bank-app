@@ -10,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "address_info")
@@ -24,6 +26,7 @@ public class Address {
     @JoinColumn(name = "custId")
     private Customer customer;
     @Column(nullable = false)
+    @NotBlank(message="Address line 1 is mandatory")
     private String addressLine1;
 
     @Column(nullable = true)
@@ -39,6 +42,7 @@ public class Address {
     private String city;
 
     @Column(nullable = false)
+    @Size(min=6,max=6,message="pincode must be 6 digits")
     private Integer pincode;
 
     @Column(nullable = false)

@@ -23,7 +23,7 @@ public class TransactionController {
 	TransactionService transSer;
 	@PostMapping("/transaction")
 	public String transaction(@RequestBody TransactionModel trans) {
-		System.out.println("Hello");
+		//System.out.println("Hello");
 		String t=transSer.transaction(trans);
 		return t;
 	}
