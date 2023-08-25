@@ -16,7 +16,8 @@ const ShowBalanceAdmin = () =>{
     const [swalProps, setSwalProps] = useState({});
 
 
-    const handleFetch = () => {
+    const handleFetch = (e) => {
+        e.preventDefault();
         if(type === 'customer id') {
             setBalance(-1);
             setAccount([]);
@@ -38,7 +39,7 @@ const ShowBalanceAdmin = () =>{
             setBalance(response.data)
             setSwalProps({
                 show: true,
-                title: 'Transactions',
+                title: 'Balance',
                 width: "800px"
             })
         })
@@ -46,8 +47,7 @@ const ShowBalanceAdmin = () =>{
             console.log(e);
         })
     }
-    const fetchBalanceCustId = (e) =>{
-        e.preventDefault();
+    const fetchBalanceCustId = () =>{
         const URL = `http://localhost:8080/checkBalance/${custId}`
         // console.log(custId.target.value);
         axios({
@@ -60,7 +60,7 @@ const ShowBalanceAdmin = () =>{
                 setAccount(temp);
                 setSwalProps({
                     show: true,
-                    title: 'Transactions',
+                    title: 'Balance',
                     width: "800px"
                 })
             }
@@ -107,9 +107,8 @@ const ShowBalanceAdmin = () =>{
                 </div>
                 }
                 <div class="group">
-                    
-                <button className='button button5' onClick={handleFetch} type='submit' >Check Balance</button>
-            </div>
+                    <button className='button button5' onClick={handleFetch} >Check Balance</button>
+                </div>
             </Container>
             </form>
             </div>
@@ -149,7 +148,7 @@ const ShowBalanceAdmin = () =>{
             <SweetAlert2 {...swalProps}
             onConfirm={()=>{setSwalProps({show:false})}}
             >
-            <div>Balance is {balance}</div>
+            <div>Your Account Balance: {balance}</div>
             </SweetAlert2>
              : 
              <div></div>

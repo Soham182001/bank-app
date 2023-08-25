@@ -15,10 +15,8 @@ const TransactAdmin = () =>{
     const [type,setType]  = useState('customer id');
     const [swalProps, setSwalProps] = useState({});
 
-
-
-
-    const handleFetch = () => {
+    const handleFetch = (e) => {
+        e.preventDefault();
         if(type === 'customer id') {
             fetchBalanceCustId();
         }
@@ -39,6 +37,9 @@ const TransactAdmin = () =>{
                 title: 'Transactions',
                 width: "800px"
             }); 
+        })
+        .catch(e => {
+            console.log(e);
         })
     }
     const fetchBalanceCustId = () =>{
@@ -102,7 +103,7 @@ const TransactAdmin = () =>{
                 </div>
                 }
                 <div class="group">
-            <input onClick={handleFetch} value='Show Transactions' type='submit'/>
+                <button className='button button5' onClick={handleFetch} >Show Transactions</button>
             </div>
             </Container>
             </form>

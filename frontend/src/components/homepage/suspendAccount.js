@@ -36,7 +36,9 @@ const SuspendAccount = () => {
             }
         )
         .catch(e => {
-            console.log(e);
+            if(e){
+                setFlag(0);
+            }
         })
     }
 
@@ -72,7 +74,7 @@ const SuspendAccount = () => {
                     <h4>Account Suspended!</h4>
                 </SweetAlert2>
             </div>
-            :
+            : 
             <div>
                 <SweetAlert2 {...swalProps} icon='warning'
                 onConfirm={()=>{setSwalProps({show:false})}}
