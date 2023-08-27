@@ -59,7 +59,7 @@ public class TransactionService {
 				if((balance-accountModel.getAmount())<1000) {
 					res="Insufficient Balance";
 					trans.setStatus("Failed");
-//					throw new ResourceNotFoundException( "Insufficient Balance");
+					throw new ResourceNotFoundException( "Insufficient Balance");
 				}
 				else {
 					int rows=accRepo.updateBalance(accountModel.getAmount(),senderNum);
@@ -70,6 +70,7 @@ public class TransactionService {
 					else {
 						res="Error";
 						trans.setStatus("Failed");
+						throw new ResourceNotFoundException( "ERROR");
 					}
 				}
 			}
@@ -83,6 +84,7 @@ public class TransactionService {
 				else {
 					res="Error";
 					trans.setStatus("Failed");
+					throw new ResourceNotFoundException( "ERROR");
 				}
 			}
 			
@@ -93,6 +95,7 @@ public class TransactionService {
 			if((b1-accountModel.getAmount())<1000) {
 				res="Insufficient Balance";
 				trans.setStatus("Failed");
+				throw new ResourceNotFoundException( "Insufficient Balance");
 			}
 			else {
 				int rows1=accRepo.updateBalance(accountModel.getAmount(),senderNum);
@@ -104,6 +107,7 @@ public class TransactionService {
 				else {
 					res="Transfer failed.";
 					trans.setStatus("Failed");
+					throw new ResourceNotFoundException( "Insufficient Balance");
 				}
 			}
 		}

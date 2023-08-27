@@ -85,7 +85,7 @@ public class AccountService {
 		if(acc.getDateClosed()!=null) return "Account already suspended.";
 		int rows=accRepo.updateDateClosed(LocalDate.now(),accNo);
 		if(rows>0) return "Account Suspended.";
-		return "ERROR.";
+		throw new ResourceNotFoundException("Error.");
 	}
 	public Integer checkBalanceByAccNo(String accNo) throws ResourceNotFoundException {
 		Optional<Account> acc1=accRepo.findById(accNo);
@@ -105,7 +105,7 @@ public class AccountService {
 	  	if(acc.getDateClosed()==null) return "Account already activated.";
 		int rows=accRepo.updateDateClosed(null,accNo);
 		if(rows>0) return "Account Activated.";
-		return "ERROR.";
+		throw new ResourceNotFoundException("Error");
 	}
   
 	public String getCustomerName(String accNo) throws ResourceNotFoundException{

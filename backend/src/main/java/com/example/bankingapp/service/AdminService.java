@@ -19,11 +19,12 @@ public class AdminService {
 	@Autowired
 	AdminRepository adminRepo;
 
-	public String saveAdmin(Admin admin) {
+	public String saveAdmin(Admin admin) throws ResourceNotFoundException{
 		Optional<Admin> obj = adminRepo.findById(admin.getEmpId());
 		String result = "";
 		if (obj.isPresent()) {
 			result = "exists";
+			throw new ResourceNotFoundException("Already Exists");
 		} else {
 			result = "inserted success";
 			adminRepo.save(admin);
@@ -33,7 +34,7 @@ public class AdminService {
 		return result;
 	}
 
-	public String validateAdmin(AdminLoginModel u) {
+	public String validateAdmin(AdminLoginModel u) throws ResourceNotFoundException{
 		String result = "";
 		Admin admin = null;
 		Optional<Admin> obj = adminRepo.findById(u.getEmpId());
@@ -43,6 +44,7 @@ public class AdminService {
 		}
 		if (admin == null) {
 			result = "Invalid Admin";
+			 throw new ResourceNotFoundException("Invalid Admin");
 		}
 
 		else {
@@ -50,6 +52,7 @@ public class AdminService {
 				result = "Login Success";
 			} else {
 				result = "Login Failed";
+				 throw new ResourceNotFoundException("Login failed.");
 			}
 		}
 		return result;
@@ -63,7 +66,7 @@ public class AdminService {
 		if(rows>0) {
 			return "Password updated successfully.";
 		}
-		return "ERROR.";
+		throw new ResourceNotFoundException("Error");
 	}
 
 }

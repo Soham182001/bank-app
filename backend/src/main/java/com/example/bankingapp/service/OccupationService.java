@@ -26,6 +26,6 @@ public class OccupationService {
 		if(!ad.isPresent()) throw new ResourceNotFoundException("Customer not found.");
 		int rows=occuRepo.updateOccupation(custId,occu.getGrossAnnualSalary(),occu.getSourceOfIncome(),occu.getOccupationType());
 		if(rows>0) return "Successfully Updated";
-		return "ERROR.";
+		throw new ResourceNotFoundException("Error");
 	}
 }
