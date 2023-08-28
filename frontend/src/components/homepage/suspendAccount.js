@@ -79,7 +79,7 @@ const SuspendAccount = () => {
                 <SweetAlert2 {...swalProps} icon='warning'
                 onConfirm={()=>{setSwalProps({show:false})}}
                 >
-                    <h1>Account Was Already Suspended!</h1>
+                    <h4>Account Was Already Suspended!</h4>
                 </SweetAlert2>
             </div>
           }
