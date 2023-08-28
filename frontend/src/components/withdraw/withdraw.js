@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom"
 import axios from 'axios';
 import Select from 'react-select';
 import { CDBCard, CDBCardBody, CDBContainer} from 'cdbreact'
@@ -16,7 +15,6 @@ const [swalProps, setSwalProps] = useState({});
                 
 
     useEffect(()=>{
-        console.log("Hello")
         let data = sessionStorage.getItem("info");
         data = JSON.parse(data);
         const custId = data.custId;
@@ -41,7 +39,6 @@ const [swalProps, setSwalProps] = useState({});
     const [senderAccount,setSenderAccount] = useState('');
     const [type,setType]  = useState('');
 
-    const navigate = useNavigate();
     const {
         register,
         handleSubmit,

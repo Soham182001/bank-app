@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn } from 'cdbreact'
+import React from 'react';
+import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBBtn } from 'cdbreact'
 
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
 import '../../components/css/components.css'
-import axios from 'axios';
 
 const AddOccupation = () => {
-
-
     const navigate = useNavigate();
     const {
         register,
@@ -17,13 +14,11 @@ const AddOccupation = () => {
 
     const accType = JSON.parse(JSON.stringify(sessionStorage.getItem("account"))).accountType;
     const onSubmit = (data) => {
-        console.log(data);
         const occupation = {
             occupationType: data.occupationType,
             sourceOfIncome: data.sourceOfIncome,
             grossAnnualSalary: data.grossAnnualSalary
         }
-        console.log(occupation)
         sessionStorage.setItem("occupation", JSON.stringify(occupation));
         navigate('/welcome/addPermanentAddress')
     };

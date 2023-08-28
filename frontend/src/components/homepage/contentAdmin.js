@@ -21,7 +21,6 @@ const AdminContent = () =>{
                 <Route path='/suspendAccount' element={<SuspendAccount/>}/>
                 <Route path='/activateAccount' element={<ActivateAccount/>}/>
                 <Route path="*" element={<NotFoundPage home="/welcomeAdmin"/>} />
-
             </Routes>
         </div>
     )

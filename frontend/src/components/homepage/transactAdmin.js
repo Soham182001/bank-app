@@ -3,7 +3,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import SweetAlert2 from 'react-sweetalert2';
 import Container from 'react-bootstrap/Container';
-import { CDBTable, CDBTableHeader, CDBTableBody, CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
+import { CDBTable, CDBTableHeader, CDBTableBody, CDBCard, CDBCardBody, CDBContainer } from 'cdbreact';
 import '../../components/css/components.css'
 
 

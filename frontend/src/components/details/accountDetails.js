@@ -6,14 +6,13 @@ import UserDetail from "../../models/UserDetail"
 import Customer from '../../models/Customer';
 import Address from '../../models/Address';
 import Account from '../../models/Account'
-import { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer, CDBCard, CDBCardBody } from 'cdbreact';
+import { CDBTable, CDBTableHeader, CDBContainer, CDBCard, CDBCardBody } from 'cdbreact';
 
 const AccountDetails = () =>{
     const [userData,setUserData]=useState(null);
     useEffect(()=>{
         let data = sessionStorage.getItem("info");
         data = JSON.parse(data);
-        // console.log("hello")
         const custId = data.custId;
         
         const URL = `http://localhost:8080/fetchCustomer/${custId}`
@@ -49,26 +48,15 @@ const AccountDetails = () =>{
                 let acc = new Account(...val);
                 accountSet.add(JSON.stringify(acc));
                 });
-
                 let accounts = []
                 for (const entry of accountSet.values())
                 {
                     accounts.push(JSON.parse(entry));
                 }
-
-                console.log(accounts);
-
                 const u = new UserDetail(cust,occ);
-
                 u.addAccount(accounts);
                 u.addAddress(addresses)
-
-                console.log(u);
-
                 setUserData(u);
-                
-                console.log(Object.keys(userData));
-                console.log(Object.keys(userData.customer));
             }
         )
         .catch(e => {

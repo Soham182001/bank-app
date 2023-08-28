@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
+import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBContainer } from 'cdbreact';
 import {useNavigate} from "react-router-dom"
 import Address from '../../models/Address';
 const AddressDetailUpdate = (props) => {
@@ -14,8 +14,7 @@ const AddressDetailUpdate = (props) => {
         ) 
 
         useEffect(()=>{
-                // setState(new Customer(...Object.values(customer)))
-                console.log(state)
+                
         },[])
 
         const handleInputChange = (e) =>{
@@ -25,14 +24,11 @@ const AddressDetailUpdate = (props) => {
                 [name]: value
         }));
         }
-        // const custId = JSON.parse(sessionStorage.getItem("info")).custId;
     const baseURL=`http://localhost:8080/updateAddress/${customer.custId}`
 
     console.log(baseURL);
     const handleSubmit = (e) => {
-        console.log("Hello");
         e.preventDefault();
-        console.log(state);
         axios({
             method: 'put',
             url: baseURL,
@@ -46,7 +42,6 @@ const AddressDetailUpdate = (props) => {
         )
         .catch(e => {
             alert(e.message);
-            console.log(e);
         })
     }
 

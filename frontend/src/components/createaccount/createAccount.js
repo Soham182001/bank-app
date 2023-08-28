@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn } from 'cdbreact'
+import React from 'react';
+import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBBtn } from 'cdbreact'
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom"
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import '../../components/css/components.css'
 
 const CreateAccountPage = () => {
-
-
     const navigate = useNavigate();
     const {
         register,

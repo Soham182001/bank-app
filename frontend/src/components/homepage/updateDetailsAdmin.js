@@ -1,6 +1,5 @@
-import React, {useState,useEffect} from "react";
-import CustomerDetailUpdate from '../updateForms/customerDetailUpdate';
-import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
+import React, {useState} from "react";
+import { CDBCard, CDBCardBody, CDBContainer } from 'cdbreact';
 
 import sessionStorage from 'sessionstorage';
 import axios from "axios"
@@ -25,7 +24,6 @@ const UpdateDetails = () =>{
     }
 
     const findUser = (e) =>{
-        // setCustId(custID);
         e.preventDefault();
         const URL = `http://localhost:8080/fetchCustomer/${custId}`
         axios({
@@ -78,7 +76,6 @@ const UpdateDetails = () =>{
             }).catch(e=>{
                 alert(e.message);
                 setCustId();
-
             })
 
     }

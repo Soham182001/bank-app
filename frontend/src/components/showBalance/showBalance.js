@@ -9,7 +9,6 @@ const ShowBalance = () =>{
     useEffect(()=>{
         let data = sessionStorage.getItem("info");
         data = JSON.parse(data);
-        console.log("hello")
         const custId = data.custId;
         
         const URL = `http://localhost:8080/checkBalance/${custId}`
@@ -20,7 +19,6 @@ const ShowBalance = () =>{
         .then(
             (response)=>{
                 let temp= (response.data);
-                console.log(temp);
                 setBalance(temp)
             }
         )

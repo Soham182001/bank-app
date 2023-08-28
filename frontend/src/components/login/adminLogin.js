@@ -31,7 +31,6 @@ const AdminLogin = () =>{
     const handleSubmit = (e) => {
        
         e.preventDefault();
-        console.log(state);
         axios({
             method: 'post',
             url: baseURL,
@@ -39,15 +38,14 @@ const AdminLogin = () =>{
           })
         .then(
             response=>{
-            console.log(response.data)
             if(response.data === 'Login Success')
             {
                     saveData(JSON.stringify(state));
                     navigate('/welcomeAdmin');
             }
             else{
-                alert("Incorrect Credentials! Please try again!!");            }
-            }
+                alert("Incorrect Credentials! Please try again!!");            
+            }}
         )
         .catch(e => {
             console.log(e);

@@ -14,7 +14,6 @@ const OccupationDetailUpdate = () => {
         ) 
 
         useEffect(()=>{
-                // setState(new Customer(...Object.values(customer)))
                 console.log(state)
         },[])
 
@@ -25,14 +24,11 @@ const OccupationDetailUpdate = () => {
                 [name]: value
         }));
         }
-        // const custId = JSON.parse(sessionStorage.getItem("info")).custId;
+
     const baseURL=`http://localhost:8080/updateOccupation/${customer.custId}`
 
-    console.log(baseURL);
     const handleSubmit = (e) => {
-        console.log("Hello");
         e.preventDefault();
-        console.log(state);
         axios({
             method: 'put',
             url: baseURL,
@@ -46,7 +42,6 @@ const OccupationDetailUpdate = () => {
         )
         .catch(e => {
             alert(e.message);
-            console.log(e);
         })
     }
 
