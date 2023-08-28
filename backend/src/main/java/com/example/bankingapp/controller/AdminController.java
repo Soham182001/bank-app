@@ -24,13 +24,13 @@ public class AdminController {
 	AdminService adminService;
 	
 	@PostMapping("/saveAdmin")
-	public String saveAdmin(@RequestBody Admin admin) {
+	public String saveAdmin(@RequestBody Admin admin) throws ResourceNotFoundException{
 		String c=adminService.saveAdmin(admin);
 		return c;
 	}
 	
 	@PostMapping("/checkLoginAdmin")
-	public String validateUser(@RequestBody AdminLoginModel u) {
+	public String validateUser(@RequestBody AdminLoginModel u) throws ResourceNotFoundException{
 		return adminService.validateAdmin(u); 
 	}
 	

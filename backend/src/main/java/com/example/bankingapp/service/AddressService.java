@@ -27,7 +27,7 @@ public class AddressService {
 		}
 		int rows=addRepo.updateAddress(custId,add.getAddressLine1(),add.getAddressLine2(),add.getLandmark(),add.getState(),add.getCity(),add.getPincode(),add.getAddressType());
 		if(rows>0) return "Successfully Updated";
-		return "ERROR.";
+		throw new ResourceNotFoundException("ERROR");
 	}
 
 }

@@ -25,13 +25,13 @@ public class CustController {
 	@Autowired
 	CustService custService;
 	@PostMapping("/saveCustomer")
-	public String saveCustomer(@RequestBody Customer cust) {
+	public String saveCustomer(@RequestBody Customer cust) throws ResourceNotFoundException{
 		String c=custService.saveCustomer(cust);
 		return c;
 	}
 	
 	@PostMapping("/checkLogin")
-	public String validateUser(@RequestBody LoginModel u) {
+	public String validateUser(@RequestBody LoginModel u) throws ResourceNotFoundException{
 		return custService.validateUser(u); 
 	}
 	

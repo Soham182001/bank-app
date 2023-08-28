@@ -22,18 +22,18 @@ public class TransactionController {
 	@Autowired
 	TransactionService transSer;
 	@PostMapping("/transaction")
-	public String transaction(@RequestBody TransactionModel trans) {
+	public String transaction(@RequestBody TransactionModel trans) throws ResourceNotFoundException{
 		String t=transSer.transaction(trans);
 		return t;
 	}
 	
 	@GetMapping("/fetchTransactions/{custId}")
-	public List<Transaction>fetchTransactions(@PathVariable("custId") String uname){
+	public List<Transaction>fetchTransactions(@PathVariable("custId") String uname) throws ResourceNotFoundException{
 		List<Transaction> txnList=transSer.fetchTransactions(uname);
 		return txnList;
 	}
 	@GetMapping("/fetchTransactionsByAccNo/{accountNo}")
-	public List<Transaction>fetchTransactionsByAccNo(@PathVariable("accountNo") String accNo){
+	public List<Transaction>fetchTransactionsByAccNo(@PathVariable("accountNo") String accNo) throws ResourceNotFoundException{
 		List<Transaction> txnList=transSer.fetchTransactionsByAccNo(accNo);
 		return txnList;
 	}
