@@ -105,6 +105,7 @@ public class AccountService {
 	  	if(acc.getDateClosed()==null) return "Account already activated.";
 		int rows=accRepo.updateDateClosed(null,accNo);
 		if(rows>0) return "Account Activated.";
+
 		throw new ResourceNotFoundException("Error");
 	}
   

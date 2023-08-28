@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "occupation_info")
@@ -27,12 +28,15 @@ public class Occupation {
     private Customer customer;
 
     @Column(nullable = false)
+    @NotBlank(message="Occupation type cannot be blank")
     private String occupationType;
 
     @Column(nullable = false)
+    @NotBlank(message="source of income cannot be blank")
     private String sourceOfIncome;
 
     @Column(nullable = false)
+    @NotBlank(message="Gross annual salary cannot be blank")
     private BigInteger grossAnnualSalary;
 
     // Getters and setters

@@ -26,7 +26,7 @@ public class AdminService {
 			result = "exists";
 			throw new ResourceNotFoundException("Already Exists");
 		} else {
-			result = "inserted success";
+			result = "inserted successfully";
 			adminRepo.save(admin);
 
 		}
