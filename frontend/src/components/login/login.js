@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import sessionStorage from "sessionstorage";
 import helper from './helper';
+ // for ES6 modules
 
 
 import Occupation from "../../models/Occupation";
@@ -11,6 +12,7 @@ import UserDetail from "../../models/UserDetail"
 import Customer from '../../models/Customer';
 import Address from '../../models/Address';
 import Account from '../../models/Account';
+
 const Login = () => {
 
 
@@ -135,7 +137,7 @@ const Login = () => {
                 <CDBContainer style={{marginTop: "5em", marginLeft: "25em"}}>
                 <CDBCard style={{ width: '30rem' }}>
                     <CDBCardBody className="mx-4">
-                    <div className="text-center mt-4 mb-2">
+                    <div className="text-center mt-4 mb-2 flex">
                         <p className="h4"> Sign in </p>
                     </div>
                     <form onSubmit={handleSubmit}>
@@ -151,6 +153,7 @@ const Login = () => {
                     <CDBBtn color="dark" className="btn-block my-3 mx-0 " type="submit">
                         Sign in
                     </CDBBtn>
+                    <CDBBtn color="dark" className="btn-block my-3 mx-0 " onClick={()=>{navigate("/loginAdmin")}} > <h6>Login as Admin</h6> </CDBBtn>
                     <CDBLink className="my-6 mx-0" to="/changepassword">Forgot password?</CDBLink>
                     </div>    
                     </form>

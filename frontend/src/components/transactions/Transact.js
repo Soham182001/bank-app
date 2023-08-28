@@ -6,17 +6,19 @@ import axios from 'axios';
 import Select from 'react-select';
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import '../../components/css/components.css'
+import SweetAlert2 from 'react-sweetalert2';
+
 
 const Transact = () => {
 
     const [accountIds, setAccountIDs] = useState([]);
-
+    const [flag, setFlag] = useState(-1);
+    const [swalProps, setSwalProps] = useState({});
 
     useEffect(() => {
         console.log("Hello")
         let data = sessionStorage.getItem("info");
         data = JSON.parse(data);
-        console.log("hello")
         const custId = data.custId;
 
         const URL = `http://localhost:8080/fetchAccounts/${custId}`
@@ -27,14 +29,9 @@ const Transact = () => {
             .then(
                 (response) => {
                     let temp = []
-                    console.log(response.data);
                     let accNums = response.data;
-                    console.log(accNums)
                     accNums.map((val, index) => temp.push({ label: val, value: index }))
                     setAccountIDs(temp);
-                    console.log(accountIds)
-                    console.log(accNums, typeof (accNums))
-
                 }
             )
             .catch(e => {
@@ -73,7 +70,6 @@ const Transact = () => {
                 status: "in progress"
             }
         }
-        console.log(payload);
 
         const URL = `http://localhost:8080/transaction`
         axios({
@@ -83,15 +79,19 @@ const Transact = () => {
         })
             .then(
                 response => {
-                    console.log(response.data);
-
-                    alert("Transaction done success");
-                    navigate("/welcome")
-
+                    setFlag(1);
+                    setSwalProps({
+                        show: true,
+                        title: 'Status',
+                    });
                 }
             )
             .catch(e => {
-                alert(e.message);
+                setFlag(-1);
+                setSwalProps({
+                    show: true,
+                    title: 'Status',
+                });
                 console.log(e);
             })
     };
@@ -132,10 +132,8 @@ const Transact = () => {
                     </div>
                 
                     <div class="group">
-                    
-                        <input type="submit" value="Transfer"
-
-                        ></input>
+                    <button className='button button5' >Transfer</button>
+                        
                     </div>
                     </Container>
                 </form>
@@ -143,6 +141,21 @@ const Transact = () => {
             </CDBCardBody>
           </CDBCard>
           </CDBContainer>
+          { flag == 1 ? 
+            <div>
+                <SweetAlert2 {...swalProps} icon='success'
+                >
+                    <h4>Transaction Successful!</h4>
+                </SweetAlert2>
+            </div>
+            : 
+            <div>
+                <SweetAlert2 {...swalProps} icon='error'
+                >
+                <h4>Transaction Failed!</h4>
+                </SweetAlert2>
+            </div>
+          }
         </div>
     )
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.Address;
 import com.example.bankingapp.model.Occupation;
 import com.example.bankingapp.service.AddressService;
@@ -19,7 +20,7 @@ public class OccupationController {
 	OccupationService occuService;
 	
 	@PutMapping("/updateOccupation/{custId}")
-	  public String updateOccupation(@PathVariable("custId") String custId, @RequestBody Occupation occu) {
+	  public String updateOccupation(@PathVariable("custId") String custId, @RequestBody Occupation occu) throws ResourceNotFoundException{
 		  return occuService.updateOccupation(custId,occu);
 	  }
 

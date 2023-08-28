@@ -83,13 +83,13 @@ const AccountDetails = () =>{
                 
             <CDBContainer style={{marginLeft: "35%", marginTop: "10%"}}>
             <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border>
-            <CDBCardBody>  
+            <CDBCardBody style={{padding: '10px'}}>  
                 
             <h3>Account Details</h3>
             <div className="d-flex justify-content-center">
                 
-            <CDBTable style={{width:"400px"}}>
-                <caption>List of Transactions</caption>
+            <CDBTable style={{width:"100%"}}>
+                <caption>All Your Accounts</caption>
                 <CDBTableHeader color='primary-info'>
 
                         <tr>

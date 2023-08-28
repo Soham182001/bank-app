@@ -100,8 +100,7 @@ const UpdateDetails = () =>{
                 </div>
 
                 <div class="group">
-                    
-                <input type="submit" value="Find"></input>
+                <button className='button button5' >Find</button>
                 </div>
             </form>
             </div>

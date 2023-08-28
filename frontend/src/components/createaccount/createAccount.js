@@ -3,6 +3,7 @@ import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn } from 
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
 import axios from 'axios';
+import '../../components/css/components.css'
 
 const CreateAccountPage = () => {
 
@@ -41,12 +42,18 @@ const CreateAccountPage = () => {
 
                         <h1>Create an Account</h1>
                         <form onSubmit={handleSubmit(onSubmit)}>
+
                             <div>Account Type (savings/current): </div>
-                            <CDBInput type='text' {...register("accountType")} />
-                            {/* <input type="text"
-                                name="accountType"
-                                {...register("accountType")}
-                            ></input> */}
+                            {/* <CDBInput type='text' {...register("accountType")} /> */}
+                            <div className='d-flex justify-content-center'>
+                                <div className='group'>
+
+                                    <input type="text"
+                                        name="accountType"
+                                        {...register("accountType")}
+                                    ></input>
+                                </div>
+                            </div>
                             <br />
                             <CDBBtnGrp>
                                 <CDBBtn>

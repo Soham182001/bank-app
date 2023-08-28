@@ -39,20 +39,18 @@ const TransactionTable = ({ transactions }) => {
                             </CDBTableHeader>
                             <CDBTableBody>
                                 {currentTransactions.map((trans, index) => (
-                                    <tr
-                                        key={index}
+                                    <tr>
+                                        <td>{trans.recieverAccount.accountNo}</td>
+                                        <td>{trans.senderAccount.accountNo}</td>
+                                        <td key={index}
                                         style={{
-                                            backgroundColor:
+                                            color:
                                                 trans.type === 'deposit'
                                                     ? 'green'
                                                     : trans.type === 'withdrawal'
                                                         ? 'red'
-                                                        : 'greenyellow',
-                                        }}
-                                    >
-                                        <td>{trans.recieverAccount.accountNo}</td>
-                                        <td>{trans.senderAccount.accountNo}</td>
-                                        <td>{trans.amount}</td>
+                                                        : 'grey',
+                                        }}>{trans.amount}</td>
                                         <td>{trans.timeStamp}</td>
                                         <td>{trans.type}</td>
                                     </tr>
@@ -61,7 +59,7 @@ const TransactionTable = ({ transactions }) => {
                         </CDBTable>
 
                         {/* Pagination controls */}
-                        <CDBBtnGrp style={{margin: '10px'}}>
+                        <CDBBtnGrp style={{margin: '15px'}}>
                             <CDBBtn
                                 disabled={currentPage === 1}
                                 onClick={() => handlePageChange(currentPage - 1)}
@@ -114,41 +112,6 @@ const ShowTransaction = () => {
     return (
         <div>
             <TransactionTable transactions={tranx} />
-            {/* <CDBContainer style={{marginLeft: "50%", marginTop: "10%"}}>
-            <CDBCard style={{ width: "35rem", borderRadius: "1rem" }} border
-            <CDBCardBody>
-            <h3 style={{padding: "3%"}}>Transactions</h3>
-            <div className="d-flex justify-content-center">
-            
-            <CDBTable style={{width:"650px"}}>
-                <caption>List of Transactions</caption>
-                <CDBTableHeader color='primary-info'>
-
-                <tr>
-                    <th>Reciever Account No.</th>
-                    <th>Sender Account No.</th>
-                    <th>Amount</th>
-                    <th>Time Stamp</th>
-                    <th>Type</th>
-                </tr>
-                </CDBTableHeader>
-                <CDBTableBody>
-                {tranx.map((Trans,i)=>
-                <tr key={i} style={{backgroundColor:Trans.type === 'deposit'?"green":Trans.type==='withdrawal'?'red':'greenyellow'}}>
-                    <td  style={{width:"200 px"} }>{Trans.recieverAccount.accountNo}</td>
-                    <td style={{width:"200 px"} }>{Trans.senderAccount.accountNo}</td>
-                    <td style={{width:"200 px"} } >{Trans.amount}</td>
-                    <td style={{width:"200 px"} } >{Trans.timeStamp}</td>
-                    <td style={{width:"200 px"} }>{Trans.type}</td>
-                </tr>
-                )}
-                </CDBTableBody>
-                
-            </CDBTable>
-            </div>
-            </CDBCardBody>
-          </CDBCard>
-          </CDBContainer> */}
         </div>
     )
 

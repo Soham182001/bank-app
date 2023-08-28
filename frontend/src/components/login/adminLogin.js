@@ -72,9 +72,11 @@ const AdminLogin = () =>{
                                     value={state.password}
                                     onChange={handleInputChange}/>
                     <div>
-                    <CDBBtn color="dark" className="btn-block my-3 mx-0 " type="submit">
+                    <CDBBtn color="dark" className="btn-block my-3 mx-0" type="submit">
                         Sign in
                     </CDBBtn>
+                    <CDBBtn color='dark' className="btn-block my-3 mx-0" Click={()=>{navigate("/login")}} value="Login as Customer"><h6>Login as Customer</h6></CDBBtn>
+
                     {/* <CDBLink className="my-6 mx-0" to="/changepassword">Forgot password?</CDBLink> */}
                     </div>    
                     </form>
