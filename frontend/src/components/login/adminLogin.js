@@ -61,8 +61,6 @@ const AdminLogin = () =>{
                     <CDBCardBody className="mx-4">
                     <div className="text-center mt-4 mb-2">
                         <p className="h4"> Sign in </p>
-                        
-                        <CDBBtn color='dark' className='my-8' onClick={()=>{navigate("/login")}} value="Login as Customer"><h6>Login as Customer</h6></CDBBtn>
                     </div>
                     <form onSubmit={handleSubmit}>
                     <CDBInput material hint="E-mail" type='text' placeholder="Admin ID"
@@ -74,9 +72,11 @@ const AdminLogin = () =>{
                                     value={state.password}
                                     onChange={handleInputChange}/>
                     <div>
-                    <CDBBtn color="dark" className="btn-block my-3 mx-0 " type="submit">
+                    <CDBBtn color="dark" className="btn-block my-3 mx-0" type="submit">
                         Sign in
                     </CDBBtn>
+                    <CDBBtn color='dark' className="btn-block my-3 mx-0" Click={()=>{navigate("/login")}} value="Login as Customer"><h6>Login as Customer</h6></CDBBtn>
+
                     {/* <CDBLink className="my-6 mx-0" to="/changepassword">Forgot password?</CDBLink> */}
                     </div>    
                     </form>

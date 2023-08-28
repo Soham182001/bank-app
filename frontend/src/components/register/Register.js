@@ -93,9 +93,7 @@ const Register = () => {
                                 required/>
                         </div>
                         <div className='col'>
-                                <label htmlFor="dob" className="text-muted m-0">
-                                DOB
-                                </label>
+                               
                                 <CDBInput id='dob' type='date' material
                                 name='DOB'
                                 onChange={handleInputChange}
