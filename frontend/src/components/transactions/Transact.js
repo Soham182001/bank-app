@@ -4,18 +4,19 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import Select from 'react-select';
-import { CDBInput, CDBCard, CDBCardBody, CDBContainer } from 'cdbreact';
+import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import '../../components/css/components.css'
 import SweetAlert2 from 'react-sweetalert2';
+
 
 const Transact = () => {
 
     const [accountIds, setAccountIDs] = useState([]);
-    const [swalProps, setSwalProps] = useState({});
     const [flag, setFlag] = useState(-1);
-
+    const [swalProps, setSwalProps] = useState({});
 
     useEffect(() => {
+        console.log("Hello")
         let data = sessionStorage.getItem("info");
         data = JSON.parse(data);
         const custId = data.custId;
@@ -81,11 +82,16 @@ const Transact = () => {
                     setFlag(1);
                     setSwalProps({
                         show: true,
-                        title: 'Transaction Successful',
+                        title: 'Status',
                     });
                 }
             )
             .catch(e => {
+                setFlag(-1);
+                setSwalProps({
+                    show: true,
+                    title: 'Status',
+                });
                 console.log(e);
             })
     };
@@ -126,30 +132,30 @@ const Transact = () => {
                     </div>
                 
                     <div class="group">
-                    
-                        <input type="submit" value="Transfer"
-
-                        ></input>
+                    <button className='button button5' >Transfer</button>
+                        
                     </div>
                     </Container>
                 </form>
               </div>
-              { flag == 1 ? 
-                    <div>
-                        <SweetAlert2 {...swalProps} icon='success'>
-                            <h4>Transaction Successful</h4>
-                        </SweetAlert2>
-                    </div>
-                    : 
-                    <div>
-                        <SweetAlert2 {...swalProps} icon='error'>
-                        <h4>Transaction Failed</h4>
-                        </SweetAlert2>
-                    </div>
-                }
             </CDBCardBody>
           </CDBCard>
-          </CDBContainer>          
+          </CDBContainer>
+          { flag == 1 ? 
+            <div>
+                <SweetAlert2 {...swalProps} icon='success'
+                >
+                    <h4>Transaction Successful!</h4>
+                </SweetAlert2>
+            </div>
+            : 
+            <div>
+                <SweetAlert2 {...swalProps} icon='error'
+                >
+                <h4>Transaction Failed!</h4>
+                </SweetAlert2>
+            </div>
+          }
         </div>
     )
 }

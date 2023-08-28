@@ -39,20 +39,18 @@ const TransactionTable = ({ transactions }) => {
                             </CDBTableHeader>
                             <CDBTableBody>
                                 {currentTransactions.map((trans, index) => (
-                                    <tr
-                                        key={index}
+                                    <tr>
+                                        <td>{trans.recieverAccount.accountNo}</td>
+                                        <td>{trans.senderAccount.accountNo}</td>
+                                        <td key={index}
                                         style={{
-                                            backgroundColor:
+                                            color:
                                                 trans.type === 'deposit'
                                                     ? 'green'
                                                     : trans.type === 'withdrawal'
                                                         ? 'red'
-                                                        : 'greenyellow',
-                                        }}
-                                    >
-                                        <td>{trans.recieverAccount.accountNo}</td>
-                                        <td>{trans.senderAccount.accountNo}</td>
-                                        <td>{trans.amount}</td>
+                                                        : 'grey',
+                                        }}>{trans.amount}</td>
                                         <td>{trans.timeStamp}</td>
                                         <td>{trans.type}</td>
                                     </tr>
@@ -61,7 +59,7 @@ const TransactionTable = ({ transactions }) => {
                         </CDBTable>
 
                         {/* Pagination controls */}
-                        <CDBBtnGrp style={{margin: '10px'}}>
+                        <CDBBtnGrp style={{margin: '15px'}}>
                             <CDBBtn
                                 disabled={currentPage === 1}
                                 onClick={() => handlePageChange(currentPage - 1)}
