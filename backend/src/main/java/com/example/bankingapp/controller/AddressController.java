@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.Address;
 import com.example.bankingapp.model.Customer;
 import com.example.bankingapp.service.AddressService;
@@ -16,9 +17,9 @@ import com.example.bankingapp.service.AddressService;
 public class AddressController {
 	@Autowired
 	AddressService addService;
+	
 	@PutMapping("/updateAddress/{custId}")
-	  public String updateAddress(@PathVariable("custId") String custId, @RequestBody Address address) {
-		  
+	  public String updateAddress(@PathVariable("custId") String custId, @RequestBody Address address) throws ResourceNotFoundException{
 		  return addService.updateAddress(custId,address);
 	  }
 

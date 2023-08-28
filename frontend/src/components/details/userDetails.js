@@ -10,6 +10,9 @@ import {
   } from 'mdb-react-ui-kit';
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import UserDetail from '../../models/UserDetail';
+import CustomerDetailUpdate from '../updateForms/customerDetailUpdate';
+import AddressUpdateHome from '../updateForms/addressDetailHome';
+import OccupationDetailUpdate from '../updateForms/occupationDetailUpdate';
 
 const UserDetails = () =>{
     const [userData,setUserData]=useState(null);
@@ -58,7 +61,7 @@ const UserDetails = () =>{
 
                     <MDBTabsContent>
                         <MDBTabsPane show={iconsActive === 'tab1'}>
-                            <table>
+                            {/* <table>
                                 <tbody>
                                     <tr>
                                     {Object.keys(userData.customer).map((value,i)=>{
@@ -73,10 +76,12 @@ const UserDetails = () =>{
                                 })}
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> */
+                            <CustomerDetailUpdate/>}
                         </MDBTabsPane>
                         <MDBTabsPane show={iconsActive === 'tab2'}>
-                        <h3>Permanent Address</h3>
+                            <AddressUpdateHome/>
+                        {/* <h3>Permanent Address</h3>
                             <table>
                                 <tbody>
                                 <tr>
@@ -114,10 +119,10 @@ const UserDetails = () =>{
                                 </tr>
                                 
                                 </tbody>
-                            </table> 
+                            </table>  */}
                         </MDBTabsPane>
                         <MDBTabsPane show={iconsActive === 'tab3'}>
-                        <table>
+                        {/* <table>
                             <tbody>
                             <tr>
                                 {Object.keys(userData.occupation).map((key,i)=>{
@@ -134,7 +139,9 @@ const UserDetails = () =>{
                             </tr>
                             
                             </tbody>
-                        </table> 
+                        </table>  */}
+
+                        <OccupationDetailUpdate/>
                         </MDBTabsPane>
                     </MDBTabsContent>
                     

@@ -4,6 +4,7 @@ import ShowBalanceAdmin from '../showBalance/showBalanceAdmin';
 import SuspendAccount from './suspendAccount';
 import TransactAdmin from './transactAdmin';
 import UpdateDetails from './updateDetailsAdmin';
+import ActivateAccount from './activateAccount';
 
 const AdminContent = () =>{
     const style = {
@@ -18,6 +19,7 @@ const AdminContent = () =>{
                 <Route path='/transact' element={<TransactAdmin/>}/>
                 <Route path='/update' element={<UpdateDetails/>}/>
                 <Route path='/suspendAccount' element={<SuspendAccount/>}/>
+                <Route path='/activateAccount' element={<ActivateAccount/>}/>
             </Routes>
         </div>
     )

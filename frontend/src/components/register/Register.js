@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import {useNavigate} from "react-router-dom"
-
+import sessionStorage from 'sessionstorage';
 
 const Register = () => {
 
@@ -34,6 +34,7 @@ const Register = () => {
     const handleSubmit = (e) => {
         console.log("Hello");
         e.preventDefault();
+        sessionStorage.setItem("info",JSON.stringify(state))
         console.log(state);
         axios({
             method: 'post',
@@ -42,7 +43,7 @@ const Register = () => {
           })
         .then(
             response=>{
-                navigate('/login')
+                navigate('/welcome/createAccount')
             }
         )
         .catch(e => {

@@ -34,14 +34,15 @@ public class AccountController {
 	
 	
 	@PutMapping("/updatePasswordByAccountNo/{accountNo}")
-	public String updatePasswordByAccountNo(@PathVariable ("accountNo") String accountNo,@RequestBody ChangePassword pass) {
+	public String updatePasswordByAccountNo(@PathVariable ("accountNo") String accountNo,@RequestBody ChangePassword pass) throws ResourceNotFoundException{
 		return accService.updatePasswordByAccountNo(accountNo,pass);
 	}
 	
 	@PutMapping("/suspendAccount/{accountNo}")
-	public String suspendAccount(@PathVariable ("accountNo") String accNo) {
+	public String suspendAccount(@PathVariable ("accountNo") String accNo) throws ResourceNotFoundException{
 		return accService.suspendAccount(accNo);
 	}
+	
 	@GetMapping("/checkBalanceByAccNo/{accountNo}")
 	public Integer checkBalanceByAccNo(@PathVariable("accountNo") String accNo) throws ResourceNotFoundException {
 		return accService.checkBalanceByAccNo(accNo);
@@ -54,7 +55,7 @@ public class AccountController {
 	
 	
 	@PutMapping("/activateAccount/{accountNo}")
-	public String activateAccount(@PathVariable ("accountNo") String accNo) {
+	public String activateAccount(@PathVariable ("accountNo") String accNo) throws ResourceNotFoundException{
 		return accService.activateAccount(accNo);
 	}
 }

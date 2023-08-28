@@ -36,7 +36,7 @@ public class CustController {
 	}
 	
 	@GetMapping("/fetchAccounts/{custId}")
-	public List<String>fetchAccounts(@PathVariable("custId") String uname){
+	public List<String>fetchAccounts(@PathVariable("custId") String uname) throws ResourceNotFoundException{
 		System.out.println(uname);
 		List<String>accountList=custService.fetchAccounts(uname);
 		return accountList;
@@ -48,18 +48,18 @@ public class CustController {
 	}
 	
 	@PutMapping("/updatePassword/{custId}")
-	public String updatePassword(@PathVariable ("custId") String custId,@RequestBody ChangePassword pass) {
+	public String updatePassword(@PathVariable ("custId") String custId,@RequestBody ChangePassword pass) throws ResourceNotFoundException {
 		return custService.updatePassword(custId,pass);
   }
   @GetMapping("/fetchCustomer/{custId}")
-	public List<UserDetails>fetchCustomer(@PathVariable("custId") String uname){
+	public List<UserDetails>fetchCustomer(@PathVariable("custId") String uname) throws ResourceNotFoundException{
 	
 		List<UserDetails> customer=custService.fetchCustomer(uname);
 		return customer;
   }
   
   @PutMapping("/updateCustomer/{custId}")
-  public String updateCustomer(@PathVariable("custId") String custId, @RequestBody Customer cust) {
+  public String updateCustomer(@PathVariable("custId") String custId, @RequestBody Customer cust) throws ResourceNotFoundException{
 	  return custService.updateCustomer(custId,cust);
   }
   

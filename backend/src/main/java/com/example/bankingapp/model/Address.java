@@ -25,6 +25,7 @@ public class Address {
     @ManyToOne
     @JoinColumn(name = "custId")
     private Customer customer;
+	
     @Column(nullable = false)
     @NotBlank(message="Address line 1 is mandatory")
     private String addressLine1;

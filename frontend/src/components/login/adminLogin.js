@@ -25,7 +25,7 @@ const AdminLogin = () =>{
     }
 
     const saveData = (res) => {
-        sessionStorage.setItem("info", res);
+        sessionStorage.setItem("admin_info", res);
     }
 
     const handleSubmit = (e) => {

@@ -7,7 +7,7 @@ public class UserDetails {
 	private Address address;
 	private Occupation occupation;
 	
-	UserDetails(Customer customer,Account account,Address address,Occupation occupation){
+	public UserDetails(Customer customer,Account account,Address address,Occupation occupation){
 		
 		
 		this.account = account;
