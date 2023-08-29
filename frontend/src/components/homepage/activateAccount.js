@@ -35,6 +35,20 @@ const ActivateAccount = () => {
             }
         )
         .catch(e => {
+            if(e.response){
+                console.log(e.response)
+                // console.log(e.message);
+                if(e.response.data.message === "Account not found.")
+                setFlag(0);
+                else
+                setFlag(1);
+    
+                setSwalProps({
+                    show: true,
+                    title: 'Status',
+                });
+                console.log(flag)
+                }
             console.log(e);
         })
     }
@@ -69,6 +83,15 @@ const ActivateAccount = () => {
                 onConfirm={()=>{setSwalProps({show:false})}}
                 >
                     <h4>Account Activated!</h4>
+                </SweetAlert2>
+            </div>
+            : flag === 0  ?
+            
+            <div>
+                <SweetAlert2 {...swalProps} icon='warning'
+                onConfirm={()=>{setSwalProps({show:false})}}
+                >
+                    <h4>Account Number Invalid</h4>
                 </SweetAlert2>
             </div>
             :

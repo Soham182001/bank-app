@@ -35,8 +35,20 @@ const SuspendAccount = () => {
             }
         )
         .catch(e => {
-            if(e){
-                setFlag(0);
+            
+            if(e.response){
+            console.log(e.response)
+            // console.log(e.message);
+            if(e.response.data.message === "Account not found.")
+            setFlag(0);
+            else
+            setFlag(1);
+
+            setSwalProps({
+                show: true,
+                title: 'Status',
+            });
+            console.log(flag)
             }
         })
     }
@@ -65,7 +77,7 @@ const SuspendAccount = () => {
             </CDBCardBody>
             </CDBCard>
           </CDBContainer>
-          { flag == -1 ? 
+          { flag === -1 ? 
             <div>
                 <SweetAlert2 {...swalProps} icon='success'
                 onConfirm={()=>{setSwalProps({show:false})}}
@@ -73,7 +85,16 @@ const SuspendAccount = () => {
                     <h4>Account Suspended!</h4>
                 </SweetAlert2>
             </div>
-            : 
+            : flag === 0  ?
+            
+            <div>
+                <SweetAlert2 {...swalProps} icon='warning'
+                onConfirm={()=>{setSwalProps({show:false})}}
+                >
+                    <h4>Account Number Invalid</h4>
+                </SweetAlert2>
+            </div>
+            :
             <div>
                 <SweetAlert2 {...swalProps} icon='warning'
                 onConfirm={()=>{setSwalProps({show:false})}}
