@@ -83,7 +83,6 @@ public class OccupationControllerTest {
 	}
 	@Test
 	public void testUpdateOccupation() throws Exception{
-		//occu.setCustomer(obj);
 		Occupation occu=new Occupation();
 		BigInteger x=new BigInteger("1234432");
 		occu.setGrossAnnualSalary(x);
@@ -98,9 +97,6 @@ public class OccupationControllerTest {
 		.content(json)
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk()).andReturn();
-//		.andExpect(jsonPath("$",Matchers.hasSize(1)))
-//		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
-//		.andExpect(jsonPath("$[0]",Matchers.equalTo(3000)));	
 		String result = res.getResponse().getContentAsString();
 		assertEquals(result,"successfully updated");
 		System.out.println(result);

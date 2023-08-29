@@ -125,9 +125,7 @@ public class AccountControllerTest {
 		.content(json)
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk()).andReturn();
-//		.andExpect(jsonPath("$",Matchers.hasSize(1)))
-//		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
-//		.andExpect(jsonPath("$[0]",Matchers.equalTo(3000)));	
+
 		String result = res.getResponse().getContentAsString();
 		assertEquals(result,"");
 		System.out.println(result);
@@ -147,14 +145,6 @@ public class AccountControllerTest {
 		.content(json)
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk()).andReturn();
-//		.andExpect(jsonPath("$",Matchers.hasSize(1)))
-//		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
-//		.andExpect(jsonPath("$[0]",Matchers.equalTo(3000)));
-//		mvc.perform(get("/fetchAccounts/{custId}","user0002").contentType(MediaType.APPLICATION_JSON))
-//		.andExpect(status().isOk())
-//		.andExpect(jsonPath("$",Matchers.hasSize(1)))
-//		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
-//		.andExpect(jsonPath("$[0]",Matchers.equalTo("137526170820")));	
 		String result = res.getResponse().getContentAsString();
 		assertEquals(result,"Account suspended");
 		System.out.println(result);
@@ -168,12 +158,8 @@ public class AccountControllerTest {
 
 
 		Mockito.when(this.accSer.checkBalanceByAccNo(ArgumentMatchers.any())).thenReturn(acc.getBalance());
-		//ObjectMapper mapper = new ObjectMapper();
-		//String json = mapper.writeValueAsString(cust.getCustId());
 		mvc.perform(get("/checkBalanceByAccNo/{AccountNo}","156489871104").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
-		//.andExpect(jsonPath("$",Matchers.hasSize(1)))
-		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
 		.andExpect(jsonPath("$",Matchers.equalTo(2000)));	
 
 	}
@@ -185,12 +171,8 @@ public class AccountControllerTest {
 
 
 		Mockito.when(this.accSer.getCustomerName(ArgumentMatchers.any())).thenReturn(nameOfCust);
-		//ObjectMapper mapper = new ObjectMapper();
-		//String json = mapper.writeValueAsString(cust.getCustId());
 		mvc.perform(get("/getCustomerName/{AccountNo}","156489871104").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
-		//.andExpect(jsonPath("$",Matchers.hasSize(1)))
-		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
 		.andExpect(jsonPath("$",Matchers.equalTo("aa bb")));	
 
 	}
@@ -208,23 +190,11 @@ public class AccountControllerTest {
 		.content(json)
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk()).andReturn();
-//		.andExpect(jsonPath("$",Matchers.hasSize(1)))
-//		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
-//		.andExpect(jsonPath("$[0]",Matchers.equalTo(3000)));
-//		mvc.perform(get("/fetchAccounts/{custId}","user0002").contentType(MediaType.APPLICATION_JSON))
-//		.andExpect(status().isOk())
-//		.andExpect(jsonPath("$",Matchers.hasSize(1)))
-//		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
-//		.andExpect(jsonPath("$[0]",Matchers.equalTo("137526170820")));	
 		String result = res.getResponse().getContentAsString();
 		assertEquals(result,"Account activated");
 		System.out.println(result);
 
 	}
-
-
-
-
 
 
 }
