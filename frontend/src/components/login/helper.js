@@ -1,4 +1,3 @@
-
 import Occupation from "../../models/Occupation";
 import UserDetail from "../../models/UserDetail"
 import Customer from '../../models/Customer';
@@ -62,8 +61,6 @@ const  getUserDetails = async  (custId) =>{
             u.addAddress(addresses)
 
             saveData(u);
-            console.log(u);
-            
             return u;
         }
     )

@@ -32,7 +32,6 @@ const Register = () => {
     const baseURL="http://localhost:8080/saveCustomer"
 
     const handleSubmit = (e) => {
-        console.log("Hello");
         e.preventDefault();
         sessionStorage.setItem("info",JSON.stringify(state))
         console.log(state);

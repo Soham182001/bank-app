@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import Select from 'react-select';
-import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
+import { CDBCard, CDBCardBody, CDBContainer } from 'cdbreact';
 import '../../components/css/components.css'
 import SweetAlert2 from 'react-sweetalert2';
 
@@ -40,7 +39,6 @@ const Transact = () => {
     }, [])
     const [senderAccount, setSenderAccount] = useState('');
 
-    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -144,6 +142,7 @@ const Transact = () => {
           { flag == 1 ? 
             <div>
                 <SweetAlert2 {...swalProps} icon='success'
+                onConfirm={()=>{setSwalProps({show:false})}}
                 >
                     <h4>Transaction Successful!</h4>
                 </SweetAlert2>
@@ -151,6 +150,7 @@ const Transact = () => {
             : 
             <div>
                 <SweetAlert2 {...swalProps} icon='error'
+                onConfirm={()=>{setSwalProps({show:false})}}
                 >
                 <h4>Transaction Failed!</h4>
                 </SweetAlert2>

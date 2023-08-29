@@ -4,7 +4,7 @@ import { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer, CDBCard, CDBCardB
 
 
 
-const itemsPerPage = 7; // Number of items to display per page
+const itemsPerPage = 7; 
 
 const TransactionTable = ({ transactions }) => {
     const [currentPage, setCurrentPage] = useState(1);

@@ -10,7 +10,6 @@ const NavbarBootstrapAdmin = () => {
     const navigate = useNavigate();
     let data = sessionStorage.getItem("admin_info");
     data = JSON.parse(data);
-    console.log(data);
 
     const handleLogout = () => {
       sessionStorage.clear();

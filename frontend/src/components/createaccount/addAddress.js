@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBInput, CDBBtn } from 'cdbreact'
+import React from 'react';
+import { CDBBtnGrp, CDBCard, CDBCardBody, CDBContainer, CDBBtn } from 'cdbreact'
 
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"
@@ -49,7 +49,6 @@ const Address = (props) => {
                 address: JSON.parse(sessionData.address)
             }
             const URL = `http://localhost:8080/createAccount/${custId}`;
-            console.log(data);
 
             axios({
                 method: 'post',
@@ -58,7 +57,6 @@ const Address = (props) => {
             })
                 .then(
                     response => {
-                        console.log(response.data);
                         navigate('/welcome')
                     }
                 )
@@ -69,7 +67,6 @@ const Address = (props) => {
 
 
         }
-        // navigate('/reviewPage')
     };
 
     return (

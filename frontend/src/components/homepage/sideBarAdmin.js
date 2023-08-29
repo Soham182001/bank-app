@@ -5,17 +5,14 @@ import {
   CDBSidebarHeader,
   CDBSidebarMenu,
   CDBSidebarMenuItem,
-  CDBSidebarFooter,
-  CDBContainer,
-  CDBCard,
-  CDBCardBody
+  CDBSidebarFooter
 } from 'cdbreact';
-import {NavLink, Navlink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const SidebarAdmin = () => {
   return (
     <div>      
-      <CDBSidebar style={{height: "91.5vh"}} >
+      <CDBSidebar toggled='false' style={{height: "91.5vh"}} >
         <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>Admin Dashboard</CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>

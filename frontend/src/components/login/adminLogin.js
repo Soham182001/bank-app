@@ -31,7 +31,6 @@ const AdminLogin = () =>{
     const handleSubmit = (e) => {
        
         e.preventDefault();
-        console.log(state);
         axios({
             method: 'post',
             url: baseURL,
@@ -39,15 +38,14 @@ const AdminLogin = () =>{
           })
         .then(
             response=>{
-            console.log(response.data)
             if(response.data === 'Login Success')
             {
                     saveData(JSON.stringify(state));
                     navigate('/welcomeAdmin');
             }
             else{
-                alert("Incorrect Credentials! Please try again!!");            }
-            }
+                alert("Incorrect Credentials! Please try again!!");            
+            }}
         )
         .catch(e => {
             console.log(e);
@@ -75,7 +73,7 @@ const AdminLogin = () =>{
                     <CDBBtn color="dark" className="btn-block my-3 mx-0" type="submit">
                         Sign in
                     </CDBBtn>
-                    <CDBBtn color='dark' className="btn-block my-3 mx-0" Click={()=>{navigate("/login")}} value="Login as Customer"><h6>Login as Customer</h6></CDBBtn>
+                    <CDBBtn color='dark' className="btn-block my-3 mx-0" onClick={()=>{navigate("/login")}} value="Login as Customer"><h6>Login as Customer</h6></CDBBtn>
 
                     {/* <CDBLink className="my-6 mx-0" to="/changepassword">Forgot password?</CDBLink> */}
                     </div>    

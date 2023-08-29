@@ -6,9 +6,6 @@ import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBContainer } from 'cdbreact';
 const ChangePassword = () => {
 
     const navigate = useNavigate();
-    
-
-    
     const [newPassword, setNewPassword] =  useState('') 
     const [userId, setUserId] =  useState('') 
 
@@ -24,7 +21,6 @@ const ChangePassword = () => {
 
     const handleSubmit = (e) => {
         const baseURL=`http://localhost:8080/updatePassword/${userId}`
-        console.log(baseURL);
         e.preventDefault();
         axios({
             method: 'put',

@@ -16,7 +16,6 @@ const ActivateAccount = () => {
     const activateAccount = (e) =>{
         e.preventDefault();
         const URL = `http://localhost:8080/activateAccount/${accountNo}`;
-        console.log(URL)
         axios({
             method: 'put',
             url: URL,

@@ -16,7 +16,6 @@ const SuspendAccount = () => {
     const suspendAccount = (e) =>{
         e.preventDefault();
         const URL = `http://localhost:8080/suspendAccount/${accountNo}`;
-        console.log(URL)
         axios({
             method: 'put',
             url: URL,

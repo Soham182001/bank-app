@@ -1,12 +1,8 @@
-import React, {useState,useEffect} from "react";
+import React, {useState} from "react";
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import sessionStorage from "sessionstorage";
-import helper from './helper';
- // for ES6 modules
-
-
 import Occupation from "../../models/Occupation";
 import UserDetail from "../../models/UserDetail"
 import Customer from '../../models/Customer';
@@ -41,9 +37,7 @@ const Login = () => {
         sessionStorage.setItem("accounts",JSON.stringify(res.accounts));
     }
     const handleSubmit = (e) => {
-       
         e.preventDefault();
-        console.log(state);
         axios({
             method: 'post',
             url: baseURL,
@@ -51,20 +45,8 @@ const Login = () => {
           })
         .then(
           async  response=>{
-            // console.log(response.data)
             if(response.data === 'Login Success')
             {
-            //     try{
-            //    const res =   await  helper(state.custId);      
-               
-            //    console.log(res);
-            //    console.log(sessionStorage.getItem('info'));
-            //    navigate('/welcome');
-
-            //     }
-            //     catch(e){
-            //         console.log(e)
-            //     }
 
             const URL = `http://localhost:8080/fetchCustomer/${state.custId}`
             axios({
@@ -74,7 +56,6 @@ const Login = () => {
             .then(
                 (response)=>{
                     let temp= (response.data)
-                    console.log(temp);
                     let val = Object.values(temp[0]["occupation"])
                     const occ = new Occupation(...val)
                     
@@ -112,7 +93,6 @@ const Login = () => {
                     u.addAddress(addresses)
         
                     saveData(u)
-                    console.log(u)
 
                     navigate("/welcome");
                 }
