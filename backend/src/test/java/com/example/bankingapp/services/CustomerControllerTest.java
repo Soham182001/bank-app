@@ -82,17 +82,13 @@ public class CustomerControllerTest {
 		BigInteger a=new BigInteger("123456789123");
 		obj.setAdhaarNumber(a);
 		obj.setMiddleName(null);
-		//LocalDate b=LocalDate.of(12,Month.DECEMBER,2020);
-		//LocalDate c=new LocalDate.parse("2020-12-12");
-		//obj.setDOB("2020-12-12");
-		//obj.setDOB(LocalDate.now());
 		obj.setEmail("lala@gmail.com");
 		obj.setFatherName("qaqa");
 		obj.setPassword("lalaqaqa");
 		obj.setPhone("9999999999");
 		Mockito.when(this.custSer.saveCustomer(ArgumentMatchers.any())).thenReturn("inserted successfully");
 		ObjectMapper mapper = new ObjectMapper();
-		//.addModule(new JavaTimeModule())
+
 		String json = mapper.writeValueAsString(obj);
 	
 		MvcResult res =  mvc.perform(post("/saveCustomer")
@@ -136,12 +132,10 @@ public class CustomerControllerTest {
 		accBal.setBalance(3000);
 		resu.add(accBal);
 		Mockito.when(this.custSer.checkBalance(ArgumentMatchers.any())).thenReturn(resu);
-		//ObjectMapper mapper = new ObjectMapper();
-		//String json = mapper.writeValueAsString(cust.getCustId());
 		mvc.perform(get("/checkBalance/{custId}","user0002").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$",Matchers.hasSize(1)))
-		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
+
 		.andExpect(jsonPath("$[0].balance",Matchers.equalTo(3000)));	
 
 	}
@@ -149,11 +143,6 @@ public class CustomerControllerTest {
 	public void testUpdatePassword() throws Exception{
 		Customer cust=new Customer();
 		cust.setCustId("user0002");
-		//List<AccountBalance> resu=new ArrayList<AccountBalance>();
-		//AccountBalance accBal=new AccountBalance();
-		//accBal.setAccountNo("137526170820");
-		//accBal.setBalance(3000);
-		//resu.add(accBal);
 		ChangePassword p=new ChangePassword();
 		p.setPassword("user0002");
 		Mockito.when(this.custSer.updatePassword(ArgumentMatchers.any(),ArgumentMatchers.any())).thenReturn("Password updated successfully");
@@ -165,9 +154,6 @@ public class CustomerControllerTest {
 		.content(json)
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk()).andReturn();
-//		.andExpect(jsonPath("$",Matchers.hasSize(1)))
-//		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
-//		.andExpect(jsonPath("$[0]",Matchers.equalTo(3000)));	
 		String result = res.getResponse().getContentAsString();
 		assertEquals(result,"Password updated successfully");
 		System.out.println(result);
@@ -180,15 +166,11 @@ public class CustomerControllerTest {
 		List<String> resu=new ArrayList<String>();
 		Account acc=new Account();
 		acc.setAccountNo("137526170820");
-		//accBal.setBalance(3000);
 		resu.add(acc.getAccountNo());
 		Mockito.when(this.custSer.fetchAccounts(ArgumentMatchers.any())).thenReturn(resu);
-		//ObjectMapper mapper = new ObjectMapper();
-		//String json = mapper.writeValueAsString(cust.getCustId());
 		mvc.perform(get("/fetchAccounts/{custId}","user0002").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$",Matchers.hasSize(1)))
-		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
 		.andExpect(jsonPath("$[0]",Matchers.equalTo("137526170820")));	
 
 	}
@@ -201,10 +183,6 @@ public class CustomerControllerTest {
 		BigInteger a=new BigInteger("123456789123");
 		obj.setAdhaarNumber(a);
 		obj.setMiddleName(null);
-		//LocalDate b=LocalDate.of(12,Month.DECEMBER,2020);
-		//LocalDate c=new LocalDate.parse("2020-12-12");
-		//obj.setDOB("2020-12-12");
-		//obj.setDOB(LocalDate.now());
 		obj.setEmail("lala@gmail.com");
 		obj.setFatherName("qaqa");
 		obj.setPassword("lalaqaqa");
@@ -234,13 +212,9 @@ public class CustomerControllerTest {
 		List<UserDetails> use=new ArrayList<UserDetails>();
 		use.add(us);
 		Mockito.when(this.custSer.fetchCustomer(ArgumentMatchers.any())).thenReturn(use);
-		//ObjectMapper mapper = new ObjectMapper();
-		//String json = mapper.writeValueAsString(cust.getCustId());
 		mvc.perform(get("/fetchCustomer/{custId}","newuser").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$",Matchers.hasSize(1)));
-		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
-		//.andExpect(jsonPath("$[0].customer.custId",Matchers.equalTo("newuser")));	
 
 	}
 	@Test
@@ -252,10 +226,6 @@ public class CustomerControllerTest {
 		BigInteger a=new BigInteger("123456789123");
 		obj.setAdhaarNumber(a);
 		obj.setMiddleName(null);
-		//LocalDate b=LocalDate.of(12,Month.DECEMBER,2020);
-		//LocalDate c=new LocalDate.parse("2020-12-12");
-		//obj.setDOB("2020-12-12");
-		//obj.setDOB(LocalDate.now());
 		obj.setEmail("lala@gmail.com");
 		obj.setFatherName("qaqa");
 		obj.setPassword("lalaqaqa");
@@ -269,9 +239,6 @@ public class CustomerControllerTest {
 		.content(json)
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk()).andReturn();
-//		.andExpect(jsonPath("$",Matchers.hasSize(1)))
-//		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
-//		.andExpect(jsonPath("$[0]",Matchers.equalTo(3000)));	
 		String result = res.getResponse().getContentAsString();
 		assertEquals(result,"successfully updated");
 		System.out.println(result);

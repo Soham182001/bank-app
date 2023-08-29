@@ -47,7 +47,6 @@ public class CustService {
 		String result = "";
 		Customer cust = null;
 		Optional<Customer> obj = custRepo.findById(u.getCustId());
-//		if(!obj.isPresent()) throw new ResourceNotFoundException("Invalid User");
 
 		if (obj.isPresent()) {
 			cust = obj.get();
@@ -72,9 +71,6 @@ public class CustService {
 		List<String> res=accRepo.findByUsername(uname);
 		if(res.size()==0) throw new ResourceNotFoundException("Customer not found");
 		return res;
-//		Optional<Customer> ad=custRepo.findById(uname);
-//		if(!ad.isPresent()) throw new ResourceNotFoundException("Customer not found.");
-//		return accRepo.findByUsername(uname);
 	}
 	
 	public List<AccountBalance> checkBalance(String uname) throws ResourceNotFoundException {

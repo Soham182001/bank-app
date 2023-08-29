@@ -85,7 +85,6 @@ public class AddressControllerTest {
 			ad.setAddressLine2("jdufud");
 			ad.setAddressType("Permanent");
 			ad.setCity("Aluva");
-			//ad.setCustomer(obj);
 			ad.setLandmark("deduwh");
 			ad.setPincode(683101);
 			ad.setState("kl");
@@ -98,9 +97,6 @@ public class AddressControllerTest {
 			.content(json)
 			.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk()).andReturn();
-//			.andExpect(jsonPath("$",Matchers.hasSize(1)))
-//			//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
-//			.andExpect(jsonPath("$[0]",Matchers.equalTo(3000)));	
 			String result = res.getResponse().getContentAsString();
 			assertEquals(result,"successfully updated");
 			System.out.println(result);
