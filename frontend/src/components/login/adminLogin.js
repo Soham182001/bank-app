@@ -48,6 +48,7 @@ const AdminLogin = () =>{
             }}
         )
         .catch(e => {
+            alert(e.response.data.message)
             console.log(e);
         })
     }
