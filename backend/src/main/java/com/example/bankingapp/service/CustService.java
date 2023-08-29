@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.bankingapp.dao.AccountRepository;
 import com.example.bankingapp.dao.CustomerRepository;
+import com.example.bankingapp.exception.CustomException;
 import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.AccountBalance;
 import com.example.bankingapp.model.Admin;
@@ -25,13 +26,13 @@ public class CustService {
 	@Autowired
 	AccountRepository accRepo;
 
-	public String saveCustomer(Customer cust) throws ResourceNotFoundException{
+	public String saveCustomer(Customer cust) throws CustomException{
 		Optional<Customer> obj = custRepo.findById(cust.getCustId());
 
 		String result = "";
 		if (obj.isPresent()) {
 			result = "exists";
-			throw new ResourceNotFoundException("Customer already exists");
+			throw new CustomException("Customer already exists");
 			
 		} else {
 			result = "inserted success";

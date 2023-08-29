@@ -59,7 +59,6 @@ public class Customer {
 	private String email;
 
 	@Column(nullable = false)
-//	@Size(min=12, max=12, message="Aadhar number must be 12 digits")
 	@DecimalMin("100000000000")
 	@DecimalMax("999999999999")
 	private BigInteger adhaarNumber;
