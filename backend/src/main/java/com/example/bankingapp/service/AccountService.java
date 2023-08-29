@@ -82,7 +82,7 @@ public class AccountService {
 			throw new ResourceNotFoundException("Account not found.");
 		}
 		Account acc=acc1.get();
-		if(acc.getDateClosed()!=null) return "Account already suspended.";
+		if(acc.getDateClosed()!=null) throw new ResourceNotFoundException("Account already suspended.");
 		int rows=accRepo.updateDateClosed(LocalDate.now(),accNo);
 		if(rows>0) return "Account Suspended.";
 		throw new ResourceNotFoundException("Error.");
@@ -102,7 +102,7 @@ public class AccountService {
 			throw new ResourceNotFoundException("Account not found.");
 		}
 	  	Account acc=accRepo.findById(accNo).get();
-	  	if(acc.getDateClosed()==null) return "Account already activated.";
+	  	if(acc.getDateClosed()==null) throw new ResourceNotFoundException("Account already activated.");
 		int rows=accRepo.updateDateClosed(null,accNo);
 		if(rows>0) return "Account Activated.";
 

@@ -14,6 +14,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "occupation_info")
@@ -36,7 +37,7 @@ public class Occupation {
     private String sourceOfIncome;
 
     @Column(nullable = false)
-    @NotBlank(message="Gross annual salary cannot be blank")
+    @NotNull(message="Gross annual salary cannot be blank")
     private BigInteger grossAnnualSalary;
 
     // Getters and setters

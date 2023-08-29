@@ -17,6 +17,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -57,7 +59,9 @@ public class Customer {
 	private String email;
 
 	@Column(nullable = false)
-	@Size(min=12, max=12, message="Aadhar number must be 12 digits")
+//	@Size(min=12, max=12, message="Aadhar number must be 12 digits")
+	@DecimalMin("100000000000")
+	@DecimalMax("999999999999")
 	private BigInteger adhaarNumber;
 
 	@Column(nullable = false)
