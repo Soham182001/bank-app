@@ -150,6 +150,7 @@ const [swalProps, setSwalProps] = useState({});
           { flag == 1 ? 
             <div>
                 <SweetAlert2 {...swalProps} icon='success'
+                onConfirm={()=>{setSwalProps({show:false})}}
                 >
                     <h4>Transaction Successful!</h4>
                 </SweetAlert2>
@@ -157,6 +158,7 @@ const [swalProps, setSwalProps] = useState({});
             : 
             <div>
                 <SweetAlert2 {...swalProps} icon='error'
+                onConfirm={()=>{setSwalProps({show:false})}}
                 >
                 <h4>Transaction Failed!</h4>
                 </SweetAlert2>
