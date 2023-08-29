@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.bankingapp.dao.AdminRepository;
+import com.example.bankingapp.exception.CustomException;
 import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.Admin;
 import com.example.bankingapp.model.AdminLoginModel;
@@ -19,12 +20,12 @@ public class AdminService {
 	@Autowired
 	AdminRepository adminRepo;
 
-	public String saveAdmin(Admin admin) throws ResourceNotFoundException{
+	public String saveAdmin(Admin admin) throws CustomException{
 		Optional<Admin> obj = adminRepo.findById(admin.getEmpId());
 		String result = "";
 		if (obj.isPresent()) {
 			result = "exists";
-			throw new ResourceNotFoundException("Already Exists");
+			throw new CustomException("Already Exists");
 		} else {
 			result = "inserted successfully";
 			adminRepo.save(admin);
@@ -44,7 +45,7 @@ public class AdminService {
 		}
 		if (admin == null) {
 			result = "Invalid Admin";
-			 throw new ResourceNotFoundException("Invalid Admin");
+			 throw new ResourceNotFoundException("Admin not found");
 		}
 
 		else {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankingapp.exception.CustomException;
 import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.AccountBalance;
 import com.example.bankingapp.model.ChangePassword;
@@ -25,7 +26,7 @@ public class CustController {
 	@Autowired
 	CustService custService;
 	@PostMapping("/saveCustomer")
-	public String saveCustomer(@RequestBody Customer cust) throws ResourceNotFoundException{
+	public String saveCustomer(@RequestBody Customer cust) throws CustomException{
 		String c=custService.saveCustomer(cust);
 		return c;
 	}
