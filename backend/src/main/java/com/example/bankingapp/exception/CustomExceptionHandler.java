@@ -42,11 +42,11 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 		return new ErrorResponse(HttpStatus.NOT_FOUND.value(),ex.getMessage());
 	}
 //	
-//	@ExceptionHandler(value=NoDataFoundException.class)
-//	@ResponseStatus(HttpStatus.NOT_FOUND)
-//	public @ResponseBody ErrorResponse handleNoDataFoundException(NoDataFoundException ex)
-//	{
-//		return new ErrorResponse(HttpStatus.NOT_FOUND.value(),ex.getMEssage());
-//	}
+	@ExceptionHandler(value=CustomException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public @ResponseBody ErrorResponse handleCustomException(CustomException ex)
+	{
+		return new ErrorResponse(HttpStatus.NOT_FOUND.value(),ex.getMessage());
+	}
 	
 }
