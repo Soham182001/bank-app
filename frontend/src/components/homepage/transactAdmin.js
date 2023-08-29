@@ -39,6 +39,7 @@ const TransactAdmin = () =>{
             }); 
         })
         .catch(e => {
+            alert(e.response.data.message);
             console.log(e);
         })
     }
@@ -59,6 +60,8 @@ const TransactAdmin = () =>{
             }
         )
         .catch(e => {
+            
+            alert(e.response.data.message);
             console.log(e);
         })
     }
