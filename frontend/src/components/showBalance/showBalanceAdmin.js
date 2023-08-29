@@ -44,6 +44,7 @@ const ShowBalanceAdmin = () =>{
             })
         })
         .catch(e => {
+            alert(e.response.data.message)
             console.log(e);
         })
     }
@@ -66,6 +67,8 @@ const ShowBalanceAdmin = () =>{
             }
         )
         .catch(e => {
+            alert(e.response.data.message)
+
             console.log(e);
         })
     }
