@@ -81,7 +81,7 @@ public class AdminControllerTest {
 
 		Mockito.when(this.adminSer.saveAdmin(ArgumentMatchers.any())).thenReturn("inserted successfully");
 		ObjectMapper mapper = new ObjectMapper();
-		//.addModule(new JavaTimeModule())
+
 		String json = mapper.writeValueAsString(adm);
 	
 		MvcResult res =  mvc.perform(post("/saveAdmin")
@@ -90,7 +90,7 @@ public class AdminControllerTest {
 		.content(json)
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk()).andReturn();
-//		
+		
 		String result = res.getResponse().getContentAsString();
 		assertEquals(result,"inserted successfully");
 		System.out.println(result);
@@ -130,9 +130,6 @@ public class AdminControllerTest {
 		.content(json)
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk()).andReturn();
-//		.andExpect(jsonPath("$",Matchers.hasSize(1)))
-//		//.andExpect(jsonPath("$[0].custId",Matchers.equalTo(cust.getCustId())));
-//		.andExpect(jsonPath("$[0]",Matchers.equalTo(3000)));	
 		String result = res.getResponse().getContentAsString();
 		assertEquals(result,"Password updated successfully");
 		System.out.println(result);

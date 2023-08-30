@@ -118,8 +118,8 @@ public class TransactionService {
 	}
 	
 	public List<Transaction>fetchTransactions(String custId) throws ResourceNotFoundException{
-//		Optional<Customer> ad=custRepo.findById(custId);
-//		if(!ad.isPresent()) throw new ResourceNotFoundException("Customer not found.");
+
+
 		List<String> accList=accRepo.findByUsername(custId);
 		if(accList.size()==0) throw new ResourceNotFoundException("Customer not found.");
 		
@@ -150,6 +150,6 @@ public List<Transaction>fetchTransactionsByAccNo(String accNo) throws ResourceNo
 		}
 			
 		return txnList;
-//		return subTranx;
+
 	}
 }

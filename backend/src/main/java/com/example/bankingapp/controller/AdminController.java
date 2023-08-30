@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankingapp.exception.CustomException;
 import com.example.bankingapp.exception.ResourceNotFoundException;
 import com.example.bankingapp.model.Admin;
 import com.example.bankingapp.model.AdminLoginModel;
@@ -24,7 +25,7 @@ public class AdminController {
 	AdminService adminService;
 	
 	@PostMapping("/saveAdmin")
-	public String saveAdmin(@RequestBody Admin admin) throws ResourceNotFoundException{
+	public String saveAdmin(@RequestBody Admin admin) throws CustomException{
 		String c=adminService.saveAdmin(admin);
 		return c;
 	}
