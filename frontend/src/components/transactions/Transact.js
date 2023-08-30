@@ -53,6 +53,20 @@ const Transact = () => {
 
     const onSubmit = (data) => {
 
+        console.log(data.receiverAccount === senderAccount);
+        if(data.receiverAccount === senderAccount)
+        {
+            console.log(data);
+            setFlag(-1);
+            setSwalProps({
+                show: true,
+                title: 'Status',
+            });
+
+            return;
+
+        }
+        else{
         const payload = {
             accountUpdateModel: {
 
@@ -92,6 +106,7 @@ const Transact = () => {
                 });
                 console.log(e);
             })
+        }
     };
 
     
