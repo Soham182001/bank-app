@@ -9,12 +9,21 @@ const CustomerDetailUpdate = () => {
         const navigate = useNavigate();
 
         const [state, setState] = useState(
-                new Customer(...Object.values(customer))
+                {
+                        custId:customer.custId,
+                        firstName:customer.firstName,
+                        middleName:customer.middleName,
+                        lastName:customer.lastName,
+                        fatherName:customer.fatherName,
+                        phone:customer.phone,
+                        email:customer.email,
+                        adhaarNumber:customer.adhaarNumber,
+                        DOB:customer.DOB,
+                        password:customer.password
+                }
         ) 
 
-        useEffect(()=>{
-
-        },[])
+        console.log(state);
 
         const handleInputChange = (e) =>{
         const {name, value} = e.target;
@@ -90,10 +99,7 @@ const CustomerDetailUpdate = () => {
                                 onChange={handleInputChange}
                                 required/>
                         </div>
-                        <div className='col'>
-                                <label id='dob' >
-                                {new Date(state.DOB).toLocaleString()}</label>
-                        </div>
+                        
                         </div>
                         <CDBInput material  type="email" placeholder='Email'
                                 name="email"
